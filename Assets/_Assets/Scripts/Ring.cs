@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Ring : MonoBehaviour
+{
+    [SerializeField] LineRenderer _lineRenderer;
+    private int _steps;
+    [SerializeField] private float _radius;
+    [SerializeField] EdgeCollider2D _edgeCollider2D;
+    private Transform _lineTransform;
+    private int _layerIndex;
+    private double _currHealth;
+    
+    public static Action OnHealthChanged;
+
+    private void Awake()
+    {
+        _lineTransform = _lineRenderer.transform;
+        _steps = (int)(_radius * 25f);
+        _layerIndex = LayerMask.NameToLayer("Balls");
+    }
+
+    private void Start()
+    {
+        DrawCircle(_steps,_radius);
+    }
+
+    public void SetParameters(Color color, double health)
+    {
+        _lineRenderer.startColor = color;
+        _lineRenderer.endColor = color;
+        _currHealth = health;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == _layerIndex)
+        {
+            Ball ball = other.collider.GetComponent<Ball>();
+            _currHealth -= ball.Damage(); // this function damage the ball and return double value which is income or damage give to ring  
+            OnHealthChanged?.Invoke();
+            if (_currHealth <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    void DrawCircle(int steps, float radius)
+    {
+        List<Vector2> points = new List<Vector2>();
+        _lineRenderer.positionCount = steps;
+
+        for (int currentStep = 0; currentStep < steps; currentStep++)
+        {
+            float circumferenceProgress = (float)currentStep / steps;
+            
+            float radians = circumferenceProgress * 2 * Mathf.PI;
+            
+            float x = radius * Mathf.Cos(radians);
+            float y = radius * Mathf.Sin(radians);
+            
+            Vector3 currenPosition = new Vector3(x, y, 0);
+            points.Add(currenPosition);
+            _lineRenderer.SetPosition(currentStep, currenPosition);
+        }
+        points.Add(points[0]);
+        _edgeCollider2D.points = points.ToArray();
+    }
+
+    [SerializeField] private float rotationSpeed;
+    private void Update()
+    {
+        _lineTransform.Rotate(Vector3.back, Time.deltaTime * rotationSpeed);
+    }
+
+    public double GetHealth()
+    {
+        return _currHealth;
+    }
+}
