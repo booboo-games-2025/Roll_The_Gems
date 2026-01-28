@@ -31,12 +31,14 @@ public class Ball : MonoBehaviour
         _currDurability--;
         double money = UpgradeManager.Instance._ballUpgrades[BallIndex].income;
         int rand = Random.Range(1, 100);
+        bool criticalHit = false;
         if (rand <= PowerupsManager.instance.GetLevel(BallIndex,PowerType.CriticalHitChance))
         {
             float increment = 2 * (PowerupsManager.instance.GetLevel(BallIndex, PowerType.CriticalHitPower)/10f);
             money *= (2 + increment);
+            criticalHit = true;
         }
-        GameManager.Instance.AddMoneyOnCollide(money, transform.position);
+        GameManager.Instance.AddMoneyOnCollide(money, transform.position,criticalHit);
         if (_currDurability == 0)
         {
             isActive = false;

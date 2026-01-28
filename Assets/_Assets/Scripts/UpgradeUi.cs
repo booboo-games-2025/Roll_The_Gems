@@ -11,8 +11,9 @@ public class UpgradeUi : MonoBehaviour
     [SerializeField] private TMP_Text currentBallCount;
     [SerializeField] private Image fillImage, upgradeLevelFillBar;
     public GameObject content;
-    [SerializeField] Sprite enableSprite, disableSprite;
-    
+    [SerializeField] Sprite enableSprite, disableSprite; 
+    public Animation iconAnim;
+
     public void SwitchButton(bool hasMoneyAvailable)
     {
         upgradeBtn.Interactable = hasMoneyAvailable;
@@ -41,7 +42,12 @@ public class UpgradeUi : MonoBehaviour
         }
         else
         {
-            costText.text = NumberFormatter.FormatNumberSmall(cost);
+            costText.text = "<sprite=0> " + NumberFormatter.FormatNumberSmall(cost);
+        }
+
+        if (TwoxIncomeRv.IsActive)
+        {
+            income *= 2;
         }
         incomeText.text = NumberFormatter.FormatNumberSmall(income);
         upgradeLevelFillBar.fillAmount = (level % 25)/25f;

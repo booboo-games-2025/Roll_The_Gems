@@ -1,0 +1,7 @@
+Ball Ring
+---------------------------
+Ring Health (common) text Colour                - 52edff
+Selected icon text colour                       - e6f2f9
+Unselected icon text colour                     - c3d0de
+Yellow text colour                              - ffe148
+White text Colour                               - ffffff

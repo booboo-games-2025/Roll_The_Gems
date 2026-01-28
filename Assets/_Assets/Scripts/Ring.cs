@@ -19,6 +19,11 @@ public class Ring : MonoBehaviour
         _lineTransform = _lineRenderer.transform;
         _steps = (int)(_radius * 25f);
         _layerIndex = LayerMask.NameToLayer("Balls");
+        RingHealthHalfRv.OnActive = () =>
+        {
+            _currHealth /= 2;
+            OnHealthChanged?.Invoke();
+        };
     }
 
     private void Start()
@@ -31,6 +36,10 @@ public class Ring : MonoBehaviour
         _lineRenderer.startColor = color;
         _lineRenderer.endColor = color;
         _currHealth = health;
+        if (RingHealthHalfRv.IsActive)
+        {
+            _currHealth /= 2;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -43,6 +52,7 @@ public class Ring : MonoBehaviour
             if (_currHealth <= 0)
             {
                 gameObject.SetActive(false);
+                Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.DestroyRings);
             }
         }
     }
@@ -78,5 +88,10 @@ public class Ring : MonoBehaviour
     public double GetHealth()
     {
         return _currHealth;
+    }
+
+    public float GetRadius()
+    {
+        return _radius;
     }
 }

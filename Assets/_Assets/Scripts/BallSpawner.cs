@@ -58,14 +58,21 @@ public class BallSpawner : MonoBehaviour
         {
             Ball newBall = GetActiveBall();
             float spawnSpeedUpgradeVal = spawnDelay * (PowerupsManager.instance.GetLevel(ballSpawnerIndex, PowerType.BallCreationSpeed)/10f);
+            float finalDelay = spawnDelay - spawnSpeedUpgradeVal;
+            if (TwoXBallCreationRv.IsActive)
+            {
+                finalDelay /= 2;
+            }
+            finalDelay = Mathf.Clamp(finalDelay, 0.5f, 10);
             if (newBall != null)
             {
                 newBall.gameObject.SetActive(true);
                 newBall.Init();
                 CurrentBallCount++;
-                upgradeUi.HandleBallFill(spawnDelay - spawnSpeedUpgradeVal);
+                upgradeUi.HandleBallFill(finalDelay);
+                Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.CreateBalls);
             }
-            yield return new WaitForSeconds(spawnDelay - spawnSpeedUpgradeVal);
+            yield return new WaitForSeconds(finalDelay);
         }
     }
 

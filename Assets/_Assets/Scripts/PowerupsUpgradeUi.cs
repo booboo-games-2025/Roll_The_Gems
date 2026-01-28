@@ -17,10 +17,27 @@ public class PowerupsUpgradeUi : MonoBehaviour
 
     public void Start()
     {
-        upgradeBtn.clickEvent.AddListener( ()=>
+        if (powerType == PowerType.IncomeMultiple)
         {
-            PowerupsManager.instance.UpgradePower(ballId, powerType);
-        });
+            upgradeBtn.clickEvent.AddListener( ()=>
+            {
+                PowerupsManager.instance.UpgradeAllIncome();
+            });
+        }
+        else if (powerType == PowerType.RingHealthReduce)
+        {
+            upgradeBtn.clickEvent.AddListener( ()=>
+            {
+                PowerupsManager.instance.UpgradeRingHealth();
+            });
+        }
+        else
+        {
+            upgradeBtn.clickEvent.AddListener( ()=>
+            {
+                PowerupsManager.instance.UpgradePower(ballId, powerType);
+            });
+        }
     }
     
     public void Active(bool state)

@@ -14,7 +14,7 @@ public class EconomyManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        coinCount = GetDouble(MyConstants.COIN_COUNT, 50d);
+        coinCount = GetDouble(MyConstants.COIN_COUNT, 0);
         OnCoinChanged?.Invoke();
         UpdateCoinUi();
     }
@@ -39,6 +39,7 @@ public class EconomyManager : MonoBehaviour
         //PlayerPrefs.SetInt(MyConstants.COIN_COUNT, coinCount);
         OnCoinChanged?.Invoke();
         UpdateCoinUi();
+        Achievements.OnAchievementsUpdated?.Invoke(coin,AchievementType.EarnCoin);
     }
 
     public void DecreaseEconomy(double coin)
@@ -55,7 +56,7 @@ public class EconomyManager : MonoBehaviour
     
     void UpdateCoinUi()
     {
-        coinText.text = NumberFormatter.FormatNumberSmall(coinCount);
+        coinText.text = "<sprite=0> " + NumberFormatter.FormatNumberSmall(coinCount);
     }
     
     public static void SetDouble(string key, double value)

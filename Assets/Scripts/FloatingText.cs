@@ -6,14 +6,16 @@ public class FloatingText : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI text;
 
-    public void Show(string value)
+    public void Show(string value, Color color)
     {
-        text.text = value;
+        text.text = "<sprite=0> " + value;
+        text.color = color;
         gameObject.SetActive(true);
     }
 
     public void Disable()
     {
+        text.color = Color.white;
         ObjectPooling.Instance.Release("float_text",gameObject);
     }
 }

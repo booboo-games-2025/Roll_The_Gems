@@ -12,9 +12,13 @@ public class PowerupsManager : MonoBehaviour
     public UpgradesUisForBall[] upgradesUisForBalls;
     [SerializeField] PowerupBaseCostSo[] powerupBaseCosts;
 
-    public static Action<int> OnPowerUp;
+    public PowerupsUpgradeUi allIncomeUpgradeUi, ringHealthUpgradeUi;
+    public int allIncomeUpgradeLevel,ringHealthUpgradeLevel;
+    private double allIncomeUpgradeCost, ringHealthUpgradeCost;
 
-    private const int TOTAL_BALLS = 3;
+    public static Action<int, float> OnPowerUp;
+
+    private const int TOTAL_BALLS = 8;
     
     private void OnEnable()
     {
@@ -45,6 +49,7 @@ public class PowerupsManager : MonoBehaviour
 
             foreach (PowerType type in System.Enum.GetValues(typeof(PowerType)))
             {
+                if(type == PowerType.IncomeMultiple || type == PowerType.RingHealthReduce) continue;
                 ball.powers.Add(new PowerData
                 {
                     powerType = type,
@@ -69,10 +74,41 @@ public class PowerupsManager : MonoBehaviour
     {
         PowerData power = GetBall(ballId).GetPower(type);
         double previousCost = power.GetUpgradeCost();
-        OnPowerUp?.Invoke(ballId);
+        OnPowerUp?.Invoke(ballId, 1.5f);
         power.Upgrade();
         UpdateUi(ballId, type, power.GetUpgradeCost());
         EconomyManager.instance.DecreaseEconomy(previousCost);
+        Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.BuyPowerupsXTimes);
+    }
+
+    public void UpgradeAllIncome()
+    {
+        double previousCost = GetAllIncomeUpgradeCost();
+        allIncomeUpgradeLevel++;
+        PlayerPrefs.SetInt(MyConstants.ALL_INCOME, allIncomeUpgradeLevel);
+        allIncomeUpgradeUi.UpdateUi(GetAllIncomeUpgradeCost());
+        EconomyManager.instance.DecreaseEconomy(previousCost);
+        
+    }
+
+    double GetAllIncomeUpgradeCost()
+    {
+        return 500 * Math.Pow(4.1f, allIncomeUpgradeLevel);
+    }
+
+    public void UpgradeRingHealth()
+    {
+        double previousCost = GetRingHealthUpgradeCost();
+        ringHealthUpgradeLevel++;
+        PlayerPrefs.SetInt(MyConstants.RING_HEALTH, ringHealthUpgradeLevel);
+        ringHealthUpgradeUi.UpdateUi(GetRingHealthUpgradeCost());
+        EconomyManager.instance.DecreaseEconomy(previousCost);
+        
+    }
+
+    double GetRingHealthUpgradeCost()
+    {
+        return 1000000 *  Math.Pow(1.5f, ringHealthUpgradeLevel);
     }
 
     public int GetLevel(int ballIndex, PowerType type)
@@ -100,6 +136,15 @@ public class PowerupsManager : MonoBehaviour
             CreateDefaultData();
             Save();
         }
+        LoadCommonUpgradeData();
+    }
+
+    void LoadCommonUpgradeData()
+    {
+        allIncomeUpgradeLevel = PlayerPrefs.GetInt(MyConstants.ALL_INCOME);
+        allIncomeUpgradeUi.UpdateUi(GetAllIncomeUpgradeCost());
+        ringHealthUpgradeLevel = PlayerPrefs.GetInt(MyConstants.RING_HEALTH);
+        ringHealthUpgradeUi.UpdateUi(GetRingHealthUpgradeCost());
     }
 
     void UpdateAllUi()
@@ -108,6 +153,7 @@ public class PowerupsManager : MonoBehaviour
         {
             foreach (PowerType type in Enum.GetValues(typeof(PowerType)))
             {
+                if(type == PowerType.IncomeMultiple || type == PowerType.RingHealthReduce) continue;
                 PowerData power = GetBall(i).GetPower(type);
                 UpdateUi(i, type, power.GetUpgradeCost());
             }
@@ -128,10 +174,13 @@ public class PowerupsManager : MonoBehaviour
         {
             foreach (PowerType type in Enum.GetValues(typeof(PowerType)))
             {
+                if(type == PowerType.IncomeMultiple || type == PowerType.RingHealthReduce) continue;
                 PowerData power = GetBall(i).GetPower(type);
                 upgradesUisForBalls[i].powerUpgradesUi[(int)type].SwitchButton(currentMoney >= power.GetUpgradeCost());
             }
         }
+        allIncomeUpgradeUi.SwitchButton(currentMoney >= allIncomeUpgradeCost);
+        ringHealthUpgradeUi.SwitchButton(currentMoney >= ringHealthUpgradeCost);
     }
 
     public void ActivePowerUisForBall(int ballId)
@@ -190,5 +239,5 @@ public class UpgradesUisForBall
 
 public enum PowerType
 {
-    IncomeSingle, CriticalHitChance, CriticalHitPower, Speed, BallCreationSpeed, Durability
+    IncomeSingle, CriticalHitChance, CriticalHitPower, Speed, BallCreationSpeed, Durability, IncomeMultiple, RingHealthReduce
 }

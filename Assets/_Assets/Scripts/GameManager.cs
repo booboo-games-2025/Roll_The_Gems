@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +21,9 @@ public class GameManager : MonoBehaviour
     
     private List<Double> healthList = new List<Double>();
     private Camera _cam;
+
+    [SerializeField] private RectTransform floatingRv;
+    [SerializeField] private ParticleSystem ringDestroyEffect;
 
     private void OnEnable()
     {
@@ -41,6 +46,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Setup();
+        StartCoroutine(FloatingRvTimer());
     }
 
     void Setup()
@@ -84,6 +90,7 @@ public class GameManager : MonoBehaviour
         double currentHealth = rings[_currentRingIndex].GetHealth();
         if (currentHealth <= 0)
         {
+            PlayRingDestroyParticle(ringColors[_currentRingIndex],rings[_currentRingIndex].GetRadius());
             _currentRingIndex++;
             if (_currentRingIndex ==_totalActiavtedRings)
             {
@@ -95,8 +102,8 @@ public class GameManager : MonoBehaviour
                 ringSet++;
                 PlayerPrefs.SetInt(MyConstants.RING_LEVEL, ringSet);
                 healthUi.SetActive(false);
-                Invoke(nameof(Setup),1f);
-                Invoke(nameof(CheckAndEnableBallSpawner),1f);
+                Invoke(nameof(Setup),2f);
+                Invoke(nameof(CheckAndEnableBallSpawner),2f);
             }
         }
 
@@ -106,6 +113,17 @@ public class GameManager : MonoBehaviour
             _fillBar.color = ringColors[_currentRingIndex];
             _fillBar.fillAmount = (float)(rings[_currentRingIndex].GetHealth() / healthList[_currentRingIndex]);
         }
+    }
+
+    void PlayRingDestroyParticle(Color newColor, float newRadius)
+    {
+        var main = ringDestroyEffect.main;
+        main.startColor = newColor;
+
+        var shape = ringDestroyEffect.shape;
+        shape.radius = newRadius;
+        
+        ringDestroyEffect.Play();
     }
 
     void CheckAndEnableBallSpawner()
@@ -121,12 +139,36 @@ public class GameManager : MonoBehaviour
         ballSpawners[ballSpawnerIndex].Spawn();
     }
 
-    public void AddMoneyOnCollide(double money, Vector3 pos)
+    readonly Color CriticalOrange = new Color(1f, 0.5f, 0f);
+    public void AddMoneyOnCollide(double money, Vector3 pos, bool IsCriticalHit)
     {
+        if (TwoxIncomeRv.IsActive)
+        {
+            money *= 2;
+        }
         EconomyManager.instance.IncreaseEconomy(money);
         Vector3 spawnPos = _cam.WorldToScreenPoint(pos);
         GameObject obj = ObjectPooling.Instance.Get("float_text",spawnPos);
         string moneyText = NumberFormatter.FormatNumberSmall(money);
-        obj.GetComponent<FloatingText>().Show(moneyText);
+        Color textColor = IsCriticalHit ? CriticalOrange : Color.white;
+        obj.GetComponent<FloatingText>().Show(moneyText,textColor);
     }
+
+    #region FloatingRv
+
+    IEnumerator FloatingRvTimer()
+    {
+        yield return new WaitForSeconds(180f);
+        floatingRv.gameObject.SetActive(true);
+        floatingRv.anchoredPosition = new Vector2(Random.Range(-250, 250), 700);
+    }
+
+    public void ClickedOnFloatingRv()
+    {
+        floatingRv.gameObject.SetActive(false);
+        EconomyManager.instance.IncreaseEconomy(Random.Range(100,1000));
+        StartCoroutine(FloatingRvTimer());
+    }
+
+    #endregion
 }

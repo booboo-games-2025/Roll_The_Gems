@@ -17,12 +17,14 @@ public class UpgradeManager : MonoBehaviour
     {
         EconomyManager.OnCoinChanged += UpdateAvailability;
         PowerupsManager.OnPowerUp += UpgradeIncome;
+        TwoxIncomeRv.OnActive += UpdateAllIncomeUi;
     }
 
     private void OnDisable()
     {
         EconomyManager.OnCoinChanged -= UpdateAvailability;
         PowerupsManager.OnPowerUp -= UpgradeIncome;
+        TwoxIncomeRv.OnActive -= UpdateAllIncomeUi;
     }
 
     private void Awake()
@@ -126,14 +128,26 @@ public class UpgradeManager : MonoBehaviour
             _ballUpgrades[index].income *= 2;
         }
         upgradeUis[index].UpdateCostAndIncome(_ballUpgrades[index].cost,_ballUpgrades[index].income, _ballUpgrades[index].level);
+        upgradeUis[index].iconAnim.Play();
         TriggerBallSpawnerEventBasedOnLevel(index);
         EconomyManager.instance.DecreaseEconomy(previousCost);
+        Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.BuyUpgradesXTimes);
     }
 
-    public void UpgradeIncome(int ballIndex)
+    // for Powerups Income increase
+    public void UpgradeIncome(int ballIndex, float multiplier)
     {
-        _ballUpgrades[ballIndex].income *= 3f/2f;
+        _ballUpgrades[ballIndex].income *= multiplier;
         upgradeUis[ballIndex].UpdateCostAndIncome(_ballUpgrades[ballIndex].cost,_ballUpgrades[ballIndex].income, _ballUpgrades[ballIndex].level);
+    }
+    
+    // for 2x Income Booster
+    void UpdateAllIncomeUi()
+    {
+        for (int i = 0; i < upgradeUis.Length; i++)
+        {
+            upgradeUis[i].UpdateCostAndIncome(_ballUpgrades[i].cost, _ballUpgrades[i].income, _ballUpgrades[i].level);
+        }
     }
 
     public void TriggerBallSpawnerEventBasedOnLevel(int ballUpgradeIndex)
