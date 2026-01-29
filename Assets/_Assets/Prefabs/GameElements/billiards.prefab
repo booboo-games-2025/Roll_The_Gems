@@ -315,6 +315,8 @@ MonoBehaviour:
   _rigidbody2D: {fileID: 8809489119201805760}
   _speed: 6.6
   trail: {fileID: 5705577762266248702}
+  skins: []
+  spriteRenderer: {fileID: 5129279961503126413}
 --- !u!58 &4156013279146864062
 CircleCollider2D:
   m_ObjectHideFlags: 0

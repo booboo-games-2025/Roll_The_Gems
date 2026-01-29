@@ -5,7 +5,6 @@ using UnityEngine;
 public class Ring : MonoBehaviour
 {
     [SerializeField] LineRenderer _lineRenderer;
-    private int _steps;
     [SerializeField] private float _radius;
     [SerializeField] EdgeCollider2D _edgeCollider2D;
     private Transform _lineTransform;
@@ -17,7 +16,7 @@ public class Ring : MonoBehaviour
     private void Awake()
     {
         _lineTransform = _lineRenderer.transform;
-        _steps = (int)(_radius * 25f);
+        //_steps = (int)(_radius * 25f);
         _layerIndex = LayerMask.NameToLayer("Balls");
         RingHealthHalfRv.OnActive = () =>
         {
@@ -26,13 +25,10 @@ public class Ring : MonoBehaviour
         };
     }
 
-    private void Start()
+    public void SetParameters(float radius,Color color, double health)
     {
-        DrawCircle(_steps,_radius);
-    }
-
-    public void SetParameters(Color color, double health)
-    {
+        _radius = radius;
+        DrawCircle(_radius);
         _lineRenderer.startColor = color;
         _lineRenderer.endColor = color;
         _currHealth = health;
@@ -41,6 +37,7 @@ public class Ring : MonoBehaviour
             _currHealth /= 2;
         }
     }
+    
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -57,8 +54,9 @@ public class Ring : MonoBehaviour
         }
     }
 
-    void DrawCircle(int steps, float radius)
+    void DrawCircle(float radius)
     {
+        int steps = (int)(radius * 25f);
         List<Vector2> points = new List<Vector2>();
         _lineRenderer.positionCount = steps;
 

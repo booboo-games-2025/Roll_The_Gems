@@ -162,6 +162,19 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
+    public int TotalBallUnlocked()
+    {
+        int ballUnlockCount = 0;
+        for (int i = 0; i < _ballUpgrades.Length; i++)
+        {
+            if (_ballUpgrades[i].level >= 1)
+            {
+                ballUnlockCount++;
+            } 
+        }
+        return ballUnlockCount;
+    }
+
     void UpdateAvailability()
     {
         for (int i = 0; i < _ballUpgrades.Length; i++)

@@ -13,6 +13,22 @@ public class Ball : MonoBehaviour
     internal int BallIndex;
     [SerializeField] private TrailRenderer trail;
 
+    [SerializeField] private Sprite[] skins;
+    [SerializeField] SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        SkinButton.OnSkinChanged += ChangeSkin;
+    }
+
+    void ChangeSkin(int ballIndex,int skinIndex)
+    {
+        if (ballIndex == BallIndex)
+        {
+            spriteRenderer.sprite = skins[skinIndex];
+        }
+    }
+
     public void Init()
     {
         trail.emitting = false;

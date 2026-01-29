@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PowerupsManager : MonoBehaviour
 {
@@ -36,6 +37,20 @@ public class PowerupsManager : MonoBehaviour
     {
         instance = this;
         Load();
+    }
+
+    private void Start()
+    {
+        StartCoroutine(SaveRoutine());
+    }
+
+    IEnumerator SaveRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(5);
+            Save();
+        }
     }
 
     void CreateDefaultData()
@@ -88,7 +103,6 @@ public class PowerupsManager : MonoBehaviour
         PlayerPrefs.SetInt(MyConstants.ALL_INCOME, allIncomeUpgradeLevel);
         allIncomeUpgradeUi.UpdateUi(GetAllIncomeUpgradeCost());
         EconomyManager.instance.DecreaseEconomy(previousCost);
-        
     }
 
     double GetAllIncomeUpgradeCost()
@@ -190,6 +204,20 @@ public class PowerupsManager : MonoBehaviour
         {
             upgradesUisForBalls[ballId].powerUpgradesUi[i].Active(true);
         }
+    }
+
+    [SerializeField] GameObject powerUpgradeUi;
+    public void OpenPowerupPanel()
+    {
+        isPanelOpened = true;
+        UpdateAvailability();
+        powerUpgradeUi.SetActive(true);
+    }
+
+    public void ClosePowerupPanel()
+    {
+        isPanelOpened = false;
+        powerUpgradeUi.SetActive(false);
     }
 }
 

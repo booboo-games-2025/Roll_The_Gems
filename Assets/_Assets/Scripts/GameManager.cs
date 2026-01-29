@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < _totalActiavtedRings; i++)
         {
             healthList.Add(initialVal);
-            rings[i].SetParameters(ringColors[i],initialVal);
+            rings[i].SetParameters(Mathf.Lerp(1f,3f,(float)i/(_totalActiavtedRings-1)),ringColors[i],initialVal);
             rings[i].gameObject.SetActive(true);
             initialVal += incrementVal;
         }
