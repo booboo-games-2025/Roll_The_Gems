@@ -12,7 +12,7 @@ public class OfflineEarning : MonoBehaviour
 
     private void Start()
     {
-        if(!PlayerPrefs.HasKey(playerPrefsKey) || UpgradeManager.Instance.TotalBallUnlocked() < 1) return;
+        if(!PlayerPrefs.HasKey(playerPrefsKey)) return;
         
         long binaryTime = Convert.ToInt64(PlayerPrefs.GetString(playerPrefsKey));
         DateTime lastTime = DateTime.FromBinary(binaryTime);
@@ -41,7 +41,7 @@ public class OfflineEarning : MonoBehaviour
         // Give Money based on duration
         // Ref game does not add this reward towards Level progress
         totalMinutes = Mathf.Min((float)totalMinutes, 120f);
-        moneyToAdd = totalMinutes * 50 * UpgradeManager.Instance.TotalBallUnlocked();
+        moneyToAdd = totalMinutes * 50;
         rewardText.text = "<sprite=0> " + NumberFormatter.FormatNumberSmall(moneyToAdd);
     }
     
@@ -49,6 +49,7 @@ public class OfflineEarning : MonoBehaviour
     {
         EconomyManager.instance.IncreaseEconomy(moneyToAdd);
         welcomeBackUi.SetActive(false);
+        Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.GetOfflineIncomeXTime);
     }
     
     // Rv Func
@@ -56,6 +57,7 @@ public class OfflineEarning : MonoBehaviour
     {
         EconomyManager.instance.IncreaseEconomy(moneyToAdd * 2);
         welcomeBackUi.SetActive(false);
+        Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.GetOfflineIncomeXTime);
         //GameAnalyticsController.Miscellaneous.NewDesignEvent("rv:claim_offline_earning_2x");
     }
 

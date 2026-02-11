@@ -5,6 +5,7 @@ public class MyConstants : MonoBehaviour
     public const string BALL_UPGRADE_DATA = "upgrade_data";
     public const string POWERUPS_UPGRADE_DATA = "powerups_data";
     public const string COIN_COUNT = "coin_count";
+    public const string PERMANENT_COIN_COUNT = "permanent_coin_count";
     public const string RING_LEVEL = "ring_level";
     
     // string values for common power ups

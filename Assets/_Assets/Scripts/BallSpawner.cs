@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class BallSpawner : MonoBehaviour
 {
-    [SerializeField] float spawnDelay = 2.1f;
     Coroutine _spawnRoutine;
     public List<Ball> _ballsList;
-    [SerializeField] private UpgradeUi upgradeUi;
+    [SerializeField] private Tab tabUi;
     
     private bool _isSpawning;
     private int ballSpawnerIndex;
@@ -23,7 +22,7 @@ public class BallSpawner : MonoBehaviour
         set
         {
             _currentBallCount = value;
-            upgradeUi.HandleBallCount(value);
+            tabUi.HandleBallCount(value);
         } 
     }
 
@@ -46,7 +45,7 @@ public class BallSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        if(_isSpawning) return;
+        if(_isSpawning || PowerupsManager.instance.GetLevel(ballSpawnerIndex,UpgradeType.Income) < 1) return;
         
         _isSpawning = true;
         _spawnRoutine = StartCoroutine(StartSpawning());
@@ -57,8 +56,7 @@ public class BallSpawner : MonoBehaviour
         while (true)
         {
             Ball newBall = GetActiveBall();
-            float spawnSpeedUpgradeVal = spawnDelay * (PowerupsManager.instance.GetLevel(ballSpawnerIndex, PowerType.BallCreationSpeed)/10f);
-            float finalDelay = spawnDelay - spawnSpeedUpgradeVal;
+            float finalDelay = (float)PowerupsManager.instance.GetValue(ballSpawnerIndex, UpgradeType.BallCreationSpeed);
             if (TwoXBallCreationRv.IsActive)
             {
                 finalDelay /= 2;
@@ -69,7 +67,7 @@ public class BallSpawner : MonoBehaviour
                 newBall.gameObject.SetActive(true);
                 newBall.Init();
                 CurrentBallCount++;
-                upgradeUi.HandleBallFill(finalDelay);
+                tabUi.HandleBallFill(finalDelay);
                 Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.CreateBalls);
             }
             yield return new WaitForSeconds(finalDelay);

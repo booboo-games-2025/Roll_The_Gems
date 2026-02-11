@@ -1,14 +1,16 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class AchievementUi : MonoBehaviour
 {
-   [SerializeField] private TMP_Text toFromValueText, statusText;
+   [SerializeField] private TMP_Text toFromValueText;
    public AchievementType achievementType;
    public double maxValue;
    [SerializeField] private Image fillBar;
    public bool completed;
+   public static Action OnAchievementComplete;
 
    public void UpdateProgress(double currentValue)
    {
@@ -25,7 +27,9 @@ public class AchievementUi : MonoBehaviour
       fillBar.fillAmount = (float)(currentValue/maxValue);
       if (fillBar.fillAmount >= 1f)
       {
-         statusText.text = "Completed";
+         toFromValueText.text = "Completed";
+         OnAchievementComplete?.Invoke();
+         //statusText.text = "Completed";
          fillBar.fillAmount = 1f;
          completed = true;
       }

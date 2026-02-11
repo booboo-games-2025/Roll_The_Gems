@@ -28,17 +28,18 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         Ring.OnHealthChanged += UpdateHealthUi;
-        UpgradeManager.OnFirstTimeUpgrade += EnableBallSpawner;
+        PowerupsManager.OnFirstTimeUpgrade += EnableBallSpawner;
     }
 
     private void OnDisable()
     {
         Ring.OnHealthChanged -= UpdateHealthUi;
-        UpgradeManager.OnFirstTimeUpgrade -= EnableBallSpawner;
+        PowerupsManager.OnFirstTimeUpgrade -= EnableBallSpawner;
     }
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         Instance = this;
         _cam = Camera.main;
     }
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Setup();
+        EnableAllBallSpawner();
         StartCoroutine(FloatingRvTimer());
     }
 
@@ -69,18 +71,18 @@ public class GameManager : MonoBehaviour
         _totalActiavtedRings = 5 + (ringSet/4);
         _totalActiavtedRings = Mathf.Clamp(_totalActiavtedRings, 5, rings.Length);
         int x = ringSet - 1;
-        double incrementVal = 5 * Math.Pow(2.5f, x);
-        double initialVal = 10;
+        double incrementVal = 5 * Math.Pow(4f, x);
+        double initialVal = 50;
         if (ringSet > 1)
         {
-            initialVal = 37 * Math.Pow(x, 3) - 170 * Math.Pow(x, 2) + 295 * x - 104;
+            initialVal = 37 * Math.Pow(x, 4) - 170 * Math.Pow(x, 2) + 295 * x - 104;
         }
 
         for (int i = 0; i < _totalActiavtedRings; i++)
         {
             healthList.Add(initialVal);
-            rings[i].SetParameters(Mathf.Lerp(1f,3f,(float)i/(_totalActiavtedRings-1)),ringColors[i],initialVal);
             rings[i].gameObject.SetActive(true);
+            rings[i].SetParameters(Mathf.Lerp(1f,3f,(float)i/(_totalActiavtedRings-1)),ringColors[i],initialVal);
             initialVal += incrementVal;
         }
     }
@@ -103,7 +105,7 @@ public class GameManager : MonoBehaviour
                 PlayerPrefs.SetInt(MyConstants.RING_LEVEL, ringSet);
                 healthUi.SetActive(false);
                 Invoke(nameof(Setup),2f);
-                Invoke(nameof(CheckAndEnableBallSpawner),2f);
+                Invoke(nameof(EnableAllBallSpawner),2f);
             }
         }
 
@@ -117,20 +119,25 @@ public class GameManager : MonoBehaviour
 
     void PlayRingDestroyParticle(Color newColor, float newRadius)
     {
-        var main = ringDestroyEffect.main;
-        main.startColor = newColor;
+        ParticleSystem[] systems = ringDestroyEffect.GetComponentsInChildren<ParticleSystem>();
 
-        var shape = ringDestroyEffect.shape;
-        shape.radius = newRadius;
-        
+        foreach (var ps in systems)
+        {
+            var main = ps.main;
+            main.startColor = newColor;
+
+            var shape = ps.shape;
+            shape.radius = newRadius;
+        }
+
         ringDestroyEffect.Play();
     }
 
-    void CheckAndEnableBallSpawner()
+    void EnableAllBallSpawner()
     {
-        for (int i = 0; i < ballSpawners.Length; i++)
+        for (int i = 0; i < 8; i++)
         {
-            UpgradeManager.Instance.TriggerBallSpawnerEventBasedOnLevel(i);
+            EnableBallSpawner(i);
         }
     }
     

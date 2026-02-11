@@ -10,11 +10,13 @@ public class EconomyManager : MonoBehaviour
     [SerializeField] private TMP_Text coinText;
     public double coinCount;
     public static Action OnCoinChanged;
+    public double permanentCoinCount;
     
     private void Awake()
     {
         instance = this;
         coinCount = GetDouble(MyConstants.COIN_COUNT, 0);
+        permanentCoinCount = GetDouble(MyConstants.PERMANENT_COIN_COUNT, 0);
         OnCoinChanged?.Invoke();
         UpdateCoinUi();
     }
@@ -29,6 +31,7 @@ public class EconomyManager : MonoBehaviour
         while (true)
         {
             SetDouble(MyConstants.COIN_COUNT, coinCount);
+            SetDouble(MyConstants.PERMANENT_COIN_COUNT, permanentCoinCount);
             yield return new WaitForSeconds(5);
         }
     }
@@ -36,6 +39,7 @@ public class EconomyManager : MonoBehaviour
     public void IncreaseEconomy(double coin)
     {
         coinCount += coin;
+        permanentCoinCount += coin;
         //PlayerPrefs.SetInt(MyConstants.COIN_COUNT, coinCount);
         OnCoinChanged?.Invoke();
         UpdateCoinUi();

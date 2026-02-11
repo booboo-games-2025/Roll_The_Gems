@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
 using System.Collections;
+using DG.Tweening;
 
 public abstract class RvBase : MonoBehaviour
 {
@@ -9,15 +10,24 @@ public abstract class RvBase : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private GameObject rvIcon;
     [SerializeField] private UiButton btn;
-
+    
+    public bool isActive;
     private Coroutine timerRoutine;
+    [SerializeField] private Vector3 showPos, hidePos;
+
+    private void Start()
+    {
+        timerText.text = activeDuration + " sec";
+    }
 
     public void Activate()
     {
-        if (timerRoutine != null) return; // already active
+        if (isActive) return; // already active
 
         btn.Interactable = false;
         rvIcon.SetActive(true);
+        timerText.gameObject.SetActive(true);
+        isActive = true;
 
         OnEffectStart();                 // 🔹 Child-specific effect
         timerRoutine = StartCoroutine(StartTimer());
@@ -42,7 +52,9 @@ public abstract class RvBase : MonoBehaviour
         timerRoutine = null;
         rvIcon.SetActive(false);
         btn.Interactable = true;
-        timerText.text = "2x Income";
+        timerText.text = activeDuration +  " sec";
+        isActive = false;
+        ShowUi(false);
 
         OnEffectEnd();                   // 🔹 Child-specific cleanup
     }
@@ -55,5 +67,20 @@ public abstract class RvBase : MonoBehaviour
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int seconds = Mathf.FloorToInt(elapsedTime % 60);
         timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+    
+    public void ShowUi(bool enable)
+    {
+        if (enable)
+        {
+            RectTransform rectTransform = GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = hidePos;
+            gameObject.SetActive(true);
+            rectTransform.DOAnchorPos(showPos, 0.5f);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

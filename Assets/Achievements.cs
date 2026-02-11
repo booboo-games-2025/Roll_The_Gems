@@ -1,21 +1,26 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Achievements : MonoBehaviour
 {
     public double totalEarnCoin;
-    public int createBallsCount, destroyRingsCount, buyUpgradesCount, buyPowerupsCount, criticalIncomeCount, offlineIncomeCount;
+    public int createBallsCount, destroyRingsCount, buyUpgradesCount, criticalIncomeCount, offlineIncomeCount;
     public float gameTime;
 
-    [SerializeField] private AchievementUi[] earningAchievementsUi, createBallsUi, destroyRingsUi, buyUpgradeUi, buyPowerupsUi, criticalIncomeUi, playGameUi,
+    [SerializeField] private AchievementUi[] earningAchievementsUi, createBallsUi, destroyRingsUi, buyUpgradeUi, criticalIncomeUi, playGameUi,
         offlineIncomeUi;
     
     public static Action<double, AchievementType> OnAchievementsUpdated;
 
+    [Header("UI")] [SerializeField] private TMP_Text progressText;
+    [SerializeField] private TMP_Text bonusText;
+
     private void Awake()
     {
         OnAchievementsUpdated += UpdateProgress;
+        AchievementUi.OnAchievementComplete += UpdateUi;
     }
 
     private void Start()
@@ -33,7 +38,6 @@ public class Achievements : MonoBehaviour
         createBallsCount = PlayerPrefs.GetInt(MyConstants.CREATE_BALL, 0);
         destroyRingsCount = PlayerPrefs.GetInt(MyConstants.DESTROY_RINGS,0);
         buyUpgradesCount = PlayerPrefs.GetInt(MyConstants.UPGRADE_TIMES, 0);
-        buyPowerupsCount = PlayerPrefs.GetInt(MyConstants.POWERUPS_TIMES, 0);
         criticalIncomeCount = PlayerPrefs.GetInt(MyConstants.CRITICAL_TIMES,0);
         gameTime = PlayerPrefs.GetFloat(MyConstants.GAMEPLAY_TIME, 0);
         offlineIncomeCount = PlayerPrefs.GetInt(MyConstants.OFFLINE_INCOME_COUNT, 0);
@@ -41,10 +45,9 @@ public class Achievements : MonoBehaviour
         UpdateCreateBallUi();
         UpdateDestroyRingsUi();
         UpdateUpgradesUi();
-        UpdatePowerupsUi();
         UpdateCriticalIncomeUi();
         UpdateGameTimeUi();
-        UpdateIncomeUi();
+        UpdateOfflineIncomeUi();
     }
 
     IEnumerator GameTimer()
@@ -81,12 +84,6 @@ public class Achievements : MonoBehaviour
             buyUpgradesCount += (int)value;
             PlayerPrefs.SetInt(MyConstants.UPGRADE_TIMES, buyUpgradesCount);
             UpdateUpgradesUi();
-        }
-        else if (achievementType == AchievementType.BuyPowerupsXTimes)
-        {
-            buyPowerupsCount += (int)value;
-            PlayerPrefs.SetInt(MyConstants.POWERUPS_TIMES, buyPowerupsCount);
-            UpdatePowerupsUi();
         }
         else if (achievementType == AchievementType.GetCriticalIncomeXTime)
         {
@@ -140,14 +137,6 @@ public class Achievements : MonoBehaviour
         }
     }
     
-    public void UpdatePowerupsUi()
-    {
-        for (int i = 0; i < buyPowerupsUi.Length; i++)
-        {
-            buyPowerupsUi[i].UpdateProgress(buyPowerupsCount);
-        }
-    }
-    
     public void UpdateCriticalIncomeUi()
     {
         for (int i = 0; i < criticalIncomeUi.Length; i++)
@@ -171,9 +160,19 @@ public class Achievements : MonoBehaviour
             offlineIncomeUi[i].UpdateProgress(offlineIncomeCount);
         }
     }
+
+    private int progress;
+    public static Action OnAchievementCompleted;
+    void UpdateUi()
+    {
+        progress++;
+        OnAchievementCompleted?.Invoke();
+        progressText.text = "Progress: " + progress + "/18";
+        bonusText.text = "Bonus <sprite=0> " + (progress * 3) + "%";
+    }
 }
 
 public enum AchievementType
 {
-    EarnCoin, CreateBalls, DestroyRings, BuyUpgradesXTimes, BuyPowerupsXTimes, GetCriticalIncomeXTime, PlayGameTime, GetOfflineIncomeXTime
+    EarnCoin, CreateBalls, DestroyRings, BuyUpgradesXTimes, GetCriticalIncomeXTime, PlayGameTime, GetOfflineIncomeXTime
 }

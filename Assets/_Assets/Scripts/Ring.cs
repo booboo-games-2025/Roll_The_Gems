@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class Ring : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class Ring : MonoBehaviour
     {
         int steps = (int)(radius * 25f);
         List<Vector2> points = new List<Vector2>();
-        _lineRenderer.positionCount = steps;
+        //_lineRenderer.positionCount = steps;
 
         for (int currentStep = 0; currentStep < steps; currentStep++)
         {
@@ -71,10 +72,26 @@ public class Ring : MonoBehaviour
             
             Vector3 currenPosition = new Vector3(x, y, 0);
             points.Add(currenPosition);
-            _lineRenderer.SetPosition(currentStep, currenPosition);
+           // _lineRenderer.SetPosition(currentStep, currenPosition);
         }
         points.Add(points[0]);
+        print(points.Count);
         _edgeCollider2D.points = points.ToArray();
+        StartCoroutine(GenerateLineSmooth(points));
+    }
+    
+    IEnumerator GenerateLineSmooth(List<Vector2> points)
+    {
+        _lineRenderer.positionCount = 0;
+
+        for (int i = 0; i < points.Count; i++)
+        {
+            // Add point to LineRenderer
+            _lineRenderer.positionCount++;
+            _lineRenderer.SetPosition(i, points[i]);
+
+            yield return null; // wait one frame
+        }
     }
 
     [SerializeField] private float rotationSpeed;

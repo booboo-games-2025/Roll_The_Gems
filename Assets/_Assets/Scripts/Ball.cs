@@ -6,7 +6,6 @@ public class Ball : MonoBehaviour
 {
     public bool isActive;
     private int _currDurability;
-    public int _maxDurability;
     [SerializeField] private Rigidbody2D _rigidbody2D;
     [SerializeField] private float _speed;
     public Action _OnBallDisable;
@@ -38,20 +37,30 @@ public class Ball : MonoBehaviour
         trail.emitting = true;
         _rigidbody2D.linearVelocity = Vector2.zero;
         _rigidbody2D.angularVelocity = 0f;
-        _currDurability = _maxDurability + PowerupsManager.instance.GetLevel(BallIndex,PowerType.Durability);
-        _rigidbody2D.AddForce(Random.insideUnitCircle.normalized * (_speed + (_speed * PowerupsManager.instance.GetLevel(BallIndex,PowerType.Speed)/10f)), ForceMode2D.Impulse);
+        _currDurability = (int)PowerupsManager.instance.GetValue(BallIndex,UpgradeType.Durability);
+        //var finalSpeed = (_speed + (_speed * PowerupsManager.instance.GetLevel(BallIndex,UpgradeType.Speed)/10f));
+        var finalSpeed = (float)PowerupsManager.instance.GetValue(BallIndex, UpgradeType.Speed);
+        if (BallSpeedIncreaseRv.IsActive)
+        {
+            finalSpeed *= 1.5f;
+        }
+        _rigidbody2D.AddForce(Random.insideUnitCircle.normalized * finalSpeed, ForceMode2D.Impulse);
     }
 
     public double Damage()
     {
-        _currDurability--;
-        double money = UpgradeManager.Instance._ballUpgrades[BallIndex].income;
+        if (!DurabilityInfiniteRv.IsActive)
+        {
+            _currDurability--;
+        }
+
+        double money = PowerupsManager.instance.GetValue(BallIndex,UpgradeType.Income);
         int rand = Random.Range(1, 100);
         bool criticalHit = false;
-        if (rand <= PowerupsManager.instance.GetLevel(BallIndex,PowerType.CriticalHitChance))
+        if (rand <= (int)PowerupsManager.instance.GetValue(BallIndex,UpgradeType.CriticalHitChance))
         {
-            float increment = 2 * (PowerupsManager.instance.GetLevel(BallIndex, PowerType.CriticalHitPower)/10f);
-            money *= (2 + increment);
+            money *= PowerupsManager.instance.GetValue(BallIndex,UpgradeType.CriticalHitPower)/100f;
+            Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.GetCriticalIncomeXTime);
             criticalHit = true;
         }
         GameManager.Instance.AddMoneyOnCollide(money, transform.position,criticalHit);
