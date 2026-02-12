@@ -41,8 +41,8 @@ public class UiButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         {
             transform.DOScale(Vector3.one, 0.08f);
         }); 
-        //Vibration.VibratePop();
-        //AudioManager.instance.PlaySFX(SFXType.ButtonTap);
+        Vibration.VibratePop();
+        AudioManager.instance.PlaySFX(SFXType.ButtonTap);
     }
 
     public void OnPointerExit(PointerEventData eventData)

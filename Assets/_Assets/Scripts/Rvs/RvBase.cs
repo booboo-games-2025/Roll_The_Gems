@@ -28,9 +28,11 @@ public abstract class RvBase : MonoBehaviour
         rvIcon.SetActive(true);
         timerText.gameObject.SetActive(true);
         isActive = true;
-
+        GetComponent<Animation>().Stop();
+        transform.localRotation = Quaternion.identity;
         OnEffectStart();                 // 🔹 Child-specific effect
         timerRoutine = StartCoroutine(StartTimer());
+        AudioManager.instance.PlaySFX(SFXType.RvActivateSound);
     }
 
     IEnumerator StartTimer()
@@ -55,6 +57,7 @@ public abstract class RvBase : MonoBehaviour
         timerText.text = activeDuration +  " sec";
         isActive = false;
         ShowUi(false);
+        GetComponent<Animation>().Play();
 
         OnEffectEnd();                   // 🔹 Child-specific cleanup
     }

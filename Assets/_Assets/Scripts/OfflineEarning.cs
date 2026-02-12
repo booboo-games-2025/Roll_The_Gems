@@ -50,6 +50,7 @@ public class OfflineEarning : MonoBehaviour
         EconomyManager.instance.IncreaseEconomy(moneyToAdd);
         welcomeBackUi.SetActive(false);
         Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.GetOfflineIncomeXTime);
+        AudioManager.instance.PlaySFX(SFXType.Claim);
     }
     
     // Rv Func
@@ -58,20 +59,7 @@ public class OfflineEarning : MonoBehaviour
         EconomyManager.instance.IncreaseEconomy(moneyToAdd * 2);
         welcomeBackUi.SetActive(false);
         Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.GetOfflineIncomeXTime);
+        AudioManager.instance.PlaySFX(SFXType.Claim);
         //GameAnalyticsController.Miscellaneous.NewDesignEvent("rv:claim_offline_earning_2x");
     }
-
-    /*private void OnApplicationPause(bool pPause)
-    {
-        if(pPause)
-        {
-            PlayerPrefs.SetString(playerPrefsKey, DateTime.Now.ToString());
-        }
-        else if(PlayerPrefs.HasKey(playerPrefsKey))
-        {
-            DateTime dateTime = DateTime.Parse(PlayerPrefs.GetString(playerPrefsKey));
-            TimeSpan timeSpan = DateTime.Now - dateTime;
-            OnUserBackOnline?.Invoke(timeSpan);
-        }
-    }*/
 }

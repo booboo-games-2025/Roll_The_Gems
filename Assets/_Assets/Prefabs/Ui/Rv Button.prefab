@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 40}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5704051975777032031
 CanvasRenderer:
@@ -170,8 +170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 20}
-  m_SizeDelta: {x: 140, y: 140}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &979126380497399823
 CanvasRenderer:
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 410031358335512706}
   - component: {fileID: 5542921260150663532}
   m_Layer: 5
-  m_Name: title
+  m_Name: x2 Bonus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -245,7 +245,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5, y: -50}
+  m_AnchoredPosition: {x: 5, y: -45}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &410031358335512706
@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 8136155613006183074}
   - component: {fileID: 6106977992985062684}
   - component: {fileID: 6386426560110905602}
+  - component: {fileID: 1003480529822366040}
   m_Layer: 5
   m_Name: Rv Button
   m_TagString: Untagged
@@ -388,7 +389,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -110, y: -80}
-  m_SizeDelta: {x: 220, y: 170}
+  m_SizeDelta: {x: 220, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4439114458500102332
 CanvasRenderer:
@@ -474,6 +475,23 @@ MonoBehaviour:
   isActive: 0
   showPos: {x: -400, y: -80, z: 0}
   hidePos: {x: -650, y: -80, z: 0}
+--- !u!111 &1003480529822366040
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4323390524026035510}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: fb54e54d76f0e824a9977ae0f2b37871, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: fb54e54d76f0e824a9977ae0f2b37871, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &4751095267204039013
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +527,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 10, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_SizeDelta: {x: 65, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5223975962151181750
 CanvasRenderer:
@@ -561,7 +579,7 @@ GameObject:
   - component: {fileID: 3338646090929062898}
   - component: {fileID: 4425823783755525504}
   m_Layer: 5
-  m_Name: Image
+  m_Name: TimerBg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,7 +603,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3338646090929062898
 CanvasRenderer:

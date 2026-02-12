@@ -14,16 +14,27 @@ public class Ring : MonoBehaviour
     
     public static Action OnHealthChanged;
 
+    private void OnEnable()
+    {
+        RingHealthHalfRv.OnActive += ActiveHalfRingHealth;
+    }
+
+    private void OnDisable()
+    {
+        RingHealthHalfRv.OnActive -= ActiveHalfRingHealth;
+    }
+
     private void Awake()
     {
         _lineTransform = _lineRenderer.transform;
         //_steps = (int)(_radius * 25f);
         _layerIndex = LayerMask.NameToLayer("Balls");
-        RingHealthHalfRv.OnActive = () =>
-        {
-            _currHealth /= 2;
-            OnHealthChanged?.Invoke();
-        };
+    }
+
+    void ActiveHalfRingHealth()
+    {
+        _currHealth /= 2;
+        OnHealthChanged?.Invoke();
     }
 
     public void SetParameters(float radius,Color color, double health)
@@ -51,6 +62,7 @@ public class Ring : MonoBehaviour
             {
                 gameObject.SetActive(false);
                 Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.DestroyRings);
+                AudioManager.instance.PlaySFX(SFXType.RingDestroySound);
             }
         }
     }

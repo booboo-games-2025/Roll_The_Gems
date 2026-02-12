@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 using Random = UnityEngine.Random;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +22,13 @@ public class GameManager : MonoBehaviour
     
     private List<Double> healthList = new List<Double>();
     private Camera _cam;
-
-    [SerializeField] private RectTransform floatingRv;
     [SerializeField] private ParticleSystem ringDestroyEffect;
+
+    [Header("Background")]
+    [SerializeField] Image background;
+    [SerializeField] Sprite[] backgroundSprites;
+    int bgIndex;
+ 
 
     private void OnEnable()
     {
@@ -48,13 +53,13 @@ public class GameManager : MonoBehaviour
     {
         Setup();
         EnableAllBallSpawner();
-        StartCoroutine(FloatingRvTimer());
     }
 
     void Setup()
     {
         _currentRingIndex = 0;
         healthList.Clear();
+        Shuffle(ringColors);
         CalculateRingData();
         for (int i = 0; i < ballSpawners.Length; i++)
         {
@@ -62,6 +67,15 @@ public class GameManager : MonoBehaviour
         }
         UpdateHealthUi();
         healthUi.SetActive(true);
+    }
+    
+    public static void Shuffle<T>(T[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            int randomIndex = Random.Range(i, array.Length);
+            (array[i], array[randomIndex]) = (array[randomIndex], array[i]);
+        }
     }
 
     private int ringSet = 0;
@@ -84,6 +98,20 @@ public class GameManager : MonoBehaviour
             rings[i].gameObject.SetActive(true);
             rings[i].SetParameters(Mathf.Lerp(1f,3f,(float)i/(_totalActiavtedRings-1)),ringColors[i],initialVal);
             initialVal += incrementVal;
+        }
+        ChangeBg();
+    }
+
+    void ChangeBg()
+    {
+        if (ringSet % 5 == 0)
+        {
+            background.sprite = backgroundSprites[bgIndex];
+            bgIndex++;
+            if (bgIndex == backgroundSprites.Length)
+            {
+                bgIndex = 0;
+            }
         }
     }
 
@@ -160,22 +188,4 @@ public class GameManager : MonoBehaviour
         Color textColor = IsCriticalHit ? CriticalOrange : Color.white;
         obj.GetComponent<FloatingText>().Show(moneyText,textColor);
     }
-
-    #region FloatingRv
-
-    IEnumerator FloatingRvTimer()
-    {
-        yield return new WaitForSeconds(180f);
-        floatingRv.gameObject.SetActive(true);
-        floatingRv.anchoredPosition = new Vector2(Random.Range(-250, 250), 700);
-    }
-
-    public void ClickedOnFloatingRv()
-    {
-        floatingRv.gameObject.SetActive(false);
-        EconomyManager.instance.IncreaseEconomy(Random.Range(100,1000));
-        StartCoroutine(FloatingRvTimer());
-    }
-
-    #endregion
 }

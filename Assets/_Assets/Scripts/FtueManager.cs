@@ -42,6 +42,7 @@ public class FtueManager : MonoBehaviour
 
     void StartIncomeTutorial()
     {
+        EnableDisableUiButtons(false);
         tutorialCanvasGroup.gameObject.SetActive(true);
         tutorialCanvasGroup.DOFade(1, 0.5f).OnComplete(() =>
         {
@@ -59,6 +60,7 @@ public class FtueManager : MonoBehaviour
 
     void EndIncomeTutorial()
     {
+        EnableDisableUiButtons(true);
         PlayerPrefs.SetInt("ftue_completed", 1);
         incomeButton.clickEvent.RemoveListener((() =>
         {

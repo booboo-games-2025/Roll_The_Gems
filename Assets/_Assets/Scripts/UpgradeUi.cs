@@ -24,6 +24,7 @@ public class UpgradeUi : MonoBehaviour
 
     public void UpdateUi(double cost, double value, int level)
     {
+        Icon.sprite = GlobalvariableContainer.Instance.ballIcons[PowerupsManager.tabIndex];
         if (cost == 0)
         {
             costText.text = "<Sprite=0> Free";
@@ -34,6 +35,10 @@ public class UpgradeUi : MonoBehaviour
         }
         if (upgradeType == UpgradeType.Income)
         {
+            if (TwoxIncomeRv.IsActive)
+            {
+                value *= 2;
+            }
             valueText.text = "<Sprite=0> " + NumberFormatter.FormatNumberSmall(value);
         }
         else if (upgradeType == UpgradeType.CriticalHitChance || upgradeType == UpgradeType.CriticalHitPower)
@@ -42,11 +47,27 @@ public class UpgradeUi : MonoBehaviour
         }
         else if (upgradeType == UpgradeType.BallCreationSpeed)
         {
+            if (TwoXBallCreationRv.IsActive)
+            {
+                value *= 2;
+            }
             valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture) + "s";
+        }
+        else if(upgradeType == UpgradeType.Speed)
+        {
+            if (BallSpeedIncreaseRv.IsActive)
+            {
+                value *= 2;
+            }
+            valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture);
         }
         else
         {
             valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture);
+            if (DurabilityInfiniteRv.IsActive)
+            {
+                valueText.text = "∞";
+            }
         }
         upgradeLevelFillBar.fillAmount = (level % 25)/25f;
     }
