@@ -45,7 +45,7 @@ public class BallSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        if(_isSpawning || PowerupsManager.instance.GetLevel(ballSpawnerIndex,UpgradeType.Income) < 1) return;
+        if(_isSpawning || !UpgradeManager.instance.saveData.balls[ballSpawnerIndex].isUnlocked) return;
         
         _isSpawning = true;
         _spawnRoutine = StartCoroutine(StartSpawning());
@@ -56,11 +56,16 @@ public class BallSpawner : MonoBehaviour
         while (true)
         {
             Ball newBall = GetActiveBall();
-            float finalDelay = (float)PowerupsManager.instance.GetValue(ballSpawnerIndex, UpgradeType.BallCreationSpeed);
-            if (TwoXBallCreationRv.IsActive)
+            float finalDelay = (float)UpgradeManager.instance.GetValue(ballSpawnerIndex, UpgradeType.BallCreationSpeed);
+            
+            // =======================================
+            // if related Rv or IAP Active
+            if (UpgradeManager.CreationSpeedMultiplierActive)
             {
-                finalDelay /= 2;
+                finalDelay /= UpgradeManager.CreationSpeedMuliplier;
             }
+            // =======================================
+            
             finalDelay = Mathf.Clamp(finalDelay, 0.5f, 10);
             if (newBall != null)
             {

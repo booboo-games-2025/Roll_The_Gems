@@ -3,18 +3,15 @@ using System;
 
 public class TwoXBallCreationRv : RvBase
 {
-    public static Action OnActive;
-    public static bool IsActive = false;
+    public static Action<float, bool> OnActive;
 
     protected override void OnEffectStart()
     {
-        IsActive = true;
-        OnActive?.Invoke();
+        OnActive?.Invoke(2f,true);
     }
 
     protected override void OnEffectEnd()
     {
-        IsActive = false;
-        OnActive?.Invoke();
+        OnActive?.Invoke(1f/2f,false);
     }
 }

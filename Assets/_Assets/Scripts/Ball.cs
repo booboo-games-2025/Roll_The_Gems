@@ -17,7 +17,6 @@ public class Ball : MonoBehaviour
 
     private void Awake()
     {
-        SkinButton.OnSkinChanged += ChangeSkin;
     }
 
     void ChangeSkin(int ballIndex,int skinIndex)
@@ -37,13 +36,18 @@ public class Ball : MonoBehaviour
         trail.emitting = true;
         _rigidbody2D.linearVelocity = Vector2.zero;
         _rigidbody2D.angularVelocity = 0f;
-        _currDurability = (int)PowerupsManager.instance.GetValue(BallIndex,UpgradeType.Durability);
+        _currDurability = (int)UpgradeManager.instance.GetValue(BallIndex,UpgradeType.Durability);
         //var finalSpeed = (_speed + (_speed * PowerupsManager.instance.GetLevel(BallIndex,UpgradeType.Speed)/10f));
-        var finalSpeed = (float)PowerupsManager.instance.GetValue(BallIndex, UpgradeType.Speed);
-        if (BallSpeedIncreaseRv.IsActive)
+        var finalSpeed = (float)UpgradeManager.instance.GetValue(BallIndex, UpgradeType.Speed);
+        
+        // =======================================
+        // if related Rv or IAP Active
+        if (UpgradeManager.SpeedMultiplierActive)
         {
-            finalSpeed *= 1.5f;
+            finalSpeed *= UpgradeManager.SpeedMultiplier;
         }
+        // =======================================
+        
         _rigidbody2D.AddForce(Random.insideUnitCircle.normalized * finalSpeed, ForceMode2D.Impulse);
     }
 
@@ -54,12 +58,22 @@ public class Ball : MonoBehaviour
             _currDurability--;
         }
 
-        double money = PowerupsManager.instance.GetValue(BallIndex,UpgradeType.Income);
+        double money = UpgradeManager.instance.GetValue(BallIndex,UpgradeType.Income);
         int rand = Random.Range(1, 100);
         bool criticalHit = false;
-        if (rand <= (int)PowerupsManager.instance.GetValue(BallIndex,UpgradeType.CriticalHitChance))
+        if (rand <= (int)UpgradeManager.instance.GetValue(BallIndex,UpgradeType.CriticalHitChance))
         {
-            money *= PowerupsManager.instance.GetValue(BallIndex,UpgradeType.CriticalHitPower)/100f;
+            double hitPower = UpgradeManager.instance.GetValue(BallIndex, UpgradeType.CriticalHitPower);
+            
+            // =======================================
+            // if related Rv or IAP Active
+            if (UpgradeManager.CriticalPowerMultiplierActive)
+            {
+                hitPower *= UpgradeManager.CriticalPowerMultiplier;
+            }
+            // =======================================
+            
+            money *= hitPower/100f;
             Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.GetCriticalIncomeXTime);
             criticalHit = true;
         }

@@ -16,6 +16,7 @@ public class Achievements : MonoBehaviour
 
     [Header("UI")] [SerializeField] private TMP_Text progressText;
     [SerializeField] private TMP_Text bonusText;
+    [SerializeField] private GameObject exclaiminationMark;
 
     private void Awake()
     {
@@ -162,13 +163,13 @@ public class Achievements : MonoBehaviour
     }
 
     private int progress;
-    public static Action OnAchievementCompleted;
+    // When any of achievement got completed
     void UpdateUi()
     {
         progress++;
-        OnAchievementCompleted?.Invoke();
         progressText.text = "Progress: " + progress + "/18";
         bonusText.text = "Bonus <sprite=0> " + (progress * 3) + "%";
+        exclaiminationMark.SetActive(true);
     }
 }
 

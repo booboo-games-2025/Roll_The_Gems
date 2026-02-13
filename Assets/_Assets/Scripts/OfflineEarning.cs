@@ -31,7 +31,7 @@ public class OfflineEarning : MonoBehaviour
     {
         double totalMinutes = timeSpan.TotalMinutes;
 
-        if (totalMinutes < 1) return; // Less than a minute gets no reward
+        if (totalMinutes < 2) return; // Less than a minute gets no reward
         
         welcomeBackUi.SetActive(true);
         int hours = (int)timeSpan.TotalHours;
@@ -41,7 +41,7 @@ public class OfflineEarning : MonoBehaviour
         // Give Money based on duration
         // Ref game does not add this reward towards Level progress
         totalMinutes = Mathf.Min((float)totalMinutes, 120f);
-        moneyToAdd = totalMinutes * 50;
+        moneyToAdd = totalMinutes * MathF.Pow(4, PlayerPrefs.GetInt(MyConstants.RING_LEVEL));
         rewardText.text = "<sprite=0> " + NumberFormatter.FormatNumberSmall(moneyToAdd);
     }
     

@@ -22,7 +22,7 @@ public class PowerupsUpgradeUi : MonoBehaviour
     public void Start()
     {
         Icon.sprite = GlobalvariableContainer.Instance.ballIcons[ballId];
-        upgradeBtn.clickEvent.AddListener(() => { PowerupsManager.instance.Upgrade(ballId, upgradeType); });
+        upgradeBtn.clickEvent.AddListener(() => { UpgradeManager.instance.Upgrade(ballId, upgradeType); });
     }
 
     private bool isActive;

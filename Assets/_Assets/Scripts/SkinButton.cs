@@ -12,7 +12,6 @@ public enum SkinButtonState
 
 public class SkinButton : MonoBehaviour
 {
-    public int ballIndex;
     public int skinIndex;
     
     public Image BackgroundImage;
@@ -22,11 +21,11 @@ public class SkinButton : MonoBehaviour
 
     public SkinButtonState state;
 
-    public static Action<int, int> OnSkinChanged; 
+    public static Action<int> OnSkinChanged; 
 
     public void SetSkin()
     {
-        OnSkinChanged?.Invoke(ballIndex, skinIndex);
+        OnSkinChanged?.Invoke(skinIndex);
         StartCoroutine(ResetGemsSkin());
     }
     
@@ -39,7 +38,7 @@ public class SkinButton : MonoBehaviour
             yield return new WaitForSeconds(1);
             elaspedTime--;
         }
-        OnSkinChanged?.Invoke(ballIndex, skinIndex);
+        OnSkinChanged?.Invoke(skinIndex);
         state = SkinButtonState.Lock;
         ChangeUiAccordingToState();
     }
@@ -71,7 +70,7 @@ public class SkinButton : MonoBehaviour
 
     public void BuyRvButtonClicked()
     {
-        Unlock();
+        SetSkin();
         //HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,Unlock);
     }
 

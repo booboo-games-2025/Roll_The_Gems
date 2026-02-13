@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private List<Double> healthList = new List<Double>();
     private Camera _cam;
     [SerializeField] private ParticleSystem ringDestroyEffect;
+    [SerializeField] private Material[] ringMaterials;
 
     [Header("Background")]
     [SerializeField] Image background;
@@ -32,14 +33,24 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        SkinButton.OnSkinChanged += ChangeSkin;
         Ring.OnHealthChanged += UpdateHealthUi;
-        PowerupsManager.OnFirstTimeUpgrade += EnableBallSpawner;
+        UpgradeManager.OnFirstTimeUpgrade += EnableBallSpawner;
     }
 
     private void OnDisable()
     {
+        SkinButton.OnSkinChanged -= ChangeSkin;
         Ring.OnHealthChanged -= UpdateHealthUi;
-        PowerupsManager.OnFirstTimeUpgrade -= EnableBallSpawner;
+        UpgradeManager.OnFirstTimeUpgrade -= EnableBallSpawner;
+    }
+
+    void ChangeSkin(int materialIndex)
+    {
+        for (int i = 0; i < rings.Length; i++)
+        {
+            rings[i].SwitchMaterial(ringMaterials[materialIndex]);
+        }
     }
 
     private void Awake()
@@ -177,10 +188,13 @@ public class GameManager : MonoBehaviour
     readonly Color CriticalOrange = new Color(1f, 0.5f, 0f);
     public void AddMoneyOnCollide(double money, Vector3 pos, bool IsCriticalHit)
     {
-        if (TwoxIncomeRv.IsActive)
+        // =======================================
+        // if related Rv or IAP Active
+        if (UpgradeManager.IncomeMultiplierActive)
         {
-            money *= 2;
+            money *= UpgradeManager.IncomeMultiplier;
         }
+        // ========================================
         EconomyManager.instance.IncreaseEconomy(money);
         Vector3 spawnPos = _cam.WorldToScreenPoint(pos);
         GameObject obj = ObjectPooling.Instance.Get("float_text",spawnPos);

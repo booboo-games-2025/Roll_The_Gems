@@ -18,13 +18,13 @@ public class UpgradeUi : MonoBehaviour
     
     public void Start()
     {
-        Icon.sprite = GlobalvariableContainer.Instance.ballIcons[PowerupsManager.tabIndex];
-        upgradeBtn.clickEvent.AddListener(() => { PowerupsManager.instance.Upgrade(PowerupsManager.tabIndex, upgradeType); });
+        Icon.sprite = GlobalvariableContainer.Instance.ballIcons[UpgradeManager.tabIndex];
+        upgradeBtn.clickEvent.AddListener(() => { UpgradeManager.instance.Upgrade(UpgradeManager.tabIndex, upgradeType); });
     }
 
     public void UpdateUi(double cost, double value, int level)
     {
-        Icon.sprite = GlobalvariableContainer.Instance.ballIcons[PowerupsManager.tabIndex];
+        Icon.sprite = GlobalvariableContainer.Instance.ballIcons[UpgradeManager.tabIndex];
         if (cost == 0)
         {
             costText.text = "<Sprite=0> Free";
@@ -35,10 +35,14 @@ public class UpgradeUi : MonoBehaviour
         }
         if (upgradeType == UpgradeType.Income)
         {
-            if (TwoxIncomeRv.IsActive)
+            // =======================================
+            // if related Rv or IAP Active
+            if (UpgradeManager.IncomeMultiplierActive)
             {
-                value *= 2;
+                value *= UpgradeManager.IncomeMultiplier;
             }
+            // =======================================
+            
             valueText.text = "<Sprite=0> " + NumberFormatter.FormatNumberSmall(value);
         }
         else if (upgradeType == UpgradeType.CriticalHitChance || upgradeType == UpgradeType.CriticalHitPower)
@@ -47,18 +51,26 @@ public class UpgradeUi : MonoBehaviour
         }
         else if (upgradeType == UpgradeType.BallCreationSpeed)
         {
-            if (TwoXBallCreationRv.IsActive)
+            // =======================================
+            // if related Rv or IAP Active
+            if (UpgradeManager.CreationSpeedMultiplierActive)
             {
-                value *= 2;
+                value /= UpgradeManager.CreationSpeedMuliplier;
             }
+            // =======================================
+            
             valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture) + "s";
         }
         else if(upgradeType == UpgradeType.Speed)
         {
-            if (BallSpeedIncreaseRv.IsActive)
+            // =======================================
+            // if related Rv or IAP Active
+            if (UpgradeManager.SpeedMultiplierActive)
             {
-                value *= 2;
+                value *= UpgradeManager.SpeedMultiplier;
             }
+            // =======================================
+            
             valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture);
         }
         else

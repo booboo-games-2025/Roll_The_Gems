@@ -32,6 +32,7 @@ public class AchievementUi : MonoBehaviour
          //statusText.text = "Completed";
          fillBar.fillAmount = 1f;
          completed = true;
+         print(gameObject.name + " has completed");
       }
    }
 }

@@ -10,7 +10,7 @@ public class FtueManager : MonoBehaviour
 {
     public static FtueManager Instance;
     
-    [SerializeField] private string incomeUpgradeText;
+    [SerializeField] private string unlockText, incomeUpgradeText, achievementButtonText, achievementDetailText;
     
     [SerializeField] CanvasGroup tutorialCanvasGroup; 
     [SerializeField] RectTransform highlight;
@@ -20,27 +20,26 @@ public class FtueManager : MonoBehaviour
     [SerializeField] private RectTransform hand;
     [SerializeField] private Image[] uiButtonToDisable;
 
-    [SerializeField] private UiButton incomeButton, achievementButton;
-    [SerializeField] private Transform incomeButtonTransform;
+    [SerializeField] private UiButton tapToContinueButton;
+    [SerializeField] private UiButton unlockButton ,incomeButton, achievementButton;
+    [SerializeField] private Transform unlockButtonTransform, incomeButtonTransform, achievementPanelPointerPos, achievememtPanel;
     public bool isFtueRunning;
     [SerializeField] private RectTransform pointer;
-    
-    const string ftueCompleted = "ftue_completed";
-    const string achievementCompleted = "achievement_completed";
+
 
     private void Awake()
     {
         Instance = this;
-        if(PlayerPrefs.GetInt("ftue_completed",0) == 0)
+        if(PlayerPrefs.GetInt(MyConstants.StartFtueCompleted,0) == 0)
         {
             DOVirtual.DelayedCall(0.5f, () =>
             {
-                StartIncomeTutorial();
+                StartTutorial();
             });
         }
     }
 
-    void StartIncomeTutorial()
+    void StartTutorial()
     {
         EnableDisableUiButtons(false);
         tutorialCanvasGroup.gameObject.SetActive(true);
@@ -49,7 +48,22 @@ public class FtueManager : MonoBehaviour
             tutorialCanvasGroup.interactable = true;
             tutorialCanvasGroup.blocksRaycasts = true;
         });
-        ShowHighlight(incomeButtonTransform, new Vector2(250,160));
+        ShowHighlight(unlockButtonTransform, new Vector2(400,180));
+        ShowTutorialText(unlockButtonTransform,unlockText, new Vector2(0,50f));
+        unlockButton.clickEvent.AddListener(()=>
+        {
+            TapOnIncomeButton();
+        });
+    }
+
+    void TapOnIncomeButton()
+    {
+        unlockButton.clickEvent.RemoveListener(()=>
+        {
+            TapOnIncomeButton();
+        });
+        EconomyManager.instance.IncreaseEconomy(10);
+        ShowHighlight(incomeButtonTransform, new Vector2(250,100));
         ShowTutorialText(incomeButtonTransform,incomeUpgradeText, new Vector2(0,50f));
         incomeButton.clickEvent.AddListener(()=>
         {
@@ -61,7 +75,7 @@ public class FtueManager : MonoBehaviour
     void EndIncomeTutorial()
     {
         EnableDisableUiButtons(true);
-        PlayerPrefs.SetInt("ftue_completed", 1);
+        PlayerPrefs.SetInt(MyConstants.StartFtueCompleted, 1);
         incomeButton.clickEvent.RemoveListener((() =>
         {
             EndIncomeTutorial();
@@ -76,21 +90,56 @@ public class FtueManager : MonoBehaviour
 
     void StartAchivementTutorial()
     {
-        if(PlayerPrefs.GetInt(achievementCompleted,0) == 0)
+        if(PlayerPrefs.GetInt(MyConstants.AchievementFtueCompleted,0) == 0)
         {
+            TutorialPanelPointerSwitch(false);
             tutorialCanvasGroup.gameObject.SetActive(true);
             tutorialCanvasGroup.DOFade(1, 0.5f).OnComplete(() =>
             {
                 tutorialCanvasGroup.interactable = true;
                 tutorialCanvasGroup.blocksRaycasts = true;
             });
-            ShowHighlight(incomeButton.transform, new Vector2(250,160));
-            ShowTutorialText(incomeButton.transform,incomeUpgradeText, new Vector2(0,50f));
-            incomeButton.clickEvent.AddListener(()=>
+            ShowHighlight(achievementButton.transform, new Vector2(150,150));
+            ShowTutorialText(achievementButton.transform,achievementButtonText, new Vector2(30,-30f));
+            achievementButton.clickEvent.AddListener(()=>
             {
-                EndIncomeTutorial();
+                ShowAchievementPanelDetail();
             });
         }
+    }
+
+    void ShowAchievementPanelDetail()
+    {
+        achievementButton.clickEvent.RemoveListener(()=>
+        {
+            EndIncomeTutorial();
+        });
+        print("AchievementPanelShown");
+        TutorialPanelPointerSwitch(true);
+        ShowHighlight(achievememtPanel, new Vector2(900,1100));
+        ShowTutorialText(achievementPanelPointerPos,achievementDetailText, new Vector2(0,50f));
+        tapToContinueButton.gameObject.SetActive(true);
+        tapToContinueButton.clickEvent.AddListener((() =>
+        {
+            EndAchievementTutorial();
+        }));
+    }
+
+    void EndAchievementTutorial()
+    {
+        tapToContinueButton.clickEvent.RemoveListener((() =>
+        {
+            EndAchievementTutorial();
+        }));
+        EnableDisableUiButtons(true);
+        tapToContinueButton.gameObject.SetActive(false);
+        PlayerPrefs.SetInt(MyConstants.AchievementFtueCompleted, 1);
+        tutorialCanvasGroup.DOFade(0, 0.5f).OnComplete(() =>
+        {
+            tutorialCanvasGroup.gameObject.SetActive(false);
+            tutorialCanvasGroup.interactable = false;
+            tutorialCanvasGroup.blocksRaycasts = false;
+        });
     }
 
     public void ShowHighlight(Transform _target, Vector2 _size)
@@ -113,13 +162,20 @@ public class FtueManager : MonoBehaviour
         {
             pointer.rotation = Quaternion.identity;
             speechBox.localRotation = Quaternion.identity;
-            speechBox.anchoredPosition = new Vector2(10, -10);
+            speechBox.pivot = new Vector2(1, 0);
+            speechBox.anchorMax = new Vector2(0, 1);
+            speechBox.anchorMin = new Vector2(0, 1);
+            speechBox.anchoredPosition = new Vector2(10,-10);
         }
         else
         {
-            pointer.rotation = Quaternion.Euler(0, 0, 90);
-            speechBox.localRotation = Quaternion.Euler(0, 0, -90);
-            speechBox.anchoredPosition = new Vector2(-270, -10);
+            pointer.rotation = Quaternion.Euler(0, 0, 180);
+            speechBox.localRotation = Quaternion.Euler(0, 0, 180);
+            speechBox.pivot = new Vector2(0.5f, 0.5f);
+            speechBox.anchorMax = new Vector2(0.5f, 0.5f);
+            speechBox.anchorMin = new Vector2(0.5f, 0.5f);
+            speechBox.anchoredPosition = new Vector2(-240, 140);
+            //speechBox.anchoredPosition = new Vector2(-270, -10);
         }
     }
 

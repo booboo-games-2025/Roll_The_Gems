@@ -30,6 +30,7 @@ public class Ring : MonoBehaviour
         //_steps = (int)(_radius * 25f);
         _layerIndex = LayerMask.NameToLayer("Balls");
     }
+    
 
     void ActiveHalfRingHealth()
     {
@@ -48,6 +49,11 @@ public class Ring : MonoBehaviour
         {
             _currHealth /= 2;
         }
+    }
+
+    public void SwitchMaterial(Material newMat)
+    {
+        _lineRenderer.sharedMaterial = newMat;
     }
     
 
@@ -87,7 +93,6 @@ public class Ring : MonoBehaviour
            // _lineRenderer.SetPosition(currentStep, currenPosition);
         }
         points.Add(points[0]);
-        print(points.Count);
         _edgeCollider2D.points = points.ToArray();
         StartCoroutine(GenerateLineSmooth(points));
     }

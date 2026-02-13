@@ -49,7 +49,7 @@ public abstract class RvBase : MonoBehaviour
         EndBooster();
     }
 
-    void EndBooster()
+    public void EndBooster()
     {
         timerRoutine = null;
         rvIcon.SetActive(false);

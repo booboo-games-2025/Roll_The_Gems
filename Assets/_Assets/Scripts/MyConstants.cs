@@ -23,4 +23,14 @@ public class MyConstants : MonoBehaviour
     public const string CRITICAL_TIMES = "critical_times";
     public const string GAMEPLAY_TIME = "game_time";
     public const string OFFLINE_INCOME_COUNT = "offline_income_count";
+    
+    // Ftue
+    
+    public const string StartFtueCompleted = "start_ftue_completed";
+    public const string AchievementFtueCompleted = "achievement_ftue_completed";
+    
+    // IAP 
+    
+    public const string INCOME_BUNDLE_PURCHASED = "income_bundle";
+    public const string SPEED_POWER_BUNDLE_PURCHASED = "speed_power_bundle";
 }

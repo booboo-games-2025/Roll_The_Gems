@@ -12,6 +12,7 @@ public class Tab : MonoBehaviour
     public Image mainIcon;
     [SerializeField] private Image fillImage;
     [SerializeField] private TMP_Text currentBallCount;
+    public GameObject exclaimMark;
 
     private Color _mainIconColor;
     private void Awake()
