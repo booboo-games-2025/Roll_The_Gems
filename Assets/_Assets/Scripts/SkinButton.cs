@@ -9,38 +9,21 @@ public enum SkinButtonState
     Lock ,Unlock ,Selected
 }
 
-
 public class SkinButton : MonoBehaviour
 {
     public int skinIndex;
-    
     public Image BackgroundImage;
     public GameObject InUsePanelObject;
     public UiButton rvBuyButton;
     public TMP_Text timerText;
+    public int SkinCost;
+    public TextMeshProUGUI SkinCostText;
 
     public SkinButtonState state;
-
-    public static Action<int> OnSkinChanged; 
-
-    public void SetSkin()
-    {
-        OnSkinChanged?.Invoke(skinIndex);
-        StartCoroutine(ResetGemsSkin());
-    }
     
-    IEnumerator ResetGemsSkin()
+    private void Start()
     {
-        float elaspedTime = 300;
-        while (elaspedTime > 0f)
-        {
-            UpdateTimer(elaspedTime);
-            yield return new WaitForSeconds(1);
-            elaspedTime--;
-        }
-        OnSkinChanged?.Invoke(skinIndex);
-        state = SkinButtonState.Lock;
-        ChangeUiAccordingToState();
+        //SkinCostText.text = "<sprite=0> " + SkinCost;
     }
 
     public void UpdateTimer(float elaspedTime)
@@ -66,17 +49,17 @@ public class SkinButton : MonoBehaviour
                 break;
         }
     }
-    
 
     public void BuyRvButtonClicked()
     {
-        SetSkin();
+        Unlock();
         //HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,Unlock);
     }
 
     void Unlock()
     {
-       // HoleSkinsManager.instance.SetGemsSkin(skinIndex);
-       // string newEvent = "rv:unlock_skin" + "_" + skinIndex;
+        HoleSkinsManager.instance.SetGemsSkin(skinIndex);
+        string newEvent = "rv:unlock_skin" + "_" + skinIndex;
     }
+
 }

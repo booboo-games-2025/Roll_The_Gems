@@ -12,7 +12,8 @@ public class UpgradeUi : MonoBehaviour
     
     [Header("UI")]
     [SerializeField] private TMP_Text costText, valueText;
-    [SerializeField] UiButton upgradeBtn;
+
+    [SerializeField] private UiButton upgradeBtn, upgradeRvBtn;
     [SerializeField] private Image Icon;
     [SerializeField] private Image upgradeLevelFillBar;
     
@@ -20,6 +21,7 @@ public class UpgradeUi : MonoBehaviour
     {
         Icon.sprite = GlobalvariableContainer.Instance.ballIcons[UpgradeManager.tabIndex];
         upgradeBtn.clickEvent.AddListener(() => { UpgradeManager.instance.Upgrade(UpgradeManager.tabIndex, upgradeType); });
+        upgradeRvBtn.clickEvent.AddListener(() => { UpgradeManager.instance.Upgrade(UpgradeManager.tabIndex, upgradeType); });
     }
 
     public void UpdateUi(double cost, double value, int level)
@@ -45,8 +47,28 @@ public class UpgradeUi : MonoBehaviour
             
             valueText.text = "<Sprite=0> " + NumberFormatter.FormatNumberSmall(value);
         }
-        else if (upgradeType == UpgradeType.CriticalHitChance || upgradeType == UpgradeType.CriticalHitPower)
+        else if (upgradeType == UpgradeType.CriticalHitPower)
         {
+            // =======================================
+            // if related Rv or IAP Active
+            if (UpgradeManager.CriticalPowerMultiplierActive)
+            {
+                value /= UpgradeManager.CriticalPowerMultiplier;
+            }
+            // =======================================
+            
+            valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture) + "%";
+        }
+        else if (upgradeType == UpgradeType.CriticalHitChance)
+        {
+            // =======================================
+            // if related Rv or IAP Active
+            if (UpgradeManager.CriticalChanceMultiplierActive)
+            {
+                value /= UpgradeManager.CriticalChanceMultiplier;
+            }
+            // =======================================
+            
             valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture) + "%";
         }
         else if (upgradeType == UpgradeType.BallCreationSpeed)
@@ -75,19 +97,36 @@ public class UpgradeUi : MonoBehaviour
         }
         else
         {
+            // =======================================
+            // if related IAP Active
+            if (UpgradeManager.DurabilityActive)
+            {
+                value *= UpgradeManager.DurabilityMultiplier;
+            }
+            // =======================================
+            
             valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture);
+            
+            // =======================================
+            // if Infinite Durability Rv Active
             if (DurabilityInfiniteRv.IsActive)
             {
                 valueText.text = "∞";
             }
+            // =======================================
         }
         upgradeLevelFillBar.fillAmount = (level % 25)/25f;
     }
 
     [SerializeField] private Sprite enableSprite, disableSprite;
-    public void SwitchButton(bool hasMoneyAvailable)
+    public void SwitchButton(bool hasMoneyAvailable, bool showRvButton = false)
     {
         upgradeBtn.Interactable = hasMoneyAvailable;
         upgradeBtn.image.sprite = hasMoneyAvailable ? enableSprite : disableSprite;
+        if (showRvButton && hasMoneyAvailable == false)
+        {
+            upgradeBtn.gameObject.SetActive(false);
+            upgradeRvBtn.gameObject.SetActive(true);
+        }
     }
 }

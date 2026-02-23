@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -50, y: -50}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6494207265007445647
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 14066f5e99c082b4fb4bedab0618a1eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fec40c3036a80284da418c445d944b1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 901641792848775280}
   - component: {fileID: 2185870718701241089}
   - component: {fileID: 8627499933438208437}
-  - component: {fileID: 1184718793308968137}
+  - component: {fileID: 6696465051424039487}
   m_Layer: 5
   m_Name: Coin_Skin_Button
   m_TagString: Untagged
@@ -167,14 +167,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503bebb56828ccd43b2148f3ad16d943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballIndex: 0
   skinIndex: 0
   BackgroundImage: {fileID: 2185870718701241089}
   InUsePanelObject: {fileID: 5294008093738299009}
   rvBuyButton: {fileID: 6019953290363583982}
   timerText: {fileID: 7694573413248183539}
+  SkinCost: 0
+  SkinCostText: {fileID: 2549244991589210456}
   state: 0
---- !u!114 &1184718793308968137
+--- !u!114 &6696465051424039487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -183,10 +184,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4181912411301940242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 1
+  m_Padding: {x: 10, y: 10, z: 10, w: 10}
+  m_Softness: {x: 15, y: 15}
 --- !u!1 &5294008093738299009
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +225,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 278, y: 132}
+  m_SizeDelta: {x: 250, y: 110}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &7193392939245657689
 CanvasRenderer:
@@ -253,7 +255,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 62e85c4dfdaa59f4393f9f9d75fd3b2f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ef715826b41ef848acf970dc52e67c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -330,8 +332,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 04:59
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c5dcfd3ce2a80c54792085677e78d8ea, type: 2}
-  m_sharedMaterial: {fileID: -8619802369589169953, guid: c5dcfd3ce2a80c54792085677e78d8ea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a775a1e53a71f7e4c81af7c3c6679d7f, type: 2}
+  m_sharedMaterial: {fileID: -4086152697743855035, guid: a775a1e53a71f7e4c81af7c3c6679d7f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

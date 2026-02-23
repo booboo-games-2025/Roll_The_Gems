@@ -37,6 +37,10 @@ public class Ball : MonoBehaviour
         _rigidbody2D.linearVelocity = Vector2.zero;
         _rigidbody2D.angularVelocity = 0f;
         _currDurability = (int)UpgradeManager.instance.GetValue(BallIndex,UpgradeType.Durability);
+        if (UpgradeManager.DurabilityActive)
+        {
+            _currDurability *= UpgradeManager.DurabilityMultiplier;
+        }
         //var finalSpeed = (_speed + (_speed * PowerupsManager.instance.GetLevel(BallIndex,UpgradeType.Speed)/10f));
         var finalSpeed = (float)UpgradeManager.instance.GetValue(BallIndex, UpgradeType.Speed);
         
@@ -61,7 +65,14 @@ public class Ball : MonoBehaviour
         double money = UpgradeManager.instance.GetValue(BallIndex,UpgradeType.Income);
         int rand = Random.Range(1, 100);
         bool criticalHit = false;
-        if (rand <= (int)UpgradeManager.instance.GetValue(BallIndex,UpgradeType.CriticalHitChance))
+        float criticalHitChancePercentage = (float)UpgradeManager.instance.GetValue(BallIndex, UpgradeType.CriticalHitChance);
+
+        if (UpgradeManager.CriticalChanceMultiplierActive)
+        {
+            criticalHitChancePercentage *= UpgradeManager.CriticalChanceMultiplier;
+        }
+        
+        if (rand <= criticalHitChancePercentage)
         {
             double hitPower = UpgradeManager.instance.GetValue(BallIndex, UpgradeType.CriticalHitPower);
             

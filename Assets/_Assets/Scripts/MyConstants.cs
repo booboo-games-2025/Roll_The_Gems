@@ -33,4 +33,5 @@ public class MyConstants : MonoBehaviour
     
     public const string INCOME_BUNDLE_PURCHASED = "income_bundle";
     public const string SPEED_POWER_BUNDLE_PURCHASED = "speed_power_bundle";
+    public const string MEGA_UPGRADE_BUNDEL_PURCHASED = "mega_upgrade_bundle";
 }

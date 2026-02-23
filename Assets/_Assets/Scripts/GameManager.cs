@@ -33,23 +33,23 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        SkinButton.OnSkinChanged += ChangeSkin;
+        HoleSkinsManager.OnSkinChanged += ChangeSkin;
         Ring.OnHealthChanged += UpdateHealthUi;
         UpgradeManager.OnFirstTimeUpgrade += EnableBallSpawner;
     }
 
     private void OnDisable()
     {
-        SkinButton.OnSkinChanged -= ChangeSkin;
+        HoleSkinsManager.OnSkinChanged -= ChangeSkin;
         Ring.OnHealthChanged -= UpdateHealthUi;
         UpgradeManager.OnFirstTimeUpgrade -= EnableBallSpawner;
     }
 
-    void ChangeSkin(int materialIndex)
+    void ChangeSkin()
     {
         for (int i = 0; i < rings.Length; i++)
         {
-            rings[i].SwitchMaterial(ringMaterials[materialIndex]);
+            rings[i].SwitchMaterial(ringMaterials[HoleSkinsManager.currentSkinIndex]);
         }
     }
 

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using Random = UnityEngine.Random;
 
 public class UpgradeManager : MonoBehaviour
 {
@@ -44,6 +45,12 @@ public class UpgradeManager : MonoBehaviour
     public static float CriticalPowerMultiplier;
     public static bool CriticalPowerMultiplierActive;
     
+    public static float CriticalChanceMultiplier;
+    public static bool CriticalChanceMultiplierActive;
+    
+    public static int DurabilityMultiplier;
+    public static bool DurabilityActive;
+    
     private void OnEnable()
     {
         EconomyManager.OnCoinChanged += UpdateAvailability;
@@ -83,10 +90,24 @@ public class UpgradeManager : MonoBehaviour
         UpdateAllUi();
     }
     
+    public void SetCriticalChanceMultiplier(float mul, bool active)
+    {
+        CriticalChanceMultiplier = mul;
+        CriticalChanceMultiplierActive = active;
+        UpdateAllUi();
+    }
+    
     public void SetCriticalPowerMultiplier(float mul, bool active)
     {
         CriticalPowerMultiplier = mul;
         CriticalPowerMultiplierActive = active;
+        UpdateAllUi();
+    }
+    
+    public void SetDurabilityMultiplier(int mul, bool active)
+    {
+        DurabilityMultiplier = mul;
+        DurabilityActive = active;
         UpdateAllUi();
     }
 
@@ -274,7 +295,16 @@ public class UpgradeManager : MonoBehaviour
         foreach (UpgradeType type in Enum.GetValues(typeof(UpgradeType)))
         {
             PowerData power = GetBall(tabIndex).GetPower(type);
+            if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted,0) == 1)
+            {
+                if ((int)type == 4 || (int)type == 5)
+                {
+                    UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost,true);
+                    continue;
+                }
+            }
             UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost);
+            
         }
         
         UpdateLockUi(currentMoney);
