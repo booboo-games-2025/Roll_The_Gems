@@ -23,16 +23,24 @@ public class EconomyManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(SaveEconomy());
+        StartCoroutine(SaveEconomyRoutine());
     }
 
-    IEnumerator SaveEconomy()
+    IEnumerator SaveEconomyRoutine()
     {
         while (true)
         {
+            SaveEconomy();
+            yield return new WaitForSeconds(5);
+        }
+    }
+
+    public void SaveEconomy()
+    {
+        if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted, 0) == 1)
+        {
             SetDouble(MyConstants.COIN_COUNT, coinCount);
             SetDouble(MyConstants.PERMANENT_COIN_COUNT, permanentCoinCount);
-            yield return new WaitForSeconds(5);
         }
     }
 

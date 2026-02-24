@@ -10,7 +10,7 @@ public class FtueManager : MonoBehaviour
 {
     public static FtueManager Instance;
     
-    [SerializeField] private string unlockText, incomeUpgradeText, achievementButtonText, achievementDetailText;
+    [SerializeField] private string unlockText, upgradeInfoText, incomeUpgradeText, achievementButtonText, achievementDetailText;
     
     [SerializeField] CanvasGroup tutorialCanvasGroup; 
     [SerializeField] RectTransform highlight;
@@ -22,14 +22,17 @@ public class FtueManager : MonoBehaviour
 
     [SerializeField] private UiButton tapToContinueButton;
     [SerializeField] private UiButton unlockButton ,incomeButton, achievementButton;
-    [SerializeField] private Transform unlockButtonTransform, incomeButtonTransform, achievementPanelPointerPos, achievememtPanel;
+    [SerializeField] private Transform unlockButtonTransform, upgradePanelTransform, incomeButtonTransform, achievementPanelPointerPos, achievememtPanel;
     public bool isFtueRunning;
     [SerializeField] private RectTransform pointer;
+    [SerializeField] private ScrollRect scrollRect;
+    [SerializeField] private Scrollbar scrollbar;
 
 
     private void Awake()
     {
         Instance = this;
+        AchievementUi.OnAchievementComplete += StartAchivementTutorial;
         if(PlayerPrefs.GetInt(MyConstants.StartFtueCompleted,0) == 0)
         {
             DOVirtual.DelayedCall(0.5f, () =>
@@ -52,13 +55,35 @@ public class FtueManager : MonoBehaviour
         ShowTutorialText(unlockButtonTransform,unlockText, new Vector2(0,50f));
         unlockButton.clickEvent.AddListener(()=>
         {
-            TapOnIncomeButton();
+            ShowUpgradeScrolling();
         });
+    }
+    
+    void ShowUpgradeScrolling()
+    {
+        scrollRect.vertical = false;
+        unlockButton.clickEvent.RemoveListener(()=>
+        {
+            ShowUpgradeScrolling();
+        });
+        DOTween.To(()=>scrollbar.value,x => scrollbar.value = x, 0, 2f).SetDelay(0.5f).OnComplete(() =>
+        {
+            tapToContinueButton.transform.position += Vector3.up * 550;
+            tapToContinueButton.gameObject.SetActive(true);
+            tapToContinueButton.clickEvent.AddListener(() =>
+            {
+                TapOnIncomeButton();
+            });
+        });
+        ShowHighlight(upgradePanelTransform, new Vector2(1100,680));
+        ShowTutorialText(upgradePanelTransform,upgradeInfoText, new Vector2(0,250f));
     }
 
     void TapOnIncomeButton()
     {
-        unlockButton.clickEvent.RemoveListener(()=>
+        scrollbar.value = 1;
+        tapToContinueButton.gameObject.SetActive(false);
+        tapToContinueButton.clickEvent.RemoveListener(()=>
         {
             TapOnIncomeButton();
         });
@@ -71,11 +96,13 @@ public class FtueManager : MonoBehaviour
         });
     }
 
-
     void EndIncomeTutorial()
     {
+        scrollRect.vertical = true;
         EnableDisableUiButtons(true);
         PlayerPrefs.SetInt(MyConstants.StartFtueCompleted, 1);
+        UpgradeManager.instance.Save();
+        EconomyManager.instance.SaveEconomy();
         incomeButton.clickEvent.RemoveListener((() =>
         {
             EndIncomeTutorial();

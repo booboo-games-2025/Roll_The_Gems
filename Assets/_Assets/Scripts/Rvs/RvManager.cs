@@ -51,9 +51,9 @@ public class RvManager : MonoBehaviour
     
     void SwitchIncomeRvs()
     {
-        if (!IsRvRunning())
+        if (!allRvs[incomeRvIndex].isActive)
         {
-            DisableAllRvs();
+            //DisableAllRvs();
             allRvs[incomeRvIndex].ShowUi(true);
             incomeRvIndex++;
             if (incomeRvIndex >= allRvs.Count)

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class UpgradeManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] CanvasGroup upgradeCanvasGroup;
     [SerializeField] UpgradeBaseValues[] upgradeBaseCosts;
     [SerializeField] UpgradeBaseValues[] upgradeBaseValues;
+    [SerializeField] private double[] unlockCosts;
     [SerializeField] Tab[] tabs;
     [SerializeField] private TMP_Text tabTitleText;
 
@@ -205,7 +207,7 @@ public class UpgradeManager : MonoBehaviour
     {
         saveData.balls[tabIndex].isUnlocked = true;
         OnFirstTimeUpgrade?.Invoke(tabIndex);
-        double cost = tabIndex == 0 ? 0 : upgradeBaseCosts[tabIndex].baseValues[0];
+        double cost = tabIndex == 0 ? 0 : unlockCosts[tabIndex];
         EconomyManager.instance.DecreaseEconomy(cost);
         AudioManager.instance.PlaySFX(SFXType.Unlock);
         Save();
@@ -270,9 +272,12 @@ public class UpgradeManager : MonoBehaviour
 
     public void Save()
     {
-        string json = JsonUtility.ToJson(saveData);
-        PlayerPrefs.SetString(MyConstants.POWERUPS_UPGRADE_DATA, json);
-        PlayerPrefs.Save();
+        if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted, 0) == 1)
+        {
+            string json = JsonUtility.ToJson(saveData);
+            PlayerPrefs.SetString(MyConstants.POWERUPS_UPGRADE_DATA, json);
+            PlayerPrefs.Save();
+        }
     }
 
     void UpdateAllUi()
@@ -321,7 +326,7 @@ public class UpgradeManager : MonoBehaviour
         // ball is not locked then only update buyButton Interactbale state
         if (!isBallUnlocked)
         {
-            double cost = upgradeBaseCosts[tabIndex].baseValues[0];
+            double cost = unlockCosts[tabIndex];
             if (tabIndex == 0)
             {
                 cost = 0;
@@ -330,7 +335,7 @@ public class UpgradeManager : MonoBehaviour
             buyButton.Interactable = hasMoney;
             buyButton.image.sprite = hasMoney ? GlobalvariableContainer.Instance.enableSprite :  GlobalvariableContainer.Instance.disableSprite;
             ballTitle.text = "Unlock " + GlobalvariableContainer.Instance.GetBallName(tabIndex);
-            costText.text = "<sprite=0> " + cost;
+            costText.text = "<sprite=0> " + NumberFormatter.FormatNumberSmall(cost);
             if (tabIndex == 0)
             {
                 costText.text = "<sprite=0> FREE";
