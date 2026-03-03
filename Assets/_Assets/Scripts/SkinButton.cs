@@ -60,14 +60,14 @@ public class SkinButton : MonoBehaviour
 
     public void BuyRvButtonClicked()
     {
-        Unlock();
-        //HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,Unlock);
+        HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,Unlock);
     }
 
     void Unlock()
     {
         HoleSkinsManager.instance.SetGemsSkin(skinIndex);
         string newEvent = "rv:unlock_skin" + "_" + skinIndex;
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(newEvent);
     }
 
 }

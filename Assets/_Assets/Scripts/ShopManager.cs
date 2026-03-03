@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class ShopManager : MonoBehaviour
 {
     public static ShopManager instance;
+
+    public GameObject ShopPanel;
     
     [Header("IncomeBundleUi")]
     [SerializeField] UiButton incomeBundleBuyButton;
@@ -24,6 +26,10 @@ public class ShopManager : MonoBehaviour
         instance = this;
     }
 
+    public void OpenShopPanle()
+    {
+        ShopPanel.SetActive(true);
+    }
     private void Start()
     {
         if (PlayerPrefs.GetInt(MyConstants.INCOME_BUNDLE_PURCHASED, 0) == 1)
@@ -65,7 +71,7 @@ public class ShopManager : MonoBehaviour
             EconomyManager.instance.IncreaseEconomy(3000);
             PlayerPrefs.SetInt(MyConstants.INCOME_BUNDLE_PURCHASED, 1);
         }
-        RvManager.instance.ClearRv(0);
+        RvManager.instance.ClearRv(4);
         UpgradeManager.instance.SetIncomeMultiplier(1.5f, true);
         
         incomeBundleBuyButton.Interactable = false;
@@ -97,7 +103,7 @@ public class ShopManager : MonoBehaviour
             PlayerPrefs.SetInt(MyConstants.MEGA_UPGRADE_BUNDEL_PURCHASED, 1);
         }
         // disable related Rvs effect before giving any reward
-        RvManager.instance.ClearRv(4);
+        RvManager.instance.ClearRv(0);
         UpgradeManager.instance.SetCriticalChanceMultiplier(2f, true);
         UpgradeManager.instance.SetCriticalPowerMultiplier(2f, true);
         UpgradeManager.instance.SetDurabilityMultiplier(2, true);

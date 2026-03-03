@@ -10,6 +10,7 @@ public class RingHealthHalfRv : RvBase
     {
         IsActive = true;
         OnActive?.Invoke();
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.TWOX_RING_DAMAGE_RV);
     }
 
     protected override void OnEffectEnd()

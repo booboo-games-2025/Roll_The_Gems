@@ -7,6 +7,7 @@ public class DurabilityInfiniteRv : RvBase
     protected override void OnEffectStart()
     {
         IsActive = true;
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.INFINITE_DURABILITY_RV);
     }
 
     protected override void OnEffectEnd()

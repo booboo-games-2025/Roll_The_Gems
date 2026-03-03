@@ -20,6 +20,11 @@ public abstract class RvBase : MonoBehaviour
         timerText.text = activeDuration + " sec";
     }
 
+    public void RvButtonClicked()
+    {
+        HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,Activate);
+    }
+
     public void Activate()
     {
         if (isActive) return; // already active
@@ -34,6 +39,7 @@ public abstract class RvBase : MonoBehaviour
         timerRoutine = StartCoroutine(StartTimer());
         AudioManager.instance.PlaySFX(SFXType.RvActivateSound);
     }
+
 
     IEnumerator StartTimer()
     {

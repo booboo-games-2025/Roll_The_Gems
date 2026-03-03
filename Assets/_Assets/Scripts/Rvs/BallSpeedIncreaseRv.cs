@@ -8,6 +8,7 @@ public class BallSpeedIncreaseRv : RvBase
     protected override void OnEffectStart()
     {
         OnActive?.Invoke(2f,true);
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.TWOX_BALL_SPEED_RV);
     }
 
     protected override void OnEffectEnd()

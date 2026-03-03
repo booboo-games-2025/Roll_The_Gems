@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: BooBooGames
-  productName: Ring Breaker
+  productName: Bitcoin Ring Breaker
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -79,7 +79,7 @@ PlayerSettings:
   androidMinimumWindowHeight: 300
   androidFullscreenMode: 1
   androidAutoRotationBehavior: 1
-  androidPredictiveBackSupport: 1
+  androidPredictiveBackSupport: 0
   androidApplicationEntry: 2
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
@@ -153,7 +153,7 @@ PlayerSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
-  enableOpenGLProfilerGPURecorders: 1
+  enableOpenGLProfilerGPURecorders: 0
   allowHDRDisplaySupport: 0
   useHDRDisplay: 0
   hdrBitDepth: 0
@@ -165,7 +165,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.DefaultCompany.Roll_The_Gems
+    Android: com.mobileesports.ringbreaker
     Standalone: com.Unity-Technologies.com.unity.template.urp-blank
     iPhone: com.Unity-Technologies.com.unity.template.urp-blank
   buildNumber:
@@ -293,7 +293,14 @@ PlayerSettings:
   AndroidAppBundleSizeToValidate: 150
   AndroidReportGooglePlayAppDependencies: 1
   androidSymbolsSizeThreshold: 800
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 5bda0f3349d9f14489b8eca186f48ef0, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: iPhone
     m_Icons:
@@ -395,6 +402,66 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Icons:
     - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 1
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures: []
       m_Width: 432
       m_Height: 432
       m_Kind: 2
@@ -423,66 +490,6 @@ PlayerSettings:
       m_Width: 81
       m_Height: 81
       m_Kind: 2
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 192
-      m_Height: 192
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 144
-      m_Height: 144
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 96
-      m_Height: 96
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 1
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 192
-      m_Height: 192
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 144
-      m_Height: 144
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 96
-      m_Height: 96
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 72
-      m_Height: 72
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 48
-      m_Height: 48
-      m_Kind: 0
-      m_SubKind: 
-    - m_Textures: []
-      m_Width: 36
-      m_Height: 36
-      m_Kind: 0
       m_SubKind: 
   - m_BuildTarget: tvOS
     m_Icons:
@@ -823,24 +830,25 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN
+    Android: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;CORE_IN_APP_PURCHASES_GOOGLE_PLAY_STORE;BUILD_DEFINES;CORE
     EmbeddedLinux: DOTWEEN
-    GameCoreScarlett: DOTWEEN
-    GameCoreXboxOne: DOTWEEN
+    GameCoreScarlett: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    GameCoreXboxOne: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     Kepler: DOTWEEN
     LinuxHeadlessSimulation: DOTWEEN
-    Nintendo Switch: DOTWEEN
+    Nintendo Switch: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     Nintendo Switch 2: DOTWEEN
-    PS4: DOTWEEN
-    PS5: DOTWEEN
+    PS4: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    PS5: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     QNX: DOTWEEN
-    Standalone: DOTWEEN
+    Server: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    Standalone: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN
-    Windows Store Apps: DOTWEEN
+    WebGL: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    Windows Store Apps: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     XboxOne: DOTWEEN
-    iPhone: DOTWEEN
-    tvOS: DOTWEEN
+    iPhone: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    tvOS: DOTWEEN;gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -937,7 +945,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: d440a9f4-7d06-4138-b234-eb4d7ded6d48
   framebufferDepthMemorylessMode: 0

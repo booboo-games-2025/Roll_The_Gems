@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         UpgradeManager.OnFirstTimeUpgrade -= EnableBallSpawner;
     }
 
+    public void ShowShop()
+    {
+        ShopManager.instance.OpenShopPanle();
+    }
+
     void ChangeSkin()
     {
         for (int i = 0; i < rings.Length; i++)
@@ -64,6 +69,16 @@ public class GameManager : MonoBehaviour
     {
         Setup();
         EnableAllBallSpawner();
+        StartCoroutine(ShowInterstitial());
+    }
+
+    IEnumerator ShowInterstitial()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(120);
+            HCSDKManager.INSTANCE.ShowInterstitialAd(HCSDKManager.IS_LOAD_NAME,null);
+        }
     }
 
     void Setup()

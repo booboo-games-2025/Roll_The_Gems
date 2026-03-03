@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da47584f865a440efbdfd64e3566417f, type: 3}
+  m_Name: Google Play Store Config Node
+  m_EditorClassIdentifier: 
+  useThisConfig: 1
+  isUpToDateWithConfig: 1
+  googleSheetsCache:
+    url: 
+    sheetsNames: []
+    sheetsGuids: []
+    preferredSheet: 
+  plistImportSupportingData: 
+  products:
+  - productId: brb_coin_pack_1
+    storeProductId: brb_coin_pack_1
+    productType: 1
+  - productId: brb_coin_pack_2
+    storeProductId: brb_coin_pack_2
+    productType: 1
+  - productId: brb_coin_pack_3
+    storeProductId: brb_coin_pack_3
+    productType: 1
+  - productId: brb_income_bundle_pack
+    storeProductId: brb_income_bundle_pack
+    productType: 2
+  - productId: brb_speed_power_bundle_pack
+    storeProductId: brb_speed_power_bundle_pack
+    productType: 2
+  - productId: brb:mega_upgrade_bundle_pack
+    storeProductId: brb:mega_upgrade_bundle_pack
+    productType: 2
+  subscriptionGroups: []
+  remoteServerConnection:
+    gameId: 0
+    serverUrl: https://boombit.cloud
+    secretKey: 
+  enableLocalSubscriptionStorage: 1
+  shouldFinalizePurchasesAutomatically: 1
+  debugOverrides:
+    overrideVerificationServerUrl: 0
+    verificationServerUrl: 
+    overrideSubscriptionCheckInterval: 0
+    subscriptionCheckInterval: 0
+    verboseLogs: 0
+  subscriptionBasePlansAndOffers: []
+  enableAutomaticPurchaseRestoration: 1

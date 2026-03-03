@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "273531286808",
+    "project_id": "bitcoin-ring-breaker",
+    "storage_bucket": "bitcoin-ring-breaker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273531286808:android:138fd41d201290dd3f9a6d",
+        "android_client_info": {
+          "package_name": "com.mobileesports.ringbreaker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuYNao9e2pyMBx8pqosKlNfaT8TEmYbeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

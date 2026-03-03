@@ -10,6 +10,7 @@ public class TwoxIncomeRv : RvBase
     protected override void OnEffectStart()
     {
         OnActive?.Invoke(2f,true);
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.TWOX_INCOME_RV);
     }
 
     protected override void OnEffectEnd()

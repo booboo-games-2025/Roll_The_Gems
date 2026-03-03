@@ -52,14 +52,19 @@ public class OfflineEarning : MonoBehaviour
         Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.GetOfflineIncomeXTime);
         AudioManager.instance.PlaySFX(SFXType.Claim);
     }
+
+    public void Claim2xRvButtonClicked()
+    {
+        HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,ClaimOfflineEarning2X);
+    }
     
     // Rv Func
-    public void ClaimOfflineEarning2X()
+    void ClaimOfflineEarning2X()
     {
         EconomyManager.instance.IncreaseEconomy(moneyToAdd * 2);
         welcomeBackUi.SetActive(false);
         Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.GetOfflineIncomeXTime);
         AudioManager.instance.PlaySFX(SFXType.Claim);
-        //GameAnalyticsController.Miscellaneous.NewDesignEvent("rv:claim_offline_earning_2x");
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.OFFLINE_INCOME_DOUBLE_RV);
     }
 }

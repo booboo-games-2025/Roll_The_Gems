@@ -82,11 +82,14 @@ public class RvManager : MonoBehaviour
 
     public void ClearRv(int rvIndex)
     {
-        if (allRvs[rvIndex].isActive)
+        if (rvIndex >= 0 && rvIndex < allRvs.Count)
         {
-            allRvs[rvIndex].EndBooster();
+            if (allRvs[rvIndex].isActive)
+            {
+                allRvs[rvIndex].EndBooster();
+            }
+            allRvs.RemoveAt(rvIndex);
         }
-        allRvs.RemoveAt(rvIndex);
     }
     
     #region FloatingRv
@@ -106,7 +109,7 @@ public class RvManager : MonoBehaviour
 
     
     public TMP_Text moneyText;
-    public void ClickedOnFloatingRv()
+    public void OpenFloatingRvPanel()
     {
         floatingRvPanel.SetActive(true);
         floatingRv.gameObject.SetActive(false);
@@ -118,12 +121,18 @@ public class RvManager : MonoBehaviour
         moneyText.text = "<Sprite=0> " + NumberFormatter.FormatNumberSmall(moneyRandom);
     }
 
-    public void ClaimFloatingRv()
+    public void FloatingRvButtonClicked()
+    {
+        HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,ClaimFloatingRvReward);
+    }
+
+    void ClaimFloatingRvReward()
     {
         floatingRvPanel.SetActive(false);
         EconomyManager.instance.IncreaseEconomy(moneyRandom);
         floatingRvCoroutine = StartCoroutine(FloatingRvTimer());
         AudioManager.instance.PlaySFX(SFXType.Claim);
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.FLOATING_RV);
     }
 
     public void CancelRv()

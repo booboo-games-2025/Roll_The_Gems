@@ -117,9 +117,9 @@ public class UiButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         // Scale animation
         transform.DOKill();
         transform.localScale = Vector3.one;
-        transform.DOScale(Vector3.one * 1.15f, 0.08f).OnComplete(() =>
+        transform.DOScale(Vector3.one * 1.15f, 0.06f).OnComplete(() =>
         {
-            transform.DOScale(Vector3.one, 0.08f);
+            transform.DOScale(Vector3.one, 0.06f);
         });
         // Sound
         AudioManager.instance.PlaySFX(SFXType.ButtonTap);

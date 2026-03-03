@@ -1327,12 +1327,12 @@ public class Leaderboard : MonoBehaviour
             InitializeLeaderBoard(PlayerTotalScore, PlayerRank, PlayerTotalScore + increasedScore, increaseRankUp, 0);
         }
 
-        SuccessCallbacK();
+        //SuccessCallbacK();
         //GameAnalyticsController.Miscellaneous.NewDesignEvent("rv:increase_rank");
-        // HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME, () =>
-        // {
-        //     GameAnalyticsController.Miscellaneous.NewDesignEvent("rv:increase_rank");
-        //     SuccessCallbacK();
-        // });
+        HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME, () =>
+        {
+             GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.RANK_INCREASED_RV);
+             SuccessCallbacK();
+        });
     }
 }

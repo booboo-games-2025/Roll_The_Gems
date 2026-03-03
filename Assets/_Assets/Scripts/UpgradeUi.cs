@@ -21,7 +21,28 @@ public class UpgradeUi : MonoBehaviour
     {
         Icon.sprite = GlobalvariableContainer.Instance.ballIcons[UpgradeManager.tabIndex];
         upgradeBtn.clickEvent.AddListener(() => { UpgradeManager.instance.Upgrade(UpgradeManager.tabIndex, upgradeType); });
-        upgradeRvBtn.clickEvent.AddListener(() => { UpgradeManager.instance.Upgrade(UpgradeManager.tabIndex, upgradeType); });
+        upgradeRvBtn.clickEvent.AddListener(() => { HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,RvButtonClicked); });
+    }
+
+    public void RvButtonClicked()
+    {
+        UpgradeManager.instance.Upgrade(UpgradeManager.tabIndex, upgradeType);
+        if (upgradeType == UpgradeType.CriticalHitPower)
+        {
+            GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.CRITICAL_POWER_UPGRADE_RV);
+        }
+        else if (upgradeType == UpgradeType.Speed)
+        {
+            GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.SPEED_UPGRADE_RV);
+        }
+        else if (upgradeType == UpgradeType.BallCreationSpeed)
+        {
+            GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.CREATION_TIME_UPGRADE_RV);
+        }
+        else if (upgradeType == UpgradeType.Durability)
+        {
+            GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.DURABILITY_UPGRADE_RV);
+        }
     }
 
     public void UpdateUi(double cost, double value, int level)

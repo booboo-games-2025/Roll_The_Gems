@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7cbbdadbd1b4b58a07e95e3249dacfb, type: 3}
+  m_Name: Idfa Consent View Settings
+  m_EditorClassIdentifier: 
+  settingsFileVersion: 1
+  translationsSheetUrl: 
+  translationsSheetName: 
+  useTranslations: 1
+  languageCodeOfDefaultValue: en
+  googleSheetsDownloaderTimeout: 10
+  translations:
+  - languageCode: en
+    value: Your game experience will be tailored to your interests thanks to this
+      data.
+  - languageCode: ar
+    value: "\u0633\u064A\u062A\u0645 \u062A\u0635\u0645\u064A\u0645 \u062A\u062C\u0631\u0628\u0629
+      \u0627\u0644\u0644\u0639\u0628\u0629 \u0627\u0644\u062E\u0627\u0635\u0629 \u0628\u0643
+      \u0648\u0641\u0642\u064B\u0627 \u0644\u0627\u0647\u062A\u0645\u0627\u0645\u0627\u062A\u0643
+      \u0628\u0641\u0636\u0644 \u0647\u0630\u0647 \u0627\u0644\u0628\u064A\u0627\u0646\u0627\u062A."
+  - languageCode: ca
+    value: "Gr\xE0cies a aquestes dades, la teva experi\xE8ncia de joc s'adaptar\xE0
+      millor als teus interessos."
+  - languageCode: zh
+    value: "\u6211\u4EEC\u5C06\u901A\u8FC7\u8BE5\u6570\u636E\uFF0C\u6839\u636E\u60A8\u7684\u504F\u597D\u6765\u6539\u5584\u6E38\u620F\u4F53\u9A8C\u3002"
+  - languageCode: zh-Hans
+    value: "\u6211\u4EEC\u5C06\u901A\u8FC7\u8BE5\u6570\u636E\uFF0C\u6839\u636E\u60A8\u7684\u504F\u597D\u6765\u6539\u5584\u6E38\u620F\u4F53\u9A8C\u3002"
+  - languageCode: zh-Hant
+    value: "\u6211\u5011\u5C07\u900F\u904E\u8A72\u6578\u64DA\uFF0C\u6839\u64DA\u60A8\u7684\u504F\u597D\u4F86\u6539\u5584\u904A\u6232\u9AD4\u9A57\u3002"
+  - languageCode: hr
+    value: "Zahvaljuju\u0107i tim podacima va\u0161e iskustvo igre bit \u0107e prilago\u0111eno
+      va\u0161im interesovanjima."
+  - languageCode: cs
+    value: "D\xEDky t\u011Bmto \xFAdaj\u016Fm v\xE1m v\xE1\u0161 hern\xED z\xE1\u017Eitek
+      u\u0161ijeme na m\xEDru."
+  - languageCode: da
+    value: "Din spiloplevelse vil blive skr\xE6ddersyet til dine interesser ved hj\xE6lp
+      af disse data."
+  - languageCode: nl
+    value: Jouw game-ervaring wordt met deze gegevens aangepast aan jouw interesses.
+  - languageCode: fi
+    value: "Pelikokemustasi r\xE4\xE4t\xE4l\xF6id\xE4\xE4n n\xE4iden tietojen avulla
+      kiinnostuksenkohteidesi mukaan."
+  - languageCode: fr
+    value: "L'exp\xE9rience de jeu sera adapt\xE9e aux pr\xE9f\xE9rences gr\xE2ce
+      \xE0 ces donn\xE9es."
+  - languageCode: de
+    value: Dank dieser Daten wird dein Spielerlebnis auf deine Interessen zugeschnitten.
+  - languageCode: el
+    value: "\u03A7\u03AC\u03C1\u03B7 \u03C3\u03B5 \u03B1\u03C5\u03C4\u03AC \u03C4\u03B1
+      \u03B4\u03B5\u03B4\u03BF\u03BC\u03AD\u03BD\u03B1, \u03B7 \u03B5\u03BC\u03C0\u03B5\u03B9\u03C1\u03AF\u03B1
+      \u03C0\u03B1\u03B9\u03C7\u03BD\u03B9\u03B4\u03B9\u03BF\u03CD \u03B8\u03B1 \u03C0\u03C1\u03BF\u03C3\u03B1\u03C1\u03BC\u03BF\u03C3\u03C4\u03B5\u03AF
+      \u03C3\u03C4\u03B1 \u03B5\u03BD\u03B4\u03B9\u03B1\u03C6\u03AD\u03C1\u03BF\u03BD\u03C4\u03AC
+      \u03C3\u03B1\u03C2."
+  - languageCode: iw
+    value: "\u05D7\u05D5\u05D5\u05D9\u05D9\u05EA \u05D4\u05DE\u05E9\u05D7\u05E7 \u05E9\u05DC\u05DA
+      \u05EA\u05D5\u05EA\u05D0\u05DD \u05DC\u05EA\u05D7\u05D5\u05DE\u05D9 \u05D4\u05E2\u05E0\u05D9\u05D9\u05DF
+      \u05E9\u05DC\u05DA \u05D1\u05D6\u05DB\u05D5\u05EA \u05E0\u05EA\u05D5\u05E0\u05D9\u05DD
+      \u05D0\u05DC\u05D4\u200E."
+  - languageCode: hi
+    value: "\u0906\u092A\u0915\u093E \u0917\u0947\u092E\u093F\u0902\u0917 \u090F\u0915\u094D\u0938\u092A\u0940\u0930\u093F\u092F\u0902\u0938
+      \u0906\u092A\u0915\u0940 \u0930\u0942\u091A\u093F \u0915\u0947 \u0939\u093F\u0938\u093E\u092C
+      \u0938\u0947 \u0915\u0938\u094D\u091F\u092E\u093E\u0907\u095B \u0915\u093F\u092F\u093E
+      \u091C\u093E\u090F\u0917\u093E \u0914\u0930 \u092F\u0947 \u0938\u092C \u092E\u0941\u092E\u0915\u093F\u0928
+      \u0939\u094B\u0917\u093E \u0938\u093F\u0930\u094D\u092B \u0907\u0938 \u0921\u0947\u091F\u093E
+      \u0915\u0940 \u0935\u091C\u0939 \u0938\u0947."
+  - languageCode: hu
+    value: "A te j\xE1t\xE9k\xE9lm\xE9nyed ezen inform\xE1ci\xF3knak k\xF6sz\xF6nhet\u0151en
+      a saj\xE1t \xE9rdekl\u0151d\xE9si k\xF6r\xF6dre lesz szabva."
+  - languageCode: in
+    value: Berkat data ini, pengalaman bermainmu akan disesuaikan dengan minatmu.
+  - languageCode: it
+    value: "Grazie a questi dati potrai godere di un\u2019esperienza di gioco personalizzata
+      in base ai tuoi interessi."
+  - languageCode: ja
+    value: "\u3053\u306E\u30C7\u30FC\u30BF\u306B\u3088\u308A\u3001\u3042\u306A\u305F\u306E\u3054\u8208\u5473\u306B\u5408\u308F\u305B\u305F\u30B2\u30FC\u30E0\u4F53\u9A13\u3092\u3054\u63D0\u4F9B\u3067\u304D\u308B\u3088\u3046\u306B\u306A\u308A\u307E\u3059\u3002"
+  - languageCode: ko
+    value: "\uC774 \uB370\uC774\uD130\uB97C \uD1B5\uD574 \uC5EC\uB7EC\uBD84\uC758
+      \uAD00\uC2EC\uC0AC \uB9DE\uCDA4\uD615 \uD50C\uB808\uC774\uAC00 \uAC00\uB2A5\uD574\uC9D1\uB2C8\uB2E4."
+  - languageCode: ms
+    value: Pengalaman permainan anda akan disesuaikan mengikut minat anda dengan
+      bantuan data ini.
+  - languageCode: no
+    value: Spillopplevelsen din vil bli skreddersydd deg og dine interesser med disse
+      dataene.
+  - languageCode: pl
+    value: "Gra zostanie dostosowana do Twoich zainteresowa\u0144 dzi\u0119ki tym
+      danym."
+  - languageCode: pt
+    value: "Sua experi\xEAncia de jogo ser\xE1 adequada aos seus interesses, gra\xE7as
+      a estes dados."
+  - languageCode: ro
+    value: "Datorit\u0103 acestor date, experien\u021Ba ta \xEEn joc va fi optimizat\u0103
+      \xEEn func\u021Bie de interesele tale."
+  - languageCode: ru
+    value: "\u0418\u0433\u0440\u043E\u0432\u043E\u0439 \u043F\u0440\u043E\u0446\u0435\u0441\u0441
+      \u043F\u043E\u0434\u0441\u0442\u0440\u043E\u0438\u0442\u0441\u044F \u043F\u043E\u0434
+      \u0432\u0430\u0448\u0438 \u0438\u043D\u0442\u0435\u0440\u0435\u0441\u044B \u0431\u043B\u0430\u0433\u043E\u0434\u0430\u0440\u044F
+      \u044D\u0442\u0438\u043C \u0434\u0430\u043D\u043D\u044B\u043C."
+  - languageCode: sk
+    value: "V\u010Faka t\xFDmto \xFAdajom bude v\xE1\u0161 hern\xFD z\xE1\u017Eitok
+      prisp\xF4soben\xFD va\u0161im z\xE1ujmom."
+  - languageCode: es
+    value: "Tu experiencia de juego se adaptar\xE1 a tus intereses gracias a esta
+      informaci\xF3n."
+  - languageCode: sv
+    value: "Spelupplevelsen skr\xE4ddarsys efter dina intressen genom dessa data."
+  - languageCode: th
+    value: "\u0E1B\u0E23\u0E30\u0E2A\u0E1A\u0E01\u0E32\u0E23\u0E13\u0E4C\u0E40\u0E25\u0E48\u0E19\u0E40\u0E01\u0E21\u0E08\u0E30\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E1B\u0E23\u0E31\u0E1A\u0E41\u0E15\u0E48\u0E07\u0E15\u0E32\u0E21\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E19\u0E43\u0E08\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13\u0E42\u0E14\u0E22\u0E2D\u0E32\u0E28\u0E31\u0E22\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E19\u0E35\u0E49"
+  - languageCode: tr
+    value: "Bu veriler sayesinde, oyun deneyimin ilgi alanlar\u0131na g\xF6re \u015Fekillendirilecektir."
+  - languageCode: uk
+    value: "\u0417\u0430\u0432\u0434\u044F\u043A\u0438 \u0446\u0438\u043C \u0434\u0430\u043D\u0438\u043C
+      \u0432\u0430\u0448 \u0456\u0433\u0440\u043E\u0432\u0438\u0439 \u043F\u0440\u043E\u0446\u0435\u0441
+      \u0431\u0443\u0434\u0435 \u043F\u0456\u0434\u043B\u0430\u0448\u0442\u043E\u0432\u0430\u043D\u0438\u0439
+      \u043F\u0456\u0434 \u0432\u0430\u0448\u0456 \u0456\u043D\u0442\u0435\u0440\u0435\u0441\u0438."
+  - languageCode: vi
+    value: "Tr\u1EA3i nghi\u1EC7m ch\u01A1i s\u1EBD \u0111\u01B0\u1EE3c t\xF9y ch\u1EC9nh
+      ph\xF9 h\u1EE3p v\u1EDBi s\u1EDF th\xEDch c\u1EE7a b\u1EA1n d\u1EF1a tr\xEAn
+      d\u1EEF li\u1EC7u n\xE0y."
