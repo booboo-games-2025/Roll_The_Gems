@@ -61,6 +61,10 @@ public class FtueManager : MonoBehaviour
     
     void ShowUpgradeScrolling()
     {
+        if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted) == 1)
+        {
+            return;
+        }
         scrollRect.vertical = false;
         unlockButton.clickEvent.RemoveListener(()=>
         {
@@ -119,6 +123,7 @@ public class FtueManager : MonoBehaviour
     {
         if(PlayerPrefs.GetInt(MyConstants.AchievementFtueCompleted,0) == 0)
         {
+            EnableDisableUiButtons(false);
             TutorialPanelPointerSwitch(false);
             tutorialCanvasGroup.gameObject.SetActive(true);
             tutorialCanvasGroup.DOFade(1, 0.5f).OnComplete(() =>
@@ -128,6 +133,7 @@ public class FtueManager : MonoBehaviour
             });
             ShowHighlight(achievementButton.transform, new Vector2(150,150));
             ShowTutorialText(achievementButton.transform,achievementButtonText, new Vector2(30,-30f));
+            achievementButton.Interactable = true;
             achievementButton.clickEvent.AddListener(()=>
             {
                 ShowAchievementPanelDetail();
@@ -142,6 +148,7 @@ public class FtueManager : MonoBehaviour
             EndIncomeTutorial();
         });
         print("AchievementPanelShown");
+
         TutorialPanelPointerSwitch(true);
         ShowHighlight(achievememtPanel, new Vector2(900,1100));
         ShowTutorialText(achievementPanelPointerPos,achievementDetailText, new Vector2(0,50f));

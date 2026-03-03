@@ -170,7 +170,8 @@ MonoBehaviour:
   skinIndex: 0
   BackgroundImage: {fileID: 2185870718701241089}
   InUsePanelObject: {fileID: 5294008093738299009}
-  rvBuyButton: {fileID: 6019953290363583982}
+  rvBuyButton: {fileID: 6918934212145064730}
+  canvasGroup: {fileID: 7614410750217460651}
   timerText: {fileID: 7694573413248183539}
   SkinCost: 0
   SkinCostText: {fileID: 2549244991589210456}
@@ -488,6 +489,7 @@ GameObject:
   - component: {fileID: 8054952466175130255}
   - component: {fileID: 699064667515145601}
   - component: {fileID: 6019953290363583982}
+  - component: {fileID: 7614410750217460651}
   m_Layer: 5
   m_Name: Buy_Button_Rv
   m_TagString: Untagged
@@ -581,6 +583,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &7614410750217460651
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6918934212145064730}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7484488782602427720
 GameObject:
   m_ObjectHideFlags: 0

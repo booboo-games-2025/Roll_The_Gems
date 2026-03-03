@@ -14,7 +14,8 @@ public class SkinButton : MonoBehaviour
     public int skinIndex;
     public Image BackgroundImage;
     public GameObject InUsePanelObject;
-    public UiButton rvBuyButton;
+    public GameObject rvBuyButton;
+    public CanvasGroup canvasGroup;
     public TMP_Text timerText;
     public int SkinCost;
     public TextMeshProUGUI SkinCostText;
@@ -36,12 +37,19 @@ public class SkinButton : MonoBehaviour
     public void ChangeUiAccordingToState()
     {
         InUsePanelObject.SetActive(false);
-        rvBuyButton.gameObject.SetActive(false);
+        rvBuyButton.SetActive(false);
         //BackgroundImage.sprite = HoleSkinsManager.instance.unselectedBg;
         switch (state)
         {
             case SkinButtonState.Lock:
-                rvBuyButton.gameObject.SetActive(true);
+                rvBuyButton.SetActive(true);
+                canvasGroup.alpha = 0.3f;
+                canvasGroup.blocksRaycasts = false;
+                break;
+            case SkinButtonState.Unlock:
+                rvBuyButton.SetActive(true);
+                canvasGroup.alpha = 1f;
+                canvasGroup.blocksRaycasts = true;
                 break;
             case SkinButtonState.Selected:
                 InUsePanelObject.SetActive(true);

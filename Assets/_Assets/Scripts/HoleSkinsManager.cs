@@ -32,7 +32,7 @@ public class HoleSkinsManager : MonoBehaviour
         }
         currentSkinIndex = index;
         OnSkinChanged?.Invoke();
-        UpdateModesUi();
+        UpdateModesUi(true);
         skinCoroutine = StartCoroutine(ResetGemsSkin());
     }
 
@@ -47,10 +47,10 @@ public class HoleSkinsManager : MonoBehaviour
         }
         currentSkinIndex = 0;
         OnSkinChanged?.Invoke();
-        UpdateModesUi();
+        UpdateModesUi(false);
     }
 
-    public void UpdateModesUi()
+    public void UpdateModesUi(bool canLockOthers)
     {
         for (int i = 0; i < skinButtonsList.Length; i++)
         {
@@ -60,7 +60,7 @@ public class HoleSkinsManager : MonoBehaviour
                 skinButtonsList[i].ChangeUiAccordingToState();
                 continue;
             }
-            skinButtonsList[i].state = SkinButtonState.Lock;
+            skinButtonsList[i].state = canLockOthers ? SkinButtonState.Lock : SkinButtonState.Unlock;
             skinButtonsList[i].ChangeUiAccordingToState();
         }
     }

@@ -12,6 +12,7 @@ public class RvManager : MonoBehaviour
     public List<RvBase> allRvs;
     private int incomeRvIndex;
     [SerializeField] private RectTransform floatingRv;
+    [SerializeField] TMP_Text rewardText;
     [SerializeField] private GameObject floatingRvPanel;
     Coroutine floatingRvCoroutine;
 
@@ -90,9 +91,12 @@ public class RvManager : MonoBehaviour
     
     #region FloatingRv
 
+    private double moneyRandom;
     IEnumerator FloatingRvTimer()
     {
         yield return new WaitForSeconds(120f);
+        moneyRandom = MathF.Pow(Random.Range(16,22) * PlayerPrefs.GetInt(MyConstants.RING_LEVEL), 1.5f);
+        rewardText.text = NumberFormatter.FormatNumberSmall(moneyRandom);
         floatingRv.gameObject.SetActive(true);
         floatingRv.anchoredPosition = new Vector2(Random.Range(-450, 450), 700);
         yield return new WaitForSeconds(15f);
@@ -100,7 +104,7 @@ public class RvManager : MonoBehaviour
         floatingRvCoroutine = null;
     }
 
-    private float moneyRandom;
+    
     public TMP_Text moneyText;
     public void ClickedOnFloatingRv()
     {
@@ -111,8 +115,7 @@ public class RvManager : MonoBehaviour
             StopCoroutine(floatingRvCoroutine);
             floatingRvCoroutine = null;
         }
-        moneyRandom = Random.Range(100, 1000);
-        moneyText.text = "<Sprite=0> " + moneyRandom;
+        moneyText.text = "<Sprite=0> " + NumberFormatter.FormatNumberSmall(moneyRandom);
     }
 
     public void ClaimFloatingRv()

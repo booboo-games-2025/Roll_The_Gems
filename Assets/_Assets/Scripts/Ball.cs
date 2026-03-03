@@ -63,6 +63,7 @@ public class Ball : MonoBehaviour
         }
 
         double money = UpgradeManager.instance.GetValue(BallIndex,UpgradeType.Income);
+        money *= 1 + (Achievements.progress * 3)/100f;
         int rand = Random.Range(1, 100);
         bool criticalHit = false;
         float criticalHitChancePercentage = (float)UpgradeManager.instance.GetValue(BallIndex, UpgradeType.CriticalHitChance);
@@ -89,6 +90,7 @@ public class Ball : MonoBehaviour
             criticalHit = true;
         }
         GameManager.Instance.AddMoneyOnCollide(money, transform.position,criticalHit);
+        AudioManager.instance.PlaySFX(SFXType.ballCollision);
         if (_currDurability == 0)
         {
             isActive = false;

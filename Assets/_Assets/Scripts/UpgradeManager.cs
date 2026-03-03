@@ -125,6 +125,7 @@ public class UpgradeManager : MonoBehaviour
     {
         SwitchTab(0);
         StartCoroutine(SaveRoutine());
+        StartCoroutine(ChangeRvButtonChanceOnUpgrades());
     }
     
     void AddButtonEvents()
@@ -172,6 +173,24 @@ public class UpgradeManager : MonoBehaviour
         {
             yield return new WaitForSeconds(5);
             Save();
+        }
+    }
+
+    // this function will switch chance randomly for show Rv button for last 4 upgrade if not enough cash to upgrade
+    private int firstRvUpgradeButtonChanceIndex, secondRvUpgradeButtonChanceUpgrade;
+    IEnumerator ChangeRvButtonChanceOnUpgrades()
+    {
+        while (true)
+        {
+            // we will show Rv button (if cash is less) on upgrade button only for last 4 so index 0 and 1 not considered here
+            List<int> eligibleUpgradeindex = new List<int>{2,3,4,5};
+            int first = eligibleUpgradeindex[Random.Range(0, eligibleUpgradeindex.Count)];
+            eligibleUpgradeindex.Remove(first);
+            firstRvUpgradeButtonChanceIndex = first;
+            int second = eligibleUpgradeindex[Random.Range(0, eligibleUpgradeindex.Count)];
+            eligibleUpgradeindex.Remove(second);
+            secondRvUpgradeButtonChanceUpgrade = second;
+            yield return new WaitForSeconds(20);
         }
     }
 
@@ -302,7 +321,7 @@ public class UpgradeManager : MonoBehaviour
             PowerData power = GetBall(tabIndex).GetPower(type);
             if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted,0) == 1)
             {
-                if ((int)type == 4 || (int)type == 5)
+                if ((int)type == firstRvUpgradeButtonChanceIndex || (int)type == secondRvUpgradeButtonChanceUpgrade)
                 {
                     UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost,true);
                     continue;
@@ -352,13 +371,24 @@ public class UpgradeManager : MonoBehaviour
             {
                 continue;
             }
-            foreach (UpgradeType type in Enum.GetValues(typeof(UpgradeType)))
+
+            if (saveData.balls[i].isUnlocked == false)
             {
-                PowerData power = GetBall(i).GetPower(type);
-                if (currentMoney >= power.cost)
+                if (currentMoney >= unlockCosts[i])
                 {
                     tabs[i].exclaimMark.SetActive(true);
-                    break;
+                }
+            }
+            else
+            {
+                foreach (UpgradeType type in Enum.GetValues(typeof(UpgradeType)))
+                {
+                    PowerData power = GetBall(i).GetPower(type);
+                    if (currentMoney >= power.cost)
+                    {
+                        tabs[i].exclaimMark.SetActive(true);
+                        break;
+                    }
                 }
             }
         }

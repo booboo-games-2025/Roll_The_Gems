@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Color[] ringColors;
     [SerializeField] private BallSpawner[] ballSpawners;
     [SerializeField] private GameObject healthUi;
-    [SerializeField] TMP_Text _healthText;
+    [SerializeField] TMP_Text _healthText, ringLeveltext;
     [SerializeField] Image _fillBar;
     private int _currentRingIndex = 0;
     private int _totalActiavtedRings;
@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
     void CalculateRingData()
     {
         ringSet = PlayerPrefs.GetInt(MyConstants.RING_LEVEL, 1);
+        ringLeveltext.text = "(Lv. " + ringSet + ")";
         _totalActiavtedRings = 5 + (ringSet/4);
         _totalActiavtedRings = Mathf.Clamp(_totalActiavtedRings, 5, rings.Length);
         int x = ringSet - 1;
@@ -195,8 +196,9 @@ public class GameManager : MonoBehaviour
             money *= UpgradeManager.IncomeMultiplier;
         }
         // ========================================
+        Vector3 dir = (pos - rings[0].transform.position).normalized;
         EconomyManager.instance.IncreaseEconomy(money);
-        Vector3 spawnPos = _cam.WorldToScreenPoint(pos);
+        Vector3 spawnPos = _cam.WorldToScreenPoint(pos + dir * 0.6f);
         GameObject obj = ObjectPooling.Instance.Get("float_text",spawnPos);
         string moneyText = NumberFormatter.FormatNumberSmall(money);
         Color textColor = IsCriticalHit ? CriticalOrange : Color.white;

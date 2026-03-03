@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum SFXType
 {
-    ButtonTap, Claim, RvActivateSound, RingDestroySound, Unlock
+    ButtonTap, Claim, RvActivateSound, RingDestroySound, Unlock, ballCollision
 }
 
 public class AudioManager : MonoBehaviour
@@ -44,10 +44,13 @@ public class AudioManager : MonoBehaviour
                 sfxClip.PlayOneShot(clips[2]);
                 break;
             case SFXType.RingDestroySound:
-                sfxClip.PlayOneShot(clips[3]);
+                sfxClip.PlayOneShot(clips[3],0.6f);
                 break;
             case SFXType.Unlock:
                 sfxClip.PlayOneShot(clips[4]);
+                break;
+            case SFXType.ballCollision:
+                sfxClip.PlayOneShot(clips[5],0.3f);
                 break;
         }
     }

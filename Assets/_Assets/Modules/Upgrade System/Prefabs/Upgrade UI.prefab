@@ -1173,6 +1173,10 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls: []
+  isHoldable: 1
+  startInterval: 0.4
+  minInterval: 0.05
+  acceleration: 0.02
 --- !u!1 &6086672571701268903
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,6 +1710,10 @@ MonoBehaviour:
   clickEvent:
     m_PersistentCalls:
       m_Calls: []
+  isHoldable: 0
+  startInterval: 0.4
+  minInterval: 0.05
+  acceleration: 0.02
 --- !u!1 &9049456523212883766
 GameObject:
   m_ObjectHideFlags: 0

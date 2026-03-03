@@ -45,10 +45,10 @@ public class Ring : MonoBehaviour
         _lineRenderer.startColor = color;
         _lineRenderer.endColor = color;
         _currHealth = health;
-        if (RingHealthHalfRv.IsActive)
-        {
-            _currHealth /= 2;
-        }
+        // if (RingHealthHalfRv.IsActive)
+        // {
+        //     _currHealth /= 2;
+        // }
     }
 
     public void SwitchMaterial(Material newMat)
@@ -62,7 +62,12 @@ public class Ring : MonoBehaviour
         if (other.gameObject.layer == _layerIndex)
         {
             Ball ball = other.collider.GetComponent<Ball>();
-            _currHealth -= ball.Damage(); // this function damage the ball and return double value which is income or damage give to ring  
+            double damage = ball.Damage();
+            if (RingHealthHalfRv.IsActive)
+            {
+                damage *= 2;
+            }
+            _currHealth -= damage; // this function damage the ball and return double value which is income or damage give to ring  
             OnHealthChanged?.Invoke();
             if (_currHealth <= 0)
             {

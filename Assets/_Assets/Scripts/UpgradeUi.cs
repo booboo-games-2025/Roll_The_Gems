@@ -121,9 +121,11 @@ public class UpgradeUi : MonoBehaviour
     [SerializeField] private Sprite enableSprite, disableSprite;
     public void SwitchButton(bool hasMoneyAvailable, bool showRvButton = false)
     {
+        upgradeBtn.gameObject.SetActive(true);
+        upgradeRvBtn.gameObject.SetActive(false);
         upgradeBtn.Interactable = hasMoneyAvailable;
         upgradeBtn.image.sprite = hasMoneyAvailable ? enableSprite : disableSprite;
-        if (showRvButton && hasMoneyAvailable == false)
+        if (showRvButton)
         {
             upgradeBtn.gameObject.SetActive(false);
             upgradeRvBtn.gameObject.SetActive(true);

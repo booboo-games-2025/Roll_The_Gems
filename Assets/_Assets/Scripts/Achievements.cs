@@ -162,7 +162,7 @@ public class Achievements : MonoBehaviour
         }
     }
 
-    private int progress;
+    public static int progress;
     // When any of achievement got completed
     void UpdateUi()
     {
