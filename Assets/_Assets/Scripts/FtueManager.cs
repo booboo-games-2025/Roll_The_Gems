@@ -53,10 +53,7 @@ public class FtueManager : MonoBehaviour
         });
         ShowHighlight(unlockButtonTransform, new Vector2(400,180));
         ShowTutorialText(unlockButtonTransform,unlockText, new Vector2(0,50f));
-        unlockButton.clickEvent.AddListener(()=>
-        {
-            ShowUpgradeScrolling();
-        });
+        unlockButton.clickEvent.AddListener(ShowUpgradeScrolling);
     }
     
     void ShowUpgradeScrolling()
@@ -66,18 +63,12 @@ public class FtueManager : MonoBehaviour
             return;
         }
         scrollRect.vertical = false;
-        unlockButton.clickEvent.RemoveListener(()=>
-        {
-            ShowUpgradeScrolling();
-        });
+        unlockButton.clickEvent.RemoveListener(ShowUpgradeScrolling);
         DOTween.To(()=>scrollbar.value,x => scrollbar.value = x, 0, 2f).SetDelay(0.5f).OnComplete(() =>
         {
             tapToContinueButton.transform.position += Vector3.up * 550;
             tapToContinueButton.gameObject.SetActive(true);
-            tapToContinueButton.clickEvent.AddListener(() =>
-            {
-                TapOnIncomeButton();
-            });
+            tapToContinueButton.clickEvent.AddListener(TapOnIncomeButton);
         });
         ShowHighlight(upgradePanelTransform, new Vector2(1100,680));
         ShowTutorialText(upgradePanelTransform,upgradeInfoText, new Vector2(0,250f));
@@ -87,17 +78,11 @@ public class FtueManager : MonoBehaviour
     {
         scrollbar.value = 1;
         tapToContinueButton.gameObject.SetActive(false);
-        tapToContinueButton.clickEvent.RemoveListener(()=>
-        {
-            TapOnIncomeButton();
-        });
+        tapToContinueButton.clickEvent.RemoveListener(TapOnIncomeButton);
         EconomyManager.instance.IncreaseEconomy(10);
         ShowHighlight(incomeButtonTransform, new Vector2(250,100));
         ShowTutorialText(incomeButtonTransform,incomeUpgradeText, new Vector2(0,50f));
-        incomeButton.clickEvent.AddListener(()=>
-        {
-            EndIncomeTutorial();
-        });
+        incomeButton.clickEvent.AddListener(EndIncomeTutorial);
     }
 
     void EndIncomeTutorial()
@@ -107,10 +92,7 @@ public class FtueManager : MonoBehaviour
         PlayerPrefs.SetInt(MyConstants.StartFtueCompleted, 1);
         UpgradeManager.instance.Save();
         EconomyManager.instance.SaveEconomy();
-        incomeButton.clickEvent.RemoveListener((() =>
-        {
-            EndIncomeTutorial();
-        }));
+        incomeButton.clickEvent.RemoveListener(EndIncomeTutorial);
         tutorialCanvasGroup.DOFade(0, 0.5f).OnComplete(() =>
         {
             tutorialCanvasGroup.gameObject.SetActive(false);
@@ -118,6 +100,7 @@ public class FtueManager : MonoBehaviour
             tutorialCanvasGroup.blocksRaycasts = false;
         });
         InAppsManager.Instance.baseInAppsManager.ApplyPlayerBonuses();
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.GA_STARTING_FTUE);
     }
 
     void StartAchivementTutorial()
@@ -135,37 +118,25 @@ public class FtueManager : MonoBehaviour
             ShowHighlight(achievementButton.transform, new Vector2(150,150));
             ShowTutorialText(achievementButton.transform,achievementButtonText, new Vector2(30,-30f));
             achievementButton.Interactable = true;
-            achievementButton.clickEvent.AddListener(()=>
-            {
-                ShowAchievementPanelDetail();
-            });
+            achievementButton.clickEvent.AddListener(ShowAchievementPanelDetail);
         }
     }
 
     void ShowAchievementPanelDetail()
     {
-        achievementButton.clickEvent.RemoveListener(()=>
-        {
-            EndIncomeTutorial();
-        });
+        achievementButton.clickEvent.RemoveListener(ShowAchievementPanelDetail);
         print("AchievementPanelShown");
 
         TutorialPanelPointerSwitch(true);
         ShowHighlight(achievememtPanel, new Vector2(900,1100));
         ShowTutorialText(achievementPanelPointerPos,achievementDetailText, new Vector2(0,50f));
         tapToContinueButton.gameObject.SetActive(true);
-        tapToContinueButton.clickEvent.AddListener((() =>
-        {
-            EndAchievementTutorial();
-        }));
+        tapToContinueButton.clickEvent.AddListener(EndAchievementTutorial);
     }
 
     void EndAchievementTutorial()
     {
-        tapToContinueButton.clickEvent.RemoveListener((() =>
-        {
-            EndAchievementTutorial();
-        }));
+        tapToContinueButton.clickEvent.RemoveListener(EndAchievementTutorial);
         EnableDisableUiButtons(true);
         tapToContinueButton.gameObject.SetActive(false);
         PlayerPrefs.SetInt(MyConstants.AchievementFtueCompleted, 1);
@@ -175,6 +146,7 @@ public class FtueManager : MonoBehaviour
             tutorialCanvasGroup.interactable = false;
             tutorialCanvasGroup.blocksRaycasts = false;
         });
+        GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.GA_ACHIEVEMENT_FTUE);
     }
 
     public void ShowHighlight(Transform _target, Vector2 _size)

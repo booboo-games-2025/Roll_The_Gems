@@ -324,6 +324,28 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
     {
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful" + $"\n\n Restored", "Ok");
     }
+    
+    void OnIncomePackSuccess()
+    {
+        //Return popup if already active
+        if (PlayerPrefs.GetInt(MyConstants.INCOME_BUNDLE_PURCHASED) == 1)
+            return;
+
+        Debug.LogError("On Income Pack Success");
+        //IAPManager.instance.PurchasePack(IAPPackType.IncomePack);
+        ShopManager.instance.BuyIncomeBundlePack();
+
+        if (IsFromRestore)
+        {
+#if UNITY_IOS
+            RestorePopup();
+            GameAnalytics.NewDesignEvent("iap_purchase:income_pack_restore");
+#endif
+            return;
+        }
+        GameAnalytics.NewDesignEvent(MyConstants.GA_INCOME_PACK_SUCCESS);
+        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nIncome Pack purchased successfully", "Ok");
+    }
 
     void OnSpeedAndPowerPackSuccess()
     {
@@ -343,7 +365,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
 #endif
             return;
         }
-        GameAnalytics.NewDesignEvent("iap_purchase:speed_power_pack");
+        GameAnalytics.NewDesignEvent(MyConstants.GA_SPEED_POWER_PACK_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nSpeed power purchased successfully", "Ok");
     }
     
@@ -365,30 +387,8 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
 #endif
             return;
         }
-        GameAnalytics.NewDesignEvent("iap_purchase:mega_upgrade_pack");
+        GameAnalytics.NewDesignEvent(MyConstants.GA_MEGA_PACK_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nMega upgrade pack purchased successfully", "Ok");
-    }
-    
-    void OnIncomePackSuccess()
-    {
-        //Return popup if already active
-        if (PlayerPrefs.GetInt(MyConstants.INCOME_BUNDLE_PURCHASED) == 1)
-            return;
-
-        Debug.LogError("On Income Pack Success");
-        //IAPManager.instance.PurchasePack(IAPPackType.IncomePack);
-        ShopManager.instance.BuyIncomeBundlePack();
-
-        if (IsFromRestore)
-        {
-#if UNITY_IOS
-            RestorePopup();
-            GameAnalytics.NewDesignEvent("iap_purchase:income_pack_restore");
-#endif
-            return;
-        }
-        GameAnalytics.NewDesignEvent("iap_purchase:income_pack");
-        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nIncome Pack purchased successfully", "Ok");
     }
     
     void OnCoinPackOneSucess()
@@ -396,7 +396,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         Debug.LogError("On Coin Pack 1 Success");
         ShopManager.instance.BuyCoinPack1();
         
-        GameAnalytics.NewDesignEvent("iap_purchase:coin_pack_1");
+        GameAnalytics.NewDesignEvent(MyConstants.GA_COIN_PACK_1_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 1 purchased successfully", "Ok");
     }
     
@@ -405,7 +405,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         Debug.LogError("On Coin Pack 2 Success");
         ShopManager.instance.BuyCoinPack2();
         
-        GameAnalytics.NewDesignEvent("iap_purchase:coin_pack_2");
+        GameAnalytics.NewDesignEvent(MyConstants.GA_COIN_PACK_2_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 2 purchased successfully", "Ok");
     }
     
@@ -414,7 +414,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         Debug.LogError("On Coin Pack 3 Success");
         ShopManager.instance.BuyCoinPack3();
         
-        GameAnalytics.NewDesignEvent("iap_purchase:coin_pack_3");
+        GameAnalytics.NewDesignEvent(MyConstants.GA_COIN_PACK_3_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 3 purchased successfully", "Ok");
     }
     

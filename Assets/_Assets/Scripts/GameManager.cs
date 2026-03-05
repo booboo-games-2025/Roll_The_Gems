@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
     public void ShowShop()
     {
         ShopManager.instance.OpenShopPanle();
+        GameAnalyticsController.InfiniteGameProgressionRelated.LogInfiniteGameStartEvent("ring_level",5);
     }
 
     void ChangeSkin()
@@ -109,6 +110,7 @@ public class GameManager : MonoBehaviour
     void CalculateRingData()
     {
         ringSet = PlayerPrefs.GetInt(MyConstants.RING_LEVEL, 1);
+        ShowLevelProgressionEvent(ringSet,ProgressionType.Start);
         ringLeveltext.text = "(Lv. " + ringSet + ")";
         _totalActiavtedRings = 5 + (ringSet/4);
         int nextUnlockLevel = ((ringSet + 4) / 4) * 4;
@@ -163,6 +165,7 @@ public class GameManager : MonoBehaviour
                     ballSpawners[i].StopSpawning();
                 }
 
+                ShowLevelProgressionEvent(ringSet,ProgressionType.Finish);
                 ringSet++;
                 PlayerPrefs.SetInt(MyConstants.RING_LEVEL, ringSet);
                 healthUi.SetActive(false);
@@ -225,5 +228,32 @@ public class GameManager : MonoBehaviour
         string moneyText = NumberFormatter.FormatNumberSmall(money);
         Color textColor = IsCriticalHit ? CriticalOrange : Color.white;
         obj.GetComponent<FloatingText>().Show(moneyText,textColor);
+    }
+    
+    private static float LastLevelStartTime;
+    public static void ShowLevelProgressionEvent(int levelNumber, ProgressionType progressionType)
+    {
+        if(progressionType == ProgressionType.Start)
+        {
+            LastLevelStartTime = Time.realtimeSinceStartup;
+            GameAnalyticsController.LevelBasedProgressionRelated.LogLevelStartEventWithTime(levelNumber);
+        }
+        else if(progressionType == ProgressionType.Fail)
+        {
+            var levelData = new GameAnalyticsController.LevelProgressTimeData(levelNumber, LastLevelStartTime);
+            GameAnalyticsController.LevelBasedProgressionRelated.LogLevelFailEventWithTime(levelData);
+        }
+        else if (progressionType == ProgressionType.Finish)
+        {
+            var levelData = new GameAnalyticsController.LevelProgressTimeData(levelNumber, LastLevelStartTime);
+            GameAnalyticsController.LevelBasedProgressionRelated.LogLevelEndEventWithTime(levelData);
+        }
+    }
+    
+    public enum ProgressionType
+    {
+        Start,
+        Finish,
+        Fail
     }
 }
