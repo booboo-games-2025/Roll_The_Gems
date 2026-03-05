@@ -36,8 +36,8 @@ MonoBehaviour:
   - productId: brb_speed_power_bundle_pack
     storeProductId: brb_speed_power_bundle_pack
     productType: 2
-  - productId: brb:mega_upgrade_bundle_pack
-    storeProductId: brb:mega_upgrade_bundle_pack
+  - productId: brb_mega_upgrade_bundle_pack
+    storeProductId: brb_mega_upgrade_bundle_pack
     productType: 2
   subscriptionGroups: []
   remoteServerConnection:

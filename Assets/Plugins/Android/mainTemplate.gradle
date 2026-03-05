@@ -1,56 +1,149 @@
 apply plugin: 'com.android.library'
+apply from: '../shared/keepUnitySymbols.gradle'
 **APPLY_PLUGINS**
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-// Android Resolver Dependencies Start
-    implementation 'com.google.android.gms:play-services-appset:16.0.2' // Assets/GameAnalytics/Editor/Android/Dependencies.xml:4
-    implementation 'com.google.android.instantapps:instantapps:1.1.0' // Assets/GameAnalytics/Editor/Android/Dependencies.xml:3
-// Android Resolver Dependencies End
-**DEPS**}
-
-// Android Resolver Exclusions Start
-android {
-  packagingOptions {
-      exclude ('/lib/armeabi/*' + '*')
-      exclude ('/lib/armeabi-v7a/*' + '*')
-      exclude ('/lib/mips/*' + '*')
-      exclude ('/lib/mips64/*' + '*')
-      exclude ('/lib/x86/*' + '*')
-      exclude ('/lib/x86_64/*' + '*')
-  }
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation 'com.coredian:google-advertising-id:1.0.6.1'
+	implementation platform('org.jetbrains.kotlin:kotlin-bom:1.9.0')
+	implementation 'androidx.work:work-runtime:2.7.1'
+	implementation 'com.coredian:core-common:1.13.4.0'
+	implementation 'com.appsflyer:af-android-sdk:6.17.0'
+	implementation 'com.appsflyer:unity-wrapper:6.17.0'
+	implementation 'com.android.installreferrer:installreferrer:2.2'
+	implementation 'com.boombit:crosspromotion:3.4.6.1'
+	implementation 'com.facebook:facebook-android-wrapper:18.0.1.0'
+	implementation 'com.google.firebase:firebase-crashlytics'
+	implementation 'com.github.anrwatchdog:anrwatchdog:1.4.0'
+	implementation 'com.boombit:firebase-crashlytics:1.1.1.0'
+	implementation 'androidx.core:core-ktx:1.6.0'
+	implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.21'
+	implementation 'com.google.firebase:firebase-config-ktx'
+	implementation 'com.coredian:firebase-remote-config:1.4.11.0'
+	implementation enforcedPlatform('com.google.firebase:firebase-bom:33.10.0')
+	implementation 'com.google.firebase:firebase-analytics'
+	implementation 'com.google.firebase:firebase-inappmessaging-display'
+	implementation 'com.google.android.gms:play-services-auth:20.0.0'
+	implementation 'com.boombit:firebase-sdk:1.1.6.0'
+	implementation 'com.coredian:inapppurchases-google:2.0.12.0'
+	implementation 'com.coredian.privacy:core-usercentrics:0.0.33.0'
+	implementation 'com.appsflyer:af-purchaseconnector-unity:2.1.10'
+	implementation 'com.appsflyer:purchase-connector:2.1.1'
+	implementation 'com.applovin.mediation:amazon-tam-adapter:11.0.0.0'
+	implementation 'com.amazon.android:aps-sdk:11.0.0'
+	implementation 'com.applovin.mediation:bigoads-adapter:5.3.0.2'
+	implementation 'com.applovin.mediation:fyber-adapter:8.3.7.0'
+	implementation 'com.applovin.mediation:google-ad-manager-adapter:24.3.0.1'
+	implementation 'com.applovin.mediation:google-adapter:24.3.0.1'
+	implementation 'com.applovin.mediation:inmobi-adapter:10.8.3.1'
+	implementation 'com.squareup.picasso:picasso:2.71828'
+	implementation 'androidx.recyclerview:recyclerview:1.1.0'
+	implementation 'com.applovin.mediation:ironsource-adapter:8.9.0.0.0'
+	implementation 'com.applovin.mediation:vungle-adapter:7.5.0.2'
+	implementation 'com.applovin.mediation:facebook-adapter:6.20.0.0'
+	implementation 'com.applovin.mediation:mintegral-adapter:16.9.71.0'
+	implementation 'com.applovin.mediation:mobilefuse-adapter:1.9.2.1'
+	implementation 'com.applovin.mediation:moloco-adapter:3.10.0.0'
+	implementation 'com.applovin.mediation:bytedance-adapter:7.2.0.3.0'
+	implementation 'com.applovin.mediation:smaato-adapter:22.7.2.1'
+	implementation 'com.applovin.mediation:unityads-adapter:4.15.0.1'
+	implementation 'com.applovin.mediation:verve-adapter:3.3.0.0'
+	implementation 'com.applovin.mediation:yso-network-adapter:1.2.7.1'
+	configurations {
+		implementation.exclude group: 'com.android.support', module: '*'
+	}
+	**DEPS**
 }
-// Android Resolver Exclusions End
+
+gradle.projectsEvaluated {
+	apply from: 'GooglePropertyFix.androidlib/validate_dependencies.gradle'
+}
+
+Set<String> jarPickFirsts = [
+	'META-INF/maven/com.fasterxml.jackson.core/jackson-databind/pom.properties',
+	'META-INF/maven/com.fasterxml.jackson.core/jackson-databind/pom.xml',
+	'META-INF/maven/com.google.protobuf/protobuf-lite/pom.properties',
+	'META-INF/maven/com.google.protobuf/protobuf-lite/pom.xml',
+	'META-INF/maven/com.nineoldandroids/library/pom.properties',
+	'META-INF/maven/com.nineoldandroids/library/pom.xml',
+	'META-INF/services/com.fasterxml.jackson.core.ObjectCodec'
+]
+
+Set<String> jarExcludes = [
+	'assets/vg_close.png',
+	'assets/vg_cta.png',
+	'assets/vg_cta_disabled.png',
+	'assets/vg_mute_off.png',
+	'assets/vg_mute_on.png',
+	'assets/vg_privacy.png',
+	'assets/vg_timer.png',
+	'META-INF/license.txt',
+	'META-INF/notice.txt'
+]
+
+subprojects {
+	afterEvaluate {project ->
+		if (project.hasProperty("android")) {
+			android {
+				packaging {
+					pickFirsts += jarPickFirsts
+					excludes += jarExcludes
+					exclude("META-INF/*.kotlin_module")
+				}
+			}
+		}
+	}
+}
+
 android {
-    ndkPath "**NDKPATH**"
-
-    compileSdkVersion **APIVERSION**
-    buildToolsVersion '**BUILDTOOLS**'
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-
-    defaultConfig {
-        minSdkVersion **MINSDKVERSION**
-        targetSdkVersion **TARGETSDKVERSION**
-        ndk {
-            abiFilters **ABIFILTERS**
-        }
-        versionCode **VERSIONCODE**
-        versionName '**VERSIONNAME**'
-        consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-
-    aaptOptions {
-        noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
-        ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
-    }**PACKAGING_OPTIONS**
+	namespace "com.unity3d.player"
+	
+	ndkPath "**NDKPATH**"
+	ndkVersion "**NDKVERSION**"
+	
+	compileSdk **APIVERSION**
+	buildToolsVersion "**BUILDTOOLS**"
+	
+	compileOptions {
+		sourceCompatibility JavaVersion.VERSION_17
+		targetCompatibility JavaVersion.VERSION_17
+	}
+	
+	defaultConfig {
+		minSdk **MINSDKVERSION**
+		targetSdk **TARGETSDKVERSION**
+		versionCode **VERSIONCODE**
+		versionName '**VERSIONNAME**'
+		ndk {
+			abiFilters **ABIFILTERS**
+			debugSymbolLevel **DEBUGSYMBOLLEVEL**
+		}
+		consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
+		**DEFAULT_CONFIG_SETUP**
+		
+		resValue 'string', 'com.crashlytics.android.build_id', '6fed55da-4ffb-4e48-a517-925cd30c8847'
+		resValue 'string', 'google_app_id', '1:273531286808:android:138fd41d201290dd3f9a6d'
+		resValue 'string', 'project_id', 'bitcoin-ring-breaker'
+		resValue 'string', 'gcm_defaultSenderId', '273531286808'
+		resValue 'string', 'google_api_key', 'AIzaSyAuYNao9e2pyMBx8pqosKlNfaT8TEmYbeo'
+		resValue 'string', 'google_crash_reporting_api_key', 'AIzaSyAuYNao9e2pyMBx8pqosKlNfaT8TEmYbeo'
+	}
+	
+	lint {
+		abortOnError false
+	}
+	
+	androidResources {
+		noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
+		ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
+	}
+	
+	**PACKAGING**
+	packaging {
+		pickFirsts += jarPickFirsts
+		excludes += jarExcludes
+		exclude("META-INF/*.kotlin_module")
+	}
 }
 **IL_CPP_BUILD_SETUP**
 **SOURCE_BUILD_SETUP**

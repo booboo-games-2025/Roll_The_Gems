@@ -25,6 +25,15 @@ public class RvManager : MonoBehaviour
     // start Showing Rv Alternative
     private IEnumerator Start()
     {
+        if (PlayerPrefs.GetInt(MyConstants.INCOME_BUNDLE_PURCHASED, 0) == 1)
+        {
+            RemoveTwoxIncomeRv();
+        }
+
+        if (PlayerPrefs.GetInt(MyConstants.SPEED_POWER_BUNDLE_PURCHASED, 0) == 1)
+        {
+            RemoveTwoxBallSpeedRv();
+        }
         yield return new WaitForSeconds(30);
         while (true)
         {
@@ -80,8 +89,31 @@ public class RvManager : MonoBehaviour
         }
     }
 
+    public void RemoveTwoxIncomeRv()
+    { 
+        int rvIndex = allRvs.FindIndex(x => x is TwoxIncomeRv);
+        if (allRvs[rvIndex].isActive)
+        {
+            allRvs[rvIndex].EndBooster();
+        }
+        allRvs[rvIndex].gameObject.SetActive(false);
+        allRvs.RemoveAt(rvIndex);
+    }
+
+    public void RemoveTwoxBallSpeedRv()
+    {
+        int rvIndex = allRvs.FindIndex(x => x is BallSpeedIncreaseRv);
+        if (allRvs[rvIndex].isActive)
+        {
+            allRvs[rvIndex].EndBooster();
+        }
+        allRvs[rvIndex].gameObject.SetActive(false);
+        allRvs.RemoveAt(rvIndex);
+    }
+
     public void ClearRv(int rvIndex)
     {
+        allRvs.RemoveAll(x => x is TwoxIncomeRv);
         if (rvIndex >= 0 && rvIndex < allRvs.Count)
         {
             if (allRvs[rvIndex].isActive)
@@ -101,7 +133,7 @@ public class RvManager : MonoBehaviour
         moneyRandom = MathF.Pow(Random.Range(16,22) * PlayerPrefs.GetInt(MyConstants.RING_LEVEL), 1.5f);
         rewardText.text = NumberFormatter.FormatNumberSmall(moneyRandom);
         floatingRv.gameObject.SetActive(true);
-        floatingRv.anchoredPosition = new Vector2(Random.Range(-450, 450), 700);
+        floatingRv.anchoredPosition = new Vector2(Random.Range(-350, 350), 700);
         yield return new WaitForSeconds(15f);
         floatingRv.gameObject.SetActive(false);
         floatingRvCoroutine = null;

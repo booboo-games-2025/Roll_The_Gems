@@ -1,6 +1,7 @@
-﻿using System;
+﻿/*
+using System;
 using Balaso;
-using Facebook.Unity;
+//using Facebook.Unity;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -179,3 +180,4 @@ public class AppTrackingTransparencyManagerWithFacebook : MonoBehaviour
     }
 
 }
+*/

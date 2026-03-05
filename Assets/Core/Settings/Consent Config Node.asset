@@ -21,8 +21,8 @@ MonoBehaviour:
     preferredSheet: 
   consentTypeViewConfigurations:
   - consentType: 1
-    consentViewTypeName: 
+    consentViewTypeName: Coredian.Privacy.Usercentrics.UsercentricsConsentView
     askForConsentAutomatically: 1
   - consentType: 2
-    consentViewTypeName: 
+    consentViewTypeName: Coredian.Privacy.AdvertisingIdentifierConsentView
     askForConsentAutomatically: 1

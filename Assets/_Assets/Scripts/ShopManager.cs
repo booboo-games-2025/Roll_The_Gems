@@ -8,6 +8,7 @@ public class ShopManager : MonoBehaviour
     public static ShopManager instance;
 
     public GameObject ShopPanel;
+    [SerializeField] TMP_Text coinPackFirstText, coinPackSecondText, coinPackThirdText;
     
     [Header("IncomeBundleUi")]
     [SerializeField] UiButton incomeBundleBuyButton;
@@ -25,26 +26,49 @@ public class ShopManager : MonoBehaviour
     {
         instance = this;
     }
-
+    
     public void OpenShopPanle()
     {
         ShopPanel.SetActive(true);
+        SetPriceText();
     }
-    private void Start()
+
+    void SetPriceText()
     {
+        coinPackFirstText.text = InAppManagerUnityIAP_Boombit.COINS_PACK_1_PRICE;
+        coinPackSecondText.text = InAppManagerUnityIAP_Boombit.COINS_PACK_2_PRICE;
+        coinPackThirdText.text = InAppManagerUnityIAP_Boombit.COINS_PACK_3_PRICE;
         if (PlayerPrefs.GetInt(MyConstants.INCOME_BUNDLE_PURCHASED, 0) == 1)
         {
-            BuyIncomeBundlePack(true);
+            incomeBundleBuyButton.Interactable = false;
+            incomeBundleBuyButton.GetComponent<Image>().sprite = GlobalvariableContainer.Instance.disableSprite;
+            incomeBundleCostText.text = "PURCHASED";
+        }
+        else
+        {
+            incomeBundleCostText.text = InAppManagerUnityIAP_Boombit.INCOME_PACK_PRICE;
         }
         
         if (PlayerPrefs.GetInt(MyConstants.SPEED_POWER_BUNDLE_PURCHASED, 0) == 1)
         {
-            BuySpeedAndPowerPack(true);
+            speedAndPowerBundleBuyButton.Interactable = false;
+            speedAndPowerBundleBuyButton.GetComponent<Image>().sprite = GlobalvariableContainer.Instance.disableSprite;
+            speedAndPowerBundleCostText.text = "PURCHASED";
+        }
+        else
+        {
+            speedAndPowerBundleCostText.text = InAppManagerUnityIAP_Boombit.SPEED_BUNDLE_PACK_PRICE;
         }
         
         if (PlayerPrefs.GetInt(MyConstants.MEGA_UPGRADE_BUNDEL_PURCHASED, 0) == 1)
         {
-            BuyMegaUpgradePack(true);
+            megaUpgradeBundleBuyButton.Interactable = false;
+            megaUpgradeBundleBuyButton.GetComponent<Image>().sprite = GlobalvariableContainer.Instance.disableSprite;
+            megaUpgradeBundleCostText.text = "PURCHASED";
+        }
+        else
+        {
+            megaUpgradeBundleCostText.text = InAppManagerUnityIAP_Boombit.MEGA_UPGRADE_BUNDLE_PACK_PRICE;
         }
     }
 
@@ -63,53 +87,42 @@ public class ShopManager : MonoBehaviour
         EconomyManager.instance.IncreaseEconomy(22500);
     }
 
-    public void BuyIncomeBundlePack(bool isFromRestore)
+    public void BuyIncomeBundlePack()
     {
-        // disable related Rvs effect before giving any reward
-        if (isFromRestore == false)
-        {
-            EconomyManager.instance.IncreaseEconomy(3000);
-            PlayerPrefs.SetInt(MyConstants.INCOME_BUNDLE_PURCHASED, 1);
-        }
-        RvManager.instance.ClearRv(4);
-        UpgradeManager.instance.SetIncomeMultiplier(1.5f, true);
-        
         incomeBundleBuyButton.Interactable = false;
         incomeBundleBuyButton.GetComponent<Image>().sprite = GlobalvariableContainer.Instance.disableSprite;
         incomeBundleCostText.text = "PURCHASED";
+        print("Sachin Income Bundle Pack");
+        //RvManager.instance.ClearRv(0);
+        RvManager.instance.RemoveTwoxIncomeRv();
+        UpgradeManager.instance.SetIncomeMultiplier(1.25f, true);
+        PlayerPrefs.SetInt(MyConstants.INCOME_BUNDLE_PURCHASED, 1);
+        EconomyManager.instance.IncreaseEconomy(3000);
     }
 
-    public void BuySpeedAndPowerPack(bool isFromRestore)
+    public void BuySpeedAndPowerPack()
     {
-        // disable related Rvs effect before giving any reward
-        if (isFromRestore == false)
-        {
-            EconomyManager.instance.IncreaseEconomy(500);
-            PlayerPrefs.SetInt(MyConstants.SPEED_POWER_BUNDLE_PURCHASED, 1);
-        }
-        RvManager.instance.ClearRv(3);
-        UpgradeManager.instance.SetSpeedMultiplier(1.1f, true);
-        UpgradeManager.instance.SetCriticalPowerMultiplier(1.1f, true);
-        
         speedAndPowerBundleBuyButton.Interactable = false;
         speedAndPowerBundleBuyButton.GetComponent<Image>().sprite = GlobalvariableContainer.Instance.disableSprite;
         speedAndPowerBundleCostText.text = "PURCHASED";
+        print("Sachin Speed and Power Bundle Pack");
+        EconomyManager.instance.IncreaseEconomy(500);
+        PlayerPrefs.SetInt(MyConstants.SPEED_POWER_BUNDLE_PURCHASED, 1);
+        //RvManager.instance.ClearRv(4);
+        RvManager.instance.RemoveTwoxBallSpeedRv();
+        UpgradeManager.instance.SetSpeedMultiplier(1.1f, true);
+        UpgradeManager.instance.SetCriticalPowerMultiplier(1.1f, true);
     }
     
-    public void BuyMegaUpgradePack(bool isFromRestore)
+    public void BuyMegaUpgradePack()
     {
-        if (isFromRestore == false)
-        {
-            PlayerPrefs.SetInt(MyConstants.MEGA_UPGRADE_BUNDEL_PURCHASED, 1);
-        }
-        // disable related Rvs effect before giving any reward
-        RvManager.instance.ClearRv(0);
-        UpgradeManager.instance.SetCriticalChanceMultiplier(2f, true);
-        UpgradeManager.instance.SetCriticalPowerMultiplier(2f, true);
-        UpgradeManager.instance.SetDurabilityMultiplier(2, true);
-        
         megaUpgradeBundleBuyButton.Interactable = false;
         megaUpgradeBundleBuyButton.GetComponent<Image>().sprite = GlobalvariableContainer.Instance.disableSprite;
         megaUpgradeBundleCostText.text = "PURCHASED";
+        print("Sachin Mega Upgrade Pack");
+        PlayerPrefs.SetInt(MyConstants.MEGA_UPGRADE_BUNDEL_PURCHASED, 1);
+        UpgradeManager.instance.SetCriticalChanceMultiplier(2f, true);
+        UpgradeManager.instance.SetCriticalPowerMultiplier(2f, true);
+        UpgradeManager.instance.SetDurabilityMultiplier(2, true);
     }
 }

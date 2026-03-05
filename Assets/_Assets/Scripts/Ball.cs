@@ -51,7 +51,7 @@ public class Ball : MonoBehaviour
             finalSpeed *= UpgradeManager.SpeedMultiplier;
         }
         // =======================================
-        
+        finalSpeed = Mathf.Clamp(finalSpeed, 3, 10);
         _rigidbody2D.AddForce(Random.insideUnitCircle.normalized * finalSpeed, ForceMode2D.Impulse);
     }
 
@@ -73,6 +73,7 @@ public class Ball : MonoBehaviour
             criticalHitChancePercentage *= UpgradeManager.CriticalChanceMultiplier;
         }
         
+        criticalHitChancePercentage = Mathf.Clamp(criticalHitChancePercentage, 0,75);
         if (rand <= criticalHitChancePercentage)
         {
             double hitPower = UpgradeManager.instance.GetValue(BallIndex, UpgradeType.CriticalHitPower);

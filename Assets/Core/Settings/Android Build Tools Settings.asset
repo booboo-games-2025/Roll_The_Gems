@@ -21,7 +21,6 @@ MonoBehaviour:
   useLocalMavenRepo: 0
   removeReadExternalStoragePermission: 0
   removeWriteExternalStoragePermission: 0
-  forcePredictiveBackSupportDisable: 1
   customGradleProperties:
   - key: android.useAndroidX
     value: true

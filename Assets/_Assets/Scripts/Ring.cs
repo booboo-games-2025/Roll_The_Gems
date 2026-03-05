@@ -29,6 +29,7 @@ public class Ring : MonoBehaviour
         _lineTransform = _lineRenderer.transform;
         //_steps = (int)(_radius * 25f);
         _layerIndex = LayerMask.NameToLayer("Balls");
+        //DrawCircle(_radius);
     }
     
 

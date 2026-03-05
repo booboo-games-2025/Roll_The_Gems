@@ -116,7 +116,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
             MEGA_UPGRADE_BUNDLE_PACK_PRICE = mega_upgrade_pack.Price.ToString();
         }
         
-        ApplyPlayerBonuses();
+        //ApplyPlayerBonuses();
     }
 
     public override void SetPrice(Text vipOfferNewPrice, Text vipOfferOldPrice, Text noAdsPrice)
@@ -171,6 +171,8 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
 
         Debug.LogError("IsFromRestore: " + IsFromRestore + " Product ID: " + productId + " Store ID: " + id);
 
+        if(PlayerPrefs.GetInt(MyConstants.StartFtueCompleted, 0) == 0)
+            return;
         //Add the purchased product to the players inventory
         if (productId == COINS_PACK_1)
         {
@@ -241,7 +243,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         ApplyPlayerBonuses();
     }
 
-    private void ApplyPlayerBonuses()
+    public void ApplyPlayerBonuses()
     {
         var income_pack = Core.GetService<IInAppPurchasesService>().Purchases.FirstOrDefault(p => p.Product.Id == INCOME_PACK);
         if (income_pack != null)
@@ -280,37 +282,37 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
     
     public void CoinPack1()
     {
-        Debug.Log("Unity Purchase ==> Premium Pack Clicked");
+        Debug.Log("Unity Purchase ==> Coin Pack 1 Clicked");
         PurchaseProduct(COINS_PACK_1);
     }
     
     public void CoinPack2()
     {
-        Debug.Log("Unity Purchase ==> Premium Pack Clicked");
+        Debug.Log("Unity Purchase ==> Coin Pack 2 Clicked");
         PurchaseProduct(COINS_PACK_2);
     }
     
     public void CoinPack3()
     {
-        Debug.Log("Unity Purchase ==> Premium Pack Clicked");
+        Debug.Log("Unity Purchase ==> Coin Pack 3 Clicked");
         PurchaseProduct(COINS_PACK_3);
     }
 
     public void IncomePack()
     {
-        Debug.Log("Unity Purchase ==> Premium Pack Clicked");
+        Debug.Log("Unity Purchase ==> Income Pack Clicked");
         PurchaseProduct(INCOME_PACK);
     }
 
     public void SpeedBundlePack()
     {
-        Debug.Log("Unity Purchase ==> Body Builder Clicked");
+        Debug.Log("Unity Purchase ==> Body Speed Power Bundle Clicked");
         PurchaseProduct(SPEED_POWER_BUNDLE_PACK);
     }
     
     public void MegaBundlePack()
     {
-        Debug.Log("Unity Purchase ==> Body Builder Clicked");
+        Debug.Log("Unity Purchase ==> Mega Bundle Clicked");
         PurchaseProduct(MEGA_UPGRADE_BUNDLE_PACK);
     }
 
@@ -331,13 +333,13 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
 
         Debug.LogError("On Speed And Power Pack Success");
         //IAPManager.instance.PurchasePack(IAPPackType.Premiumpack);
-        ShopManager.instance.BuySpeedAndPowerPack(false);
+        ShopManager.instance.BuySpeedAndPowerPack();
 
         if (IsFromRestore)
         {
 #if UNITY_IOS
             RestorePopup();
-            GameAnalytics.NewDesignEvent("iap_purchase:premium_pack_restore");
+            GameAnalytics.NewDesignEvent("iap_purchase:speed_power_pack_restore");
 #endif
             return;
         }
@@ -353,13 +355,13 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
 
         Debug.LogError("On Speed And Power Pack Success");
         //IAPManager.instance.PurchasePack(IAPPackType.Premiumpack);
-        ShopManager.instance.BuyMegaUpgradePack(false);
+        ShopManager.instance.BuyMegaUpgradePack();
 
         if (IsFromRestore)
         {
 #if UNITY_IOS
             RestorePopup();
-            GameAnalytics.NewDesignEvent("iap_purchase:premium_pack_restore");
+            GameAnalytics.NewDesignEvent("iap_purchase:mega_upgrade_pack_restore");
 #endif
             return;
         }
@@ -375,13 +377,13 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
 
         Debug.LogError("On Income Pack Success");
         //IAPManager.instance.PurchasePack(IAPPackType.IncomePack);
-        ShopManager.instance.BuyIncomeBundlePack(false);
+        ShopManager.instance.BuyIncomeBundlePack();
 
         if (IsFromRestore)
         {
 #if UNITY_IOS
             RestorePopup();
-            GameAnalytics.NewDesignEvent("iap_purchase:starter_pack_restore");
+            GameAnalytics.NewDesignEvent("iap_purchase:income_pack_restore");
 #endif
             return;
         }
@@ -394,8 +396,8 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         Debug.LogError("On Coin Pack 1 Success");
         ShopManager.instance.BuyCoinPack1();
         
-        GameAnalytics.NewDesignEvent("iap_purchase:coinpack1");
-        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nPremium Pack purchased successfully", "Ok");
+        GameAnalytics.NewDesignEvent("iap_purchase:coin_pack_1");
+        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 1 purchased successfully", "Ok");
     }
     
     void OnCoinPackTwoSucess()
@@ -403,8 +405,8 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         Debug.LogError("On Coin Pack 2 Success");
         ShopManager.instance.BuyCoinPack2();
         
-        GameAnalytics.NewDesignEvent("iap_purchase:coinpack2");
-        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nPremium Pack purchased successfully", "Ok");
+        GameAnalytics.NewDesignEvent("iap_purchase:coin_pack_2");
+        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 2 purchased successfully", "Ok");
     }
     
     void OnCoinPackThreeSucess()
@@ -412,8 +414,8 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         Debug.LogError("On Coin Pack 3 Success");
         ShopManager.instance.BuyCoinPack3();
         
-        GameAnalytics.NewDesignEvent("iap_purchase:coinpack3");
-        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nPremium Pack purchased successfully", "Ok");
+        GameAnalytics.NewDesignEvent("iap_purchase:coin_pack_3");
+        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 3 purchased successfully", "Ok");
     }
     
     #endregion

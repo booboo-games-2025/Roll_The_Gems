@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba552a1a8614249d9a332fe78b96abac, type: 3}
-  m_Name: Assets Config Node
+  m_Script: {fileID: 11500000, guid: e741fa94642784ad7a021a96b4f68688, type: 3}
+  m_Name: Firebase Remote Config Config Node
   m_EditorClassIdentifier: 
   useThisConfig: 1
   isUpToDateWithConfig: 1
@@ -19,8 +19,9 @@ MonoBehaviour:
     sheetsNames: []
     sheetsGuids: []
     preferredSheet: 
-  timeout: 60000
-  temporaryResourcesRetention: 7
-  serverConfig:
-    url: 
-  resources: []
+  delayFetchUntilConsent: 0
+  remoteConfigEditorMode: 0
+  appId: 
+  apiKey: 
+  projectId: 
+  coreDiffKey: CORE_CONFIG_DIFF

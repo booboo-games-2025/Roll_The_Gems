@@ -20,7 +20,7 @@ MonoBehaviour:
     sheetsGuids: []
     preferredSheet: 
   companyIndex: 0
-  useCustomUrls: 1
+  useCustomUrls: 0
   termsOfServiceUrl: 
   privacyPolicyUrl: 
   localizedUrls: []

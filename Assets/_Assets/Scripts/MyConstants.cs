@@ -56,7 +56,7 @@ public class MyConstants : MonoBehaviour
     public const string COINS_PACK_3 = "brb_coin_pack_3";
     public const string INCOME_BUNDLE_PACK = "brb_income_bundle_pack";
     public const string SPEED_BUNDLE_PACK = "brb_speed_power_bundle_pack";
-    public const string MEGA_UPGRADE_BUNDLE_PACK = "brb:mega_upgrade_bundle_pack";
+    public const string MEGA_UPGRADE_BUNDLE_PACK = "brb_mega_upgrade_bundle_pack";
     
     public const string COINS_PACK_1_PRICE = "2.99";
     public const string COINS_PACK_2_PRICE = "4.99";

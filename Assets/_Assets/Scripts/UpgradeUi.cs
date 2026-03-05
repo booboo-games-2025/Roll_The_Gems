@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using DG.Tweening;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class UpgradeUi : MonoBehaviour
     [Header("UI")]
     [SerializeField] private TMP_Text costText, valueText;
 
+    [SerializeField] private GameObject upgradeButtons, maxButton;
     [SerializeField] private UiButton upgradeBtn, upgradeRvBtn;
     [SerializeField] private Image Icon;
     [SerializeField] private Image upgradeLevelFillBar;
@@ -48,6 +50,7 @@ public class UpgradeUi : MonoBehaviour
     public void UpdateUi(double cost, double value, int level)
     {
         Icon.sprite = GlobalvariableContainer.Instance.ballIcons[UpgradeManager.tabIndex];
+        upgradeLevelFillBar.fillAmount = (level % 25)/25f;
         if (cost == 0)
         {
             costText.text = "<Sprite=0> Free";
@@ -74,11 +77,11 @@ public class UpgradeUi : MonoBehaviour
             // if related Rv or IAP Active
             if (UpgradeManager.CriticalPowerMultiplierActive)
             {
-                value /= UpgradeManager.CriticalPowerMultiplier;
+                value *= UpgradeManager.CriticalPowerMultiplier;
             }
             // =======================================
             
-            valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture) + "%";
+            valueText.text = NumberFormatter.FormatNumberSmall(value) + "%";
         }
         else if (upgradeType == UpgradeType.CriticalHitChance)
         {
@@ -86,11 +89,12 @@ public class UpgradeUi : MonoBehaviour
             // if related Rv or IAP Active
             if (UpgradeManager.CriticalChanceMultiplierActive)
             {
-                value /= UpgradeManager.CriticalChanceMultiplier;
+                value *= UpgradeManager.CriticalChanceMultiplier;
             }
             // =======================================
             
-            valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture) + "%";
+            valueText.text = NumberFormatter.FormatNumberSmall(value) + "%";
+            upgradeLevelFillBar.fillAmount = level/25f;
         }
         else if (upgradeType == UpgradeType.BallCreationSpeed)
         {
@@ -102,7 +106,9 @@ public class UpgradeUi : MonoBehaviour
             }
             // =======================================
             
-            valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture) + "s";
+            valueText.text = NumberFormatter.FormatNumberSmall(value) + "s";
+            upgradeLevelFillBar.fillAmount = level/25f;
+            
         }
         else if(upgradeType == UpgradeType.Speed)
         {
@@ -114,7 +120,9 @@ public class UpgradeUi : MonoBehaviour
             }
             // =======================================
             
-            valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture);
+            valueText.text = NumberFormatter.FormatNumberSmall(value);
+            upgradeLevelFillBar.fillAmount = level/25f;
+            
         }
         else
         {
@@ -126,7 +134,7 @@ public class UpgradeUi : MonoBehaviour
             }
             // =======================================
             
-            valueText.text = ((float)value).ToString(CultureInfo.InvariantCulture);
+            valueText.text = "" + (int)value;
             
             // =======================================
             // if Infinite Durability Rv Active
@@ -136,12 +144,21 @@ public class UpgradeUi : MonoBehaviour
             }
             // =======================================
         }
-        upgradeLevelFillBar.fillAmount = (level % 25)/25f;
+        
     }
 
     [SerializeField] private Sprite enableSprite, disableSprite;
-    public void SwitchButton(bool hasMoneyAvailable, bool showRvButton = false)
+    public void SwitchButton(bool hasMoneyAvailable, bool showRvButton = false, bool isMax = false)
     {
+        if (isMax)
+        {
+            upgradeButtons.SetActive(false);
+            maxButton.SetActive(true);
+            return;
+        }
+        maxButton.SetActive(false);
+        upgradeButtons.SetActive(true);
+        
         upgradeBtn.gameObject.SetActive(true);
         upgradeRvBtn.gameObject.SetActive(false);
         upgradeBtn.Interactable = hasMoneyAvailable;

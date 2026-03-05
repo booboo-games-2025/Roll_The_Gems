@@ -117,6 +117,7 @@ public class FtueManager : MonoBehaviour
             tutorialCanvasGroup.interactable = false;
             tutorialCanvasGroup.blocksRaycasts = false;
         });
+        InAppsManager.Instance.baseInAppsManager.ApplyPlayerBonuses();
     }
 
     void StartAchivementTutorial()

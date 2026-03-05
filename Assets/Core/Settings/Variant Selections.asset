@@ -19,7 +19,6 @@ MonoBehaviour:
     - platform: Apple
       preferredVariant: iOS
   autoApplyOnPlatformSwitch: 1
-  autoApplyInBatchMode: 1
   changeProductName: 0
   showDebugOptions: 0
   deleteFirebaseConfigsIfNotPresentInImported: 1

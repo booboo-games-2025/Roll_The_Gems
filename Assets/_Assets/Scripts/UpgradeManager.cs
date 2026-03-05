@@ -17,6 +17,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] UpgradeBaseValues[] upgradeBaseCosts;
     [SerializeField] UpgradeBaseValues[] upgradeBaseValues;
     [SerializeField] private double[] unlockCosts;
+    [SerializeField] private int[] maxUpgrades;
     [SerializeField] Tab[] tabs;
     [SerializeField] private TMP_Text tabTitleText;
 
@@ -70,6 +71,8 @@ public class UpgradeManager : MonoBehaviour
        BallSpeedIncreaseRv.OnActive -= SetSpeedMultiplier;
        TwoXBallCreationRv.OnActive -= SetCreationSpeedMultiplier;
     }
+    
+    
 
     public void SetIncomeMultiplier(float mul, bool active)
     {
@@ -123,6 +126,21 @@ public class UpgradeManager : MonoBehaviour
     
     private void Start()
     {
+        if (PlayerPrefs.GetInt(MyConstants.INCOME_BUNDLE_PURCHASED, 0) == 1)
+        {
+            SetIncomeMultiplier(1.5f, true);
+        }
+        if (PlayerPrefs.GetInt(MyConstants.SPEED_POWER_BUNDLE_PURCHASED, 0) == 1)
+        {
+            SetSpeedMultiplier(1.1f, true);
+            SetCriticalPowerMultiplier(1.1f, true);
+        }
+        if (PlayerPrefs.GetInt(MyConstants.MEGA_UPGRADE_BUNDEL_PURCHASED, 0) == 1)
+        {
+            SetCriticalChanceMultiplier(2f, true);
+            SetCriticalPowerMultiplier(2f, true);
+            SetDurabilityMultiplier(2, true);
+        }
         SwitchTab(0);
         StartCoroutine(SaveRoutine());
         StartCoroutine(ChangeRvButtonChanceOnUpgrades());
@@ -266,7 +284,7 @@ public class UpgradeManager : MonoBehaviour
         else if (power.upgradeType == UpgradeType.Speed)
         {
             power.cost = previousCost * 1.5f;
-            power.value *= 1.1f; // 10% increase
+            power.value *= 1.03f; // 3% increase
         }
         else if (power.upgradeType == UpgradeType.BallCreationSpeed)
         {
@@ -319,15 +337,20 @@ public class UpgradeManager : MonoBehaviour
         foreach (UpgradeType type in Enum.GetValues(typeof(UpgradeType)))
         {
             PowerData power = GetBall(tabIndex).GetPower(type);
+            bool IsMax = false;
+            if (maxUpgrades[(int)type] > 0)
+            {
+                IsMax = power.level >= maxUpgrades[(int)type];
+            }
             if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted,0) == 1)
             {
                 if ((int)type == firstRvUpgradeButtonChanceIndex || (int)type == secondRvUpgradeButtonChanceUpgrade)
                 {
-                    UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost,true);
+                    UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost,true,IsMax);
                     continue;
                 }
             }
-            UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost);
+            UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost,false,IsMax);
             
         }
         

@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Color[] ringColors;
     [SerializeField] private BallSpawner[] ballSpawners;
     [SerializeField] private GameObject healthUi;
-    [SerializeField] TMP_Text _healthText, ringLeveltext;
+    [SerializeField] TMP_Text _healthText, ringLeveltext, nextRingUnlockLevel;
+    [SerializeField] private GameObject nextRingLevelUi;
     [SerializeField] Image _fillBar;
     private int _currentRingIndex = 0;
     private int _totalActiavtedRings;
@@ -110,7 +111,13 @@ public class GameManager : MonoBehaviour
         ringSet = PlayerPrefs.GetInt(MyConstants.RING_LEVEL, 1);
         ringLeveltext.text = "(Lv. " + ringSet + ")";
         _totalActiavtedRings = 5 + (ringSet/4);
+        int nextUnlockLevel = ((ringSet + 4) / 4) * 4;
+        nextRingUnlockLevel.text = "Lv." + nextUnlockLevel;
         _totalActiavtedRings = Mathf.Clamp(_totalActiavtedRings, 5, rings.Length);
+        if (_totalActiavtedRings == rings.Length)
+        {
+            nextRingLevelUi.SetActive(false);
+        }
         int x = ringSet - 1;
         double incrementVal = 5 * Math.Pow(4f, x);
         double initialVal = 50;

@@ -15,5 +15,5 @@ MonoBehaviour:
   cocoaPodsVersion: 1.16.0
   defaultGemSource: https://rubygems.org
   gemsInstallPath: vendor/bundle
-  entitlementsFilename: RingBreaker.entitlements
+  entitlementsFilename: BitcoinRingBreaker.entitlements
   appUsesNonExemptEncryption: 0
