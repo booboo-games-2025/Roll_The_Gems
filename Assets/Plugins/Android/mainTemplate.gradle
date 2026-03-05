@@ -120,7 +120,7 @@ android {
 		consumerProguardFiles 'proguard-unity.txt'**USER_PROGUARD**
 		**DEFAULT_CONFIG_SETUP**
 		
-		resValue 'string', 'com.crashlytics.android.build_id', 'ce31ef7b-1ea9-47a4-a694-ba8dc970e7c5'
+		resValue 'string', 'com.crashlytics.android.build_id', 'c7822917-2972-4c58-a980-b235b7dcc5b3'
 		resValue 'string', 'google_app_id', '1:273531286808:android:138fd41d201290dd3f9a6d'
 		resValue 'string', 'project_id', 'bitcoin-ring-breaker'
 		resValue 'string', 'gcm_defaultSenderId', '273531286808'
