@@ -1,12 +1,12 @@
 pluginManagement {
 	repositories {
+		gradlePluginPortal()
+		google()
+		mavenCentral()
 		maven {
 			url "https://artifactory.boombit.com/artifactory/libs-release"
 		}
 		**ARTIFACTORYREPOSITORY**
-		gradlePluginPortal()
-		google()
-		mavenCentral()
 	}
 }
 
@@ -17,12 +17,12 @@ include 'unityLibrary:Coredian.androidlib:unity-classes'
 dependencyResolutionManagement {
 	repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
 	repositories {
+		google()
+		mavenCentral()
 		maven {
 			url "https://artifactory.boombit.com/artifactory/libs-release"
 		}
 		**ARTIFACTORYREPOSITORY**
-		google()
-		mavenCentral()
 		flatDir {
 			dirs "${project(':unityLibrary').projectDir}/libs"
 		}

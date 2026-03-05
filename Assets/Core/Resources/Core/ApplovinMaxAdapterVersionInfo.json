@@ -1,31 +1,31 @@
 [
 	{
 		"name": "Amazon : amazon-tam",
-		"version": "11.0.0.0"
+		"version": "11.1.1.0"
 	},
 	{
 		"name": "Amazon : aps-sdk",
-		"version": "11.0.0"
+		"version": "11.1.1"
 	},
 	{
 		"name": "BigoAds : bigoads",
-		"version": "5.3.0.2"
+		"version": "5.6.2.0"
 	},
 	{
 		"name": "DT Exchange : fyber",
-		"version": "8.3.7.0"
+		"version": "8.4.2.0"
 	},
 	{
 		"name": "Google Ad Manager : google-ad-manager",
-		"version": "24.3.0.1"
+		"version": "24.9.0.0"
 	},
 	{
 		"name": "Google Bidding and Google AdMob : google",
-		"version": "24.3.0.1"
+		"version": "24.9.0.0"
 	},
 	{
 		"name": "InMobi : inmobi",
-		"version": "10.8.3.1"
+		"version": "11.1.0.0"
 	},
 	{
 		"name": "InMobi : picasso",
@@ -37,11 +37,11 @@
 	},
 	{
 		"name": "IronSource : ironsource",
-		"version": "8.9.0.0.0"
+		"version": "9.2.0.0.0"
 	},
 	{
 		"name": "Liftoff Monetize : vungle",
-		"version": "7.5.0.2"
+		"version": "7.6.2.0"
 	},
 	{
 		"name": "Meta : facebook",
@@ -49,31 +49,31 @@
 	},
 	{
 		"name": "Mintegral : mintegral",
-		"version": "16.9.71.0"
+		"version": "17.0.51.0"
 	},
 	{
 		"name": "MobileFuse : mobilefuse",
-		"version": "1.9.2.1"
+		"version": "1.9.3.0"
 	},
 	{
 		"name": "Moloco : moloco",
-		"version": "3.10.0.0"
+		"version": "4.4.0.0"
 	},
 	{
 		"name": "Pangle : bytedance",
-		"version": "7.2.0.3.0"
+		"version": "7.8.5.2.0"
 	},
 	{
 		"name": "Smaato : smaato",
-		"version": "22.7.2.1"
+		"version": "22.7.2.3"
 	},
 	{
 		"name": "Unity Ads : unityads",
-		"version": "4.15.0.1"
+		"version": "4.16.5.0"
 	},
 	{
 		"name": "Verve : verve",
-		"version": "3.3.0.0"
+		"version": "3.7.1.0"
 	},
 	{
 		"name": "YSO : yso-network",

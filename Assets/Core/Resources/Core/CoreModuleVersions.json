@@ -1,262 +1,338 @@
 [
 	{
 		"id": "advertisements",
-		"version": "2.5.2.0/public",
-		"displayName": "Advertisements"
+		"version": "2.6.16.0",
+		"displayName": "Advertisements",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "advertisements_interface",
-		"version": "2.7.1.0/public",
-		"displayName": "Advertisements Interface"
+		"version": "2.9.0.1",
+		"displayName": "Advertisements Interface",
+		"subscriptionStream": "public"
+	},
+	{
+		"id": "advertisements_pattern_selector",
+		"version": "1.1.0.1",
+		"displayName": "Advertisements Pattern Selector",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "advertising_id",
-		"version": "1.0.6.1/public",
-		"displayName": "Advertising ID"
+		"version": "1.0.6.2",
+		"displayName": "Advertising ID",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "app_open_ads_interface",
-		"version": "1.3.0.0/public",
-		"displayName": "App Open Ads Interface"
+		"version": "1.3.0.0",
+		"displayName": "App Open Ads Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "apple_build_tools",
-		"version": "1.7.1.0/public",
-		"displayName": "Apple Build Tools"
+		"version": "1.7.4.2",
+		"displayName": "Apple Build Tools",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "application_metadata",
-		"version": "1.1.7.0/public",
-		"displayName": "Application Metadata"
+		"version": "1.1.7.1",
+		"displayName": "Application Metadata",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "application_metadata_interface",
-		"version": "1.1.0.1/public",
-		"displayName": "Application Metadata Interface"
+		"version": "1.1.0.2",
+		"displayName": "Application Metadata Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "applovin_max",
-		"version": "1.1.19.0/public",
-		"displayName": "Applovin MAX Advertisements Provider"
+		"version": "1.1.31.0",
+		"displayName": "Applovin MAX Advertisements Provider",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "applovin_max_app_open_ads",
-		"version": "1.3.4.0/public",
-		"displayName": "App Open Ads"
+		"version": "1.3.6.0",
+		"displayName": "App Open Ads",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "appsflyer_sdk",
-		"version": "1.0.15.0/public",
-		"displayName": "Appsflyer SDK"
+		"version": "1.3.2.0",
+		"displayName": "Appsflyer SDK",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "attribution_interface",
-		"version": "1.0.0.0/public",
-		"displayName": "Attribution Interface"
+		"version": "1.3.0.0",
+		"displayName": "Attribution Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "boombit_ids_importer",
-		"version": "3.0.16.0/public",
-		"displayName": "Boombit Ids Importer"
+		"version": "3.1.2.0",
+		"displayName": "Boombit Ids Importer",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "build_defines",
-		"version": "3.0.4.0/public",
-		"displayName": "Preprocessor Symbols Manager"
+		"version": "3.0.5.3",
+		"displayName": "Preprocessor Symbols Manager",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "business_logic",
-		"version": "1.4.2.0/public",
-		"displayName": "Business Logic"
+		"version": "1.5.0.0",
+		"displayName": "Business Logic",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "business_logic_interface",
-		"version": "1.1.3.0/public",
-		"displayName": "Business Logic Interface"
+		"version": "1.1.3.0",
+		"displayName": "Business Logic Interface",
+		"subscriptionStream": "public"
+	},
+	{
+		"id": "config_service_remote_config",
+		"version": "2.0.1.0",
+		"displayName": "Web Configurator Client",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "consent",
-		"version": "3.1.3.0/public",
-		"displayName": "Consent"
+		"version": "3.1.3.0",
+		"displayName": "Consent",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "consent_interface",
-		"version": "3.3.0.0/public",
-		"displayName": "Consent Interface"
+		"version": "3.3.0.1",
+		"displayName": "Consent Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_android_build_tools",
-		"version": "1.13.4.0/public",
-		"displayName": "Android Build Tools"
+		"version": "1.15.3.0",
+		"displayName": "Android Build Tools",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_assets",
-		"version": "0.9.4.0/public",
-		"displayName": "Assets"
+		"version": "0.9.7.0",
+		"displayName": "Assets",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_json_serializer",
-		"version": "0.17.6.2/public",
-		"displayName": "JSON Serializer"
+		"version": "0.17.6.3",
+		"displayName": "JSON Serializer",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_logger_configurator",
-		"version": "2.0.11.0/public",
-		"displayName": "Logger Configurator"
+		"version": "3.0.2.0",
+		"displayName": "Logger Configurator",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_main",
-		"version": "3.7.1.1/public",
-		"displayName": "Foundation"
+		"version": "3.9.0.1",
+		"displayName": "Foundation",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_modules_facade",
-		"version": "0.87.12.0/public",
-		"displayName": "Services Facade"
+		"version": "0.87.15.1",
+		"displayName": "Services Facade",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_monobehaviour_host",
-		"version": "0.16.7.1/public",
-		"displayName": "Monobehaviour Host"
+		"version": "0.16.7.2",
+		"displayName": "Monobehaviour Host",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_native_utilities",
-		"version": "0.4.0.1/public",
-		"displayName": "Native Utilities"
+		"version": "0.4.0.2",
+		"displayName": "Native Utilities",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_unity",
-		"version": "5.6.24.0/public",
-		"displayName": "Unity Toolkit"
+		"version": "5.7.1.0",
+		"displayName": "Unity Toolkit",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "cross_promo_waterfall_source",
-		"version": "2.8.6.1/public",
-		"displayName": "Cross-Promotion Waterfall Source"
+		"version": "2.8.10.0",
+		"displayName": "Cross-Promotion Waterfall Source",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "cross_promotion_advertisements_provider",
-		"version": "1.2.11.0/public",
-		"displayName": "Cross-Promotion Advertisements Provider"
+		"version": "1.3.1.0",
+		"displayName": "Cross-Promotion Advertisements Provider",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "cross_promotion_interface",
-		"version": "1.3.0.1/public",
-		"displayName": "Cross-Promotion Interface"
+		"version": "1.6.0.0",
+		"displayName": "Cross-Promotion Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "data_interface",
-		"version": "0.12.0.0/public",
-		"displayName": "Data Interface"
+		"version": "0.12.0.2",
+		"displayName": "Data Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "decoreator_cross_promotion",
-		"version": "3.4.6.1/public",
-		"displayName": "Cross-Promotion"
+		"version": "3.4.18.0",
+		"displayName": "Cross-Promotion",
+		"subscriptionStream": "public"
+	},
+	{
+		"id": "dummy_advertisements_provider",
+		"version": "1.2.0.0",
+		"displayName": "Advertisements Dummy Provider",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "facebook_interface",
-		"version": "0.8.0.0/public",
-		"displayName": "Facebook Interface"
+		"version": "0.8.0.0",
+		"displayName": "Facebook Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "facebook_sdk",
-		"version": "18.0.1.0/public",
-		"displayName": "Facebook SDK"
+		"version": "18.0.3.0",
+		"displayName": "Facebook SDK",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "firebase_crashlytics",
-		"version": "1.1.1.0/public",
-		"displayName": "Firebase Crashlytics"
+		"version": "1.1.5.0",
+		"displayName": "Firebase Crashlytics",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "firebase_interface",
-		"version": "1.5.0.0/public",
-		"displayName": "Firebase Interface"
+		"version": "1.6.0.1",
+		"displayName": "Firebase Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "firebase_remote_config",
-		"version": "1.4.11.0/public",
-		"displayName": "Firebase Remote Config"
+		"version": "1.6.0.0",
+		"displayName": "Firebase Remote Config",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "firebase_sdk",
-		"version": "1.1.6.0/public",
-		"displayName": "Firebase SDK"
+		"version": "1.1.14.0",
+		"displayName": "Firebase SDK",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "game_services_interface",
-		"version": "1.0.2.0/public",
-		"displayName": "Game Services Interface"
+		"version": "1.0.2.0",
+		"displayName": "Game Services Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "hcsdk_facade",
-		"version": "2.6.0.0/public",
-		"displayName": "HCSDK Facade"
+		"version": "2.6.0.0",
+		"displayName": "HCSDK Facade",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "hcsdk_selector",
-		"version": "1.1.17.0/public",
-		"displayName": "HCSDK Selector"
+		"version": "1.2.4.1",
+		"displayName": "HCSDK Selector",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "idfa_consent_native",
-		"version": "3.1.13.0/public",
-		"displayName": "Advertising ID Consent"
+		"version": "3.1.14.0",
+		"displayName": "Advertising ID Consent",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "inapp_purchases",
-		"version": "2.1.8.3/public",
-		"displayName": "In-App Purchases"
+		"version": "2.1.8.3",
+		"displayName": "In-App Purchases",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "inapp_purchases_android_gp",
-		"version": "2.0.12.0/public",
-		"displayName": "In-App Purchases (Google Play Store)"
+		"version": "2.0.12.0",
+		"displayName": "In-App Purchases (Google Play Store)",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "inapp_purchases_interface",
-		"version": "2.1.0.2/public",
-		"displayName": "In-App Purchases Interface"
+		"version": "2.1.0.2",
+		"displayName": "In-App Purchases Interface",
+		"subscriptionStream": "public"
+	},
+	{
+		"id": "json_schema",
+		"version": "2.0.0.1",
+		"displayName": "JSON Schema",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "logger",
-		"version": "3.0.3.2/public",
-		"displayName": "Logger"
+		"version": "3.0.4.1",
+		"displayName": "Logger",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "plugins_interface",
-		"version": "0.36.3.0/public",
-		"displayName": "Plugins Interface"
+		"version": "0.36.3.1",
+		"displayName": "Plugins Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "skadnetwork_support",
-		"version": "1.0.3.3/public",
-		"displayName": "Boombit Skadnetwork Ids"
+		"version": "1.0.3.5",
+		"displayName": "Boombit Skadnetwork Ids",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "stores_variants",
-		"version": "4.3.5.0/public",
-		"displayName": "Store Variants"
+		"version": "4.5.1.0",
+		"displayName": "Store Variants",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "testergui",
-		"version": "1.4.0.5/public",
-		"displayName": "Tester GUI"
+		"version": "1.8.4.0",
+		"displayName": "Tester GUI",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "testergui_interface",
-		"version": "1.3.0.0/public",
-		"displayName": "Tester GUI Interface"
+		"version": "1.6.0.1",
+		"displayName": "Tester GUI Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "user_journey_interface",
-		"version": "1.0.3.0/public",
-		"displayName": "User Journey Interface"
+		"version": "1.0.3.0",
+		"displayName": "User Journey Interface",
+		"subscriptionStream": "public"
 	},
 	{
 		"id": "usercentrics",
-		"version": "0.0.33.0/public",
-		"displayName": "Usercentrics"
+		"version": "2.24.4.1",
+		"displayName": "Usercentrics",
+		"subscriptionStream": "public"
 	}
 ]

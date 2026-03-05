@@ -5,19 +5,19 @@ dependencies {
 	implementation fileTree(dir: 'bin', include: ['*.jar'])
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation fileTree(dir: '../libs', include: ['*.jar'])
-	implementation 'com.boombit:firebase-crashlytics:1.1.1.0'
-	implementation 'com.coredian.privacy:core-usercentrics:0.0.33.0'
-	implementation 'com.coredian:core-common:1.13.4.0'
+	implementation 'com.boombit:firebase-crashlytics:1.1.5.0'
+	implementation 'com.coredian.privacy:core-usercentrics:2.24.4.1'
+	implementation 'com.coredian:core-common:1.15.3.0'
 	implementation 'com.android.support:multidex:1.0.3'
 }
 
 android {
 	namespace "com.coredian.androidlib"
-	compileSdk 34
+	compileSdk 35
 	
 	defaultConfig {
 		minSdk 24
-		targetSdk 34
+		targetSdk 35
 	}
 	
 	lint {

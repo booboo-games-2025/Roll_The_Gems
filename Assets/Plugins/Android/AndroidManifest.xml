@@ -7,7 +7,7 @@
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" tools:node="remove" />
   <uses-permission android:name="android.permission.READ_PHONE_STATE" tools:node="remove" />
   <supports-screens android:smallScreens="true" android:normalScreens="true" android:largeScreens="true" android:xlargeScreens="true" android:anyDensity="true" />
-  <application android:name="com.coredian.BoomBitApplication" android:largeHeap="false" android:theme="@style/UnityThemeSelector" android:debuggable="false" android:usesCleartextTraffic="true" android:allowBackup="false" android:fullBackupContent="false" tools:replace="android:allowBackup,android:fullBackupContent,android:theme,android:name" android:appCategory="game">
+  <application android:name="com.coredian.BoomBitApplication" android:largeHeap="false" android:theme="@style/UnityThemeSelector" android:debuggable="false" android:usesCleartextTraffic="true" android:allowBackup="false" android:fullBackupContent="false" tools:replace="android:allowBackup,android:fullBackupContent,android:theme,android:enableOnBackInvokedCallback,android:name" android:appCategory="game">
     <activity android:name="com.coredian.BoomBitMainActivity" android:label="@string/app_name" android:screenOrientation="sensor" android:launchMode="singleInstance" android:hardwareAccelerated="false" android:exported="true">
       <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
       <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
@@ -21,11 +21,11 @@
     </activity>
     <activity android:name="com.facebook.unity.FBUnityLoginActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:hardwareAccelerated="false" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" android:exported="false" />
     <activity android:name="com.facebook.unity.FBUnityDialogsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" android:hardwareAccelerated="false" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen" android:exported="false" />
-    <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
     <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-3927327742714241~7063223753" />
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="fb1802553500436922" />
     <meta-data android:name="com.facebook.sdk.ClientToken" android:value="eafe1609579caee2df82bdbd8a7f9f73" />
     <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled" android:value="false" />
+    <meta-data android:name="firebase_crashlytics_collection_enabled" android:value="false" />
     <meta-data android:name="com.coredian.privacy.usercentrics.LOGGER_LEVEL" android:value="0" />
     <meta-data android:name="com.coredian.privacy.usercentrics.RULE_SET_ID" android:value="1ma4uA2zclFQHr" />
     <meta-data android:name="firebase_analytics_collection_enabled" android:value="false" />

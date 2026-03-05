@@ -19,8 +19,188 @@ MonoBehaviour:
     sheetsNames: []
     sheetsGuids: []
     preferredSheet: 
-  appleAdapters: []
-  androidAdapters: []
+  appleAdapters:
+  - adapterName: Amazon
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: BidMachine
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: Bigo
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: Chartboost
+    use: 0
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Fyber
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Google
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: GoogleAdManager
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: HyprMX
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: InMobi
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: IronSource
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Liftoff Monetize
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Line
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: Meta
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Mintegral
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: MobileFuse
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Moloco
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: OguryPresage
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: Pangle
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: Smaato
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: UnityAds
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Verve
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: YSO
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  androidAdapters:
+  - adapterName: Amazon
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: BidMachine
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: BigoAds
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: Chartboost
+    use: 0
+    isRequired: 1
+    isDefault: 1
+  - adapterName: DT Exchange
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: Google Ad Manager
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Google Bidding and Google AdMob
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: HyprMX
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: InMobi
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: IronSource
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Liftoff Monetize
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: LINE
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: Maio
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: Meta
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Mintegral
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: MobileFuse
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Moloco
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Ogury
+    use: 0
+    isRequired: 0
+    isDefault: 0
+  - adapterName: Pangle
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Smaato
+    use: 1
+    isRequired: 0
+    isDefault: 1
+  - adapterName: Unity Ads
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: Verve
+    use: 1
+    isRequired: 1
+    isDefault: 1
+  - adapterName: YSO
+    use: 1
+    isRequired: 0
+    isDefault: 1
   showMediationDebugOnStart: 0
   appLovinId: 35NqxHu5zxtuX7BQ3aIWxzroBtgAytA8cPg10ZVkxs0ZLF6igSgHwV1XxKpnZ5lSy7CHwzI6ZSKvoXnaT9IZB9
   videoId: 13cd31ef8a02eec0
@@ -28,4 +208,7 @@ MonoBehaviour:
   appOpenAdId: 5581d69ff11109e3
   bannerId: 04093d52ed039734
   adMobAppId: ca-app-pub-3927327742714241~7063223753
+  enableSegmentationByMediaSource: 0
+  startMediationOnInitialization: 1
+  segments: []
   enableMediationLogs: 0

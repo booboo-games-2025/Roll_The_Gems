@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de530eef9b3fe41e6ba94c5c92639c54, type: 3}
+  m_Name: Advertisements Dummy Config Node
+  m_EditorClassIdentifier: 
+  useThisConfig: 1
+  isUpToDateWithConfig: 1
+  googleSheetsCache:
+    url: 
+    sheetsNames: []
+    sheetsGuids: []
+    preferredSheet: 
+  mediationPrefabName: CanvasDummyAd
+  crossPromoPrefabName: AdPlayerCanvasPrefab
+  openRtbPrefabName: AdvertisementsDummyOpenRTB
+  rewardsGranted: 1
+  useOnDevice: 0
+  rewardedConfiguration:
+    mediation:
+      adUnitHeader: Mediation Rewarded
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0.5, g: 0.2, b: 0.7, a: 1}
+    crossPromo:
+      adUnitHeader: CrossPromotion Rewarded
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0.9, g: 0, b: 0, a: 1}
+    openRtb:
+      adUnitHeader: OpenRTB Rewarded
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0.3, g: 0.5, b: 0.9, a: 1}
+  interstitialConfiguration:
+    mediation:
+      adUnitHeader: Mediation Interstitial
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0.3, g: 0.4, b: 0.5, a: 1}
+    crossPromo:
+      adUnitHeader: CrossPromotion Interstitial
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0.9, g: 0.3, b: 0, a: 1}
+  bannerConfiguration:
+    mediation:
+      adUnitHeader: Mediation Banner
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0, g: 0.3, b: 0.5, a: 1}
+    crossPromo:
+      adUnitHeader: CrossPromotion Banner
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0.5, g: 0.1, b: 0, a: 1}
+  appOpenConfiguration:
+    mediation:
+      adUnitHeader: Mediation App Open Ad
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0.9, g: 0.9, b: 0, a: 0.8}
+    crossPromo:
+      adUnitHeader: CrossPromotion App Open
+      hasAds: 1
+      prepareTimeSeconds: 2
+      expectedRevenue: 0
+      prepareAutomaticallyDuringImpression: 0
+      delayForPrepareDuringShow: 0.2
+      showSuccessfully: 1
+      showDelay: 0.2
+      duration: 3
+      closeButtonAfterSeconds: 0
+      autoCloseAfterSeconds: 1
+      contentString: '[]'
+      backgroundColor: {r: 0.2, g: 0.6, b: 0.9, a: 0.8}
+  runFullscreenAdsHalfScale: 0
