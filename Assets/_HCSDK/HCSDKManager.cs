@@ -417,6 +417,8 @@ public class HCSDKManager : HostMonoBehaviour
         Debug.Log("is_is_rv_is_delay_secs: " + is_is_rv_is_delay_secsValue);
 
         AD_WAIT_TIME = is_is_rv_is_delay_secsValue;
+
+        Debug.Log($"Ad Wait Time: {AD_WAIT_TIME}");
         Debug.Log("is_is_rv_is_delay_secs: => AD_WAIT_TIME: " + AD_WAIT_TIME);
 
         ios_in_reviewValue = GetBoolData(ios_in_review_Key, ios_in_review_Default);

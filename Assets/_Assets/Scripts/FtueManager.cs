@@ -99,6 +99,8 @@ public class FtueManager : MonoBehaviour
             tutorialCanvasGroup.interactable = false;
             tutorialCanvasGroup.blocksRaycasts = false;
         });
+
+        // Start another FTUE from here
         InAppsManager.Instance.baseInAppsManager.ApplyPlayerBonuses();
         GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.GA_STARTING_FTUE);
     }
