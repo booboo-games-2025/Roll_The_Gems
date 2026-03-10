@@ -773,6 +773,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 66059840}
   m_CullTransparentMesh: 1
+--- !u!1 &68274248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 68274249}
+  m_Layer: 5
+  m_Name: GoalPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &68274249
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 68274248}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5960662468743334797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 350}
+  m_SizeDelta: {x: 1100, y: 1150}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &70431378
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,7 +3176,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -80.000244}
+  m_AnchoredPosition: {x: 150, y: -80}
   m_SizeDelta: {x: 230, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &291306405
@@ -10178,6 +10213,10 @@ PrefabInstance:
       propertyPath: m_fontSizeMax
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 1355307123716601493, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2019641342632108875, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
       propertyPath: m_Alpha
       value: 0
@@ -10208,11 +10247,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4701347401435507291, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
       propertyPath: m_SizeDelta.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701347401435507291, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701347401435507291, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4701347401435507291, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000038146973
       objectReference: {fileID: 0}
     - target: {fileID: 4703961379017682292, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
       propertyPath: m_IgnoreReversedGraphics
@@ -10295,6 +10342,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8915624359452625204, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
+      propertyPath: goalText
+      value: Your goal is to destroy these rings
+      objectReference: {fileID: 0}
+    - target: {fileID: 8915624359452625204, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
       propertyPath: scrollbar
       value: 
       objectReference: {fileID: 177002698}
@@ -10314,6 +10365,10 @@ PrefabInstance:
       propertyPath: unlockButton
       value: 
       objectReference: {fileID: 1464625313}
+    - target: {fileID: 8915624359452625204, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
+      propertyPath: upgradeGoalText
+      value: Do upgrades to increase your power.
+      objectReference: {fileID: 0}
     - target: {fileID: 8915624359452625204, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
       propertyPath: upgradeInfoText
       value: Scroll to more upgrades
@@ -10362,6 +10417,10 @@ PrefabInstance:
       propertyPath: upgradePanelTransform
       value: 
       objectReference: {fileID: 118784779}
+    - target: {fileID: 8915624359452625204, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
+      propertyPath: goalHighlightTransform
+      value: 
+      objectReference: {fileID: 68274249}
     - target: {fileID: 8915624359452625204, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
       propertyPath: achievementPanelPointerPos
       value: 
@@ -10442,6 +10501,9 @@ PrefabInstance:
     - {fileID: 2771465206795230429, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
     - {fileID: 7803225435818013203, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5960662468145627749, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 68274249}
     - targetCorrespondingSourceObject: {fileID: 5960662468145627749, guid: d5ba5bdbecb5b1b40a707e233bbfb6c0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1352037724}

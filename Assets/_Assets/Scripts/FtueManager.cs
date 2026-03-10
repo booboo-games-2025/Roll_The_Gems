@@ -10,7 +10,7 @@ public class FtueManager : MonoBehaviour
 {
     public static FtueManager Instance;
     
-    [SerializeField] private string unlockText, upgradeInfoText, incomeUpgradeText, achievementButtonText, achievementDetailText;
+    [SerializeField] private string unlockText, upgradeInfoText, upgradeGoalText, incomeUpgradeText, achievementButtonText, achievementDetailText, goalText;
     
     [SerializeField] CanvasGroup tutorialCanvasGroup; 
     [SerializeField] RectTransform highlight;
@@ -22,27 +22,33 @@ public class FtueManager : MonoBehaviour
 
     [SerializeField] private UiButton tapToContinueButton;
     [SerializeField] private UiButton unlockButton ,incomeButton, achievementButton;
-    [SerializeField] private Transform unlockButtonTransform, upgradePanelTransform, incomeButtonTransform, achievementPanelPointerPos, achievememtPanel;
+    [SerializeField] private Transform unlockButtonTransform, upgradePanelTransform, incomeButtonTransform, achievementPanelPointerPos, achievememtPanel, goalHighlightTransform;
     public bool isFtueRunning;
+
     [SerializeField] private RectTransform pointer;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Scrollbar scrollbar;
+
+    private Vector2 _tapToContinueTextOriginalPosition;
 
 
     private void Awake()
     {
         Instance = this;
+
+        _tapToContinueTextOriginalPosition = tapToContinueButton.transform.position;
+
         AchievementUi.OnAchievementComplete += StartAchivementTutorial;
         if(PlayerPrefs.GetInt(MyConstants.StartFtueCompleted,0) == 0)
         {
             DOVirtual.DelayedCall(0.5f, () =>
             {
-                StartTutorial();
+                ShowGoalTutorial();
             });
         }
     }
 
-    void StartTutorial()
+    private void ShowGoalTutorial()
     {
         EnableDisableUiButtons(false);
         tutorialCanvasGroup.gameObject.SetActive(true);
@@ -51,6 +57,30 @@ public class FtueManager : MonoBehaviour
             tutorialCanvasGroup.interactable = true;
             tutorialCanvasGroup.blocksRaycasts = true;
         });
+
+        ShowHighlight(goalHighlightTransform, new Vector2(1100, 1150));
+        ShowTutorialText(goalHighlightTransform, goalText, new Vector2(0, 50f));
+
+        tapToContinueButton.transform.position = _tapToContinueTextOriginalPosition;
+
+        tapToContinueButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 1020f);
+        tapToContinueButton.gameObject.SetActive(true);
+        tapToContinueButton.clickEvent.AddListener(StartTutorial);
+    }
+
+    private void StartTutorial()
+    {
+        EnableDisableUiButtons(false);
+        tapToContinueButton.gameObject.SetActive(false);
+        tapToContinueButton.clickEvent.RemoveListener(StartTutorial);
+
+        //tutorialCanvasGroup.gameObject.SetActive(true);
+        //tutorialCanvasGroup.DOFade(1, 0.5f).OnComplete(() =>
+        //{
+        //    tutorialCanvasGroup.interactable = true;
+        //    tutorialCanvasGroup.blocksRaycasts = true;
+        //});
+
         ShowHighlight(unlockButtonTransform, new Vector2(400,180));
         ShowTutorialText(unlockButtonTransform,unlockText, new Vector2(0,50f));
         unlockButton.clickEvent.AddListener(ShowUpgradeScrolling);
@@ -66,12 +96,29 @@ public class FtueManager : MonoBehaviour
         unlockButton.clickEvent.RemoveListener(ShowUpgradeScrolling);
         DOTween.To(()=>scrollbar.value,x => scrollbar.value = x, 0, 2f).SetDelay(0.5f).OnComplete(() =>
         {
+            tapToContinueButton.transform.position = _tapToContinueTextOriginalPosition;
+
             tapToContinueButton.transform.position += Vector3.up * 550;
             tapToContinueButton.gameObject.SetActive(true);
-            tapToContinueButton.clickEvent.AddListener(TapOnIncomeButton);
+            tapToContinueButton.clickEvent.AddListener(UpgradesTutorial);
         });
         ShowHighlight(upgradePanelTransform, new Vector2(1100,680));
         ShowTutorialText(upgradePanelTransform,upgradeInfoText, new Vector2(0,250f));
+    }
+
+    private void UpgradesTutorial()
+    {
+        if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted) == 1)
+        {
+            return;
+        }
+
+        incomeButton.clickEvent.RemoveListener(UpgradesTutorial);
+        ShowHighlight(upgradePanelTransform, new Vector2(1100, 680));
+        ShowTutorialText(upgradePanelTransform, upgradeGoalText, new Vector2(0, 250f));
+
+        tapToContinueButton.gameObject.SetActive(true);
+        tapToContinueButton.clickEvent.AddListener(TapOnIncomeButton);
     }
 
     void TapOnIncomeButton()
