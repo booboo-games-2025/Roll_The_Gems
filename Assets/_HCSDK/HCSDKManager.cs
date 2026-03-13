@@ -842,11 +842,11 @@ public class HCSDKManager : HostMonoBehaviour
             return;
         }
 
-        Debug.LogError("Focus : " + focus);
-        if (!focus) return;
-        var appOpenAdsService = Core.GetService<IAppOpenAdsService>();
-        appOpenAdsService.DisableAds(false);
-        appOpenAdsService.ShowAdIfConditionsAreMet();
+        // Debug.LogError("Focus : " + focus);
+        // if (!focus) return;
+        // var appOpenAdsService = Core.GetService<IAppOpenAdsService>();
+        // appOpenAdsService.DisableAds(false);
+        // appOpenAdsService.ShowAdIfConditionsAreMet();
     }
 
     #endregion

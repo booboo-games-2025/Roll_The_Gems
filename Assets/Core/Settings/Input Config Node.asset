@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741fa94642784ad7a021a96b4f68688, type: 3}
-  m_Name: Firebase Remote Config Config Node
+  m_Script: {fileID: 11500000, guid: 250c065e2ac294766aa2ee875774f798, type: 3}
+  m_Name: Input Config Node
   m_EditorClassIdentifier: 
   useThisConfig: 1
   isUpToDateWithConfig: 1
@@ -19,11 +19,4 @@ MonoBehaviour:
     sheetsNames: []
     sheetsGuids: []
     preferredSheet: 
-  delayFetchUntilConsent: 0
-  remoteConfigEditorMode: 1
-  appId: 
-  apiKey: 
-  projectId: 
-  coreDiffKey: CORE_CONFIG_DIFF
-  useOverrideValues: 0
-  overrideValues: []
+  createEventSystem: 1

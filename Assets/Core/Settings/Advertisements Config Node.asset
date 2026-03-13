@@ -22,36 +22,37 @@ MonoBehaviour:
   adUnitConfigs:
   - adUnitName: AppOpen
     adUnitResultType: IAppOpenAdResult
-    selectorType: Coredian.Advertisements.Selectors.HcsdkSelector`1
+    selectorType: Coredian.Advertisements.Selectors.PatternSelector`1
     autoPrepare: 1
     autoPrepareOnFinished: 1
     autoRetryOnPrepareFailed: 1
   - adUnitName: Banner
     adUnitResultType: IBannerAdResult
-    selectorType: Coredian.Advertisements.Selectors.HcsdkSelector`1
+    selectorType: Coredian.Advertisements.Selectors.PatternSelector`1
     autoPrepare: 1
     autoPrepareOnFinished: 1
     autoRetryOnPrepareFailed: 1
   - adUnitName: Interstitial
     adUnitResultType: IInterstitialAdResult
-    selectorType: Coredian.Advertisements.Selectors.HcsdkSelector`1
+    selectorType: Coredian.Advertisements.Selectors.PatternSelector`1
     autoPrepare: 1
     autoPrepareOnFinished: 1
     autoRetryOnPrepareFailed: 1
   - adUnitName: Rewarded
     adUnitResultType: IRewardedAdResult
-    selectorType: Coredian.Advertisements.Selectors.HcsdkSelector`1
+    selectorType: Coredian.Advertisements.Selectors.PatternSelector`1
     autoPrepare: 1
     autoPrepareOnFinished: 1
     autoRetryOnPrepareFailed: 1
   - adUnitName: CrossPromoMoreGames
     adUnitResultType: IMoreGamesAdResult
-    selectorType: Coredian.Advertisements.Selectors.FirstReadySelector`1
+    selectorType: Coredian.Advertisements.Selectors.CrossPromoFirstSelector`1
     autoPrepare: 1
     autoPrepareOnFinished: 1
     autoRetryOnPrepareFailed: 1
   bannerRefreshTimeMs: 25000
   timeoutPrepareAfterMs: 10000
   useDummyProvidersOnDevice: 0
+  enableSelectorLocking: 1
   destroyBannersOnFocusLost: 0
   debugProviderStateChanges: 0

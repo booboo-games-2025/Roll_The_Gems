@@ -56,16 +56,8 @@ MonoBehaviour:
       logTypeFilter: 4
       minimumPriority: 0
       readOnlyCategory: 1
-    - category: Coredian.Advertisements.Banners
-      logTypeFilter: 4
-      minimumPriority: 0
-      readOnlyCategory: 1
     - category: Coredian.Advertisements.CrossPromoProvider
       logTypeFilter: 6
-      minimumPriority: 0
-      readOnlyCategory: 1
-    - category: Coredian.Advertisements.DummyProvider
-      logTypeFilter: 4
       minimumPriority: 0
       readOnlyCategory: 1
     - category: Coredian.Advertisements.Selectors
@@ -104,10 +96,6 @@ MonoBehaviour:
       logTypeFilter: 6
       minimumPriority: 0
       readOnlyCategory: 1
-    - category: Coredian.ConfigServiceRemoteConfig
-      logTypeFilter: 6
-      minimumPriority: 0
-      readOnlyCategory: 1
     - category: Coredian.CrossPromo
       logTypeFilter: 6
       minimumPriority: 0
@@ -142,10 +130,6 @@ MonoBehaviour:
       readOnlyCategory: 1
     - category: Coredian.StoreVariants
       logTypeFilter: 6
-      minimumPriority: 0
-      readOnlyCategory: 1
-    - category: Coredian.TesterGUI
-      logTypeFilter: 4
       minimumPriority: 0
       readOnlyCategory: 1
     - category: Facebook
