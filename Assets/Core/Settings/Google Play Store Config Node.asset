@@ -19,7 +19,7 @@ MonoBehaviour:
     sheetsNames: []
     sheetsGuids: []
     preferredSheet: 
-  plistImportSupportingData: 
+  plistImportSupportingData: brb_coin_pack_1,brb_coin_pack_2,brb_coin_pack_3,brb_income_bundle_pack,brb_speed_power_bundle_pack,brb_mega_upgrade_bundle_pack
   products:
   - productId: brb_coin_pack_1
     storeProductId: brb_coin_pack_1

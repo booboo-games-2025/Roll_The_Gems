@@ -2,13 +2,17 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Coredian.InAppPurchases;
 
 public class ShopManager : MonoBehaviour
 {
     public static ShopManager instance;
 
     public GameObject ShopPanel;
+
     [SerializeField] TMP_Text coinPackFirstText, coinPackSecondText, coinPackThirdText;
+
+    [SerializeField] private Button _restorePurchaseButton;
     
     [Header("IncomeBundleUi")]
     [SerializeField] UiButton incomeBundleBuyButton;
@@ -26,7 +30,23 @@ public class ShopManager : MonoBehaviour
     {
         instance = this;
     }
-    
+
+    private void Start()
+    {
+        bool shouldActivate = false;
+
+#if UNITY_IOS
+        shouldActivate = true;
+#endif
+        _restorePurchaseButton.gameObject.SetActive(shouldActivate);
+        _restorePurchaseButton.onClick.AddListener(() =>
+        {
+            var service = Core.GetService<IInAppPurchasesService>();
+
+            service.RestorePurchases();
+        });
+    }
+
     public void OpenShopPanle()
     {
         ShopPanel.SetActive(true);

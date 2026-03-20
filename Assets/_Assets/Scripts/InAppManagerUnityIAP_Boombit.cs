@@ -20,7 +20,6 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
     string purchasingProduct = "";
     bool IsFromRestore = false;
 
-
     public static string COINS_PACK_1 = MyConstants.COINS_PACK_1;
     public static string COINS_PACK_2 = MyConstants.COINS_PACK_2;
     public static string COINS_PACK_3 = MyConstants.COINS_PACK_3;
@@ -77,6 +76,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         // Purchasing set-up has not succeeded. Check error for reason. Consider sharing this reason with the user.
         Debug.Log("OnInitializeFailed IAP:");
     }
+
     private void PrepareShopButtons()
     {
         var coin_pack1 = Core.GetService<IInAppPurchasesService>().GetProduct(COINS_PACK_1);

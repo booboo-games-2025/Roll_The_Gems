@@ -130,6 +130,9 @@
     <module id="inapp_purchases_android_gp" version="2.0.12.0" subscriptionStream="public">
       <installedWith />
     </module>
+    <module id="inapp_purchases_apple_storekit1" version="2.0.11.0" subscriptionStream="public">
+      <installedWith />
+    </module>
     <module id="inapp_purchases_interface" version="2.1.0.2" subscriptionStream="public">
       <installedWith />
     </module>

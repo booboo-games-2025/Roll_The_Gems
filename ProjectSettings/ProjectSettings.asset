@@ -859,7 +859,7 @@ PlayerSettings:
     WebGL: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     Windows Store Apps: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     XboxOne: DOTWEEN
-    iPhone: gameanalytics_max_enabled;AF_PURCHASE_CONNECTOR;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    iPhone: gameanalytics_max_enabled;AF_PURCHASE_CONNECTOR;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;CORE_IN_APP_PURCHASES_APPLE_APP_STORE;BUILD_DEFINES;CORE
     tvOS: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
   additionalCompilerArguments: {}
   platformArchitecture: {}
@@ -959,11 +959,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: d440a9f4-7d06-4138-b234-eb4d7ded6d48
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Roll_The_Gems
-  organizationId: sachin_22
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
