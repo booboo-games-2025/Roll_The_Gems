@@ -18,7 +18,7 @@ PlayerSettings:
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
-  m_ShowUnitySplashLogo: 1
+  m_ShowUnitySplashLogo: 0
   m_SplashScreenOverlayOpacity: 1
   m_SplashScreenAnimation: 1
   m_SplashScreenLogoStyle: 1
@@ -39,7 +39,9 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 0}
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
@@ -55,7 +57,7 @@ PlayerSettings:
   mipStripping: 0
   numberOfMipsStripped: 0
   numberOfMipsStrippedPerMipmapLimitGroup: {}
-  m_StackTraceTypes: 010000000100000001000000010000000100000001000000
+  m_StackTraceTypes: 010000000000000000000000000000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosUseCustomAppBackgroundBehavior: 0
@@ -68,7 +70,7 @@ PlayerSettings:
   preserveFramebufferAlpha: 0
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
-  androidRenderOutsideSafeArea: 0
+  androidRenderOutsideSafeArea: 1
   androidUseSwappy: 0
   androidDisplayOptions: 1
   androidBlitType: 0
@@ -142,7 +144,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.1.0
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -176,7 +178,7 @@ PlayerSettings:
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 24
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 35
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -265,7 +267,7 @@ PlayerSettings:
   useCustomGradlePropertiesTemplate: 1
   useCustomGradleSettingsTemplate: 1
   useCustomProguardFile: 0
-  AndroidTargetArchitectures: 2
+  AndroidTargetArchitectures: 3
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
@@ -289,7 +291,7 @@ PlayerSettings:
   androidGamepadSupportLevel: 0
   AndroidMinifyRelease: 0
   AndroidMinifyDebug: 0
-  AndroidValidateAppBundleSize: 1
+  AndroidValidateAppBundleSize: 0
   AndroidAppBundleSizeToValidate: 150
   AndroidReportGooglePlayAppDependencies: 1
   androidSymbolsSizeThreshold: 800
@@ -842,33 +844,35 @@ PlayerSettings:
   webGLCloseOnQuit: 0
   webWasm2023: 0
   scriptingDefineSymbols:
-    Android: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;CORE_IN_APP_PURCHASES_GOOGLE_PLAY_STORE;BUILD_DEFINES;CORE
+    Android: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;CORE_IN_APP_PURCHASES_GOOGLE_PLAY_STORE;BUILD_DEFINES;CORE
     EmbeddedLinux: DOTWEEN
-    GameCoreScarlett: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
-    GameCoreXboxOne: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    GameCoreScarlett: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    GameCoreXboxOne: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     Kepler: DOTWEEN
     LinuxHeadlessSimulation: DOTWEEN
-    Nintendo Switch: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    Nintendo Switch: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     Nintendo Switch 2: DOTWEEN
-    PS4: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
-    PS5: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    PS4: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    PS5: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     QNX: DOTWEEN
-    Server: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
-    Standalone: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    Server: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    Standalone: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     VisionOS: DOTWEEN
-    WebGL: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
-    Windows Store Apps: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    WebGL: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    Windows Store Apps: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
     XboxOne: DOTWEEN
-    iPhone: gameanalytics_max_enabled;AF_PURCHASE_CONNECTOR;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;CORE_IN_APP_PURCHASES_APPLE_APP_STORE;BUILD_DEFINES;CORE
-    tvOS: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
+    iPhone: gameanalytics_max_enabled;AF_PURCHASE_CONNECTOR;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;CORE_IN_APP_PURCHASES_APPLE_APP_STORE;BUILD_DEFINES;CORE
+    tvOS: gameanalytics_max_enabled;CORE_FIREBASE_CRASHLYTICS;CORE_FIREBASE_REMOTE_CONFIG;CORE_FIREBASE_SDK;CORE_GADSME;CORE_IN_APP_PURCHASES;no_UnityStore;BUILD_DEFINES;CORE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
-  il2cppCompilerConfiguration: {}
+  il2cppCompilerConfiguration:
+    Android: 2
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}
-  managedStrippingLevel: {}
+  managedStrippingLevel:
+    Android: 1
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
@@ -959,11 +963,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: f32b02c1-4a06-43aa-82e6-b8e678de9a4d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Bitcoin Ring Breaker
+  organizationId: newmanthomas
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

@@ -52,6 +52,8 @@
 				"mintegral_video_ad_unit": "5764936",
 				"platform_category_gp": "Simulation",
 				"platform_game_services_id": "273531286808",
+				"platform_iap_server_game_id": "394",
+				"platform_iap_server_secret_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxR2qOjOqhtwWrsXheNhY\nHn9J4PqovH5jUPmjcw1Nbp39hCBT6+nhBbO4RnZsOwenaLtNBTmMPmWyPW2NUXZO\nQH9HNetsDnQMhpKfYueQfQybD4PL3VkTkvfvu7ddaAf6cYAc2xmIkUoKMgwv5FbV\ngp2qwv1wSGQ6quaZWpw497n0CNuEGbSMtm7lcbQRc7IbyD0XKXxVFbX61nWyAaZ+\nTAwiozs4LMyT9fmxuhjHV2AGKbYFRvSrnb2JrBJZ+p1edOuxDO8UTFVSr/RvKFAx\nKRbqqZmqyZw2ToDQzZFRoTJgGZcR4PR0howAwJQoyih7qtwnMXS4tqL8KfFLy/CN\nRwIDAQAB",
 				"platform_mediation": "MAX",
 				"platform_orientation": "Portrait",
 				"platform_providers_account": "Mobile Esports",
@@ -114,6 +116,8 @@
 				"mintegral_video": "3437462",
 				"mintegral_video_ad_unit": "5764943",
 				"platform_category_ios": "Simulation",
+				"platform_iap_server_game_id": "394",
+				"platform_iap_server_secret_key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv2d63zE5oIV9gsOCrk+/\njiJzALSzmfYsdzgWJ3n24WE0ZFgA3NU6cKwbYqMM71nB5xiWRZq9JPpP5D11fLxe\n0Drp+OmQodSmveIQotr/5ReseBYmYis9N+SSff1sDESjfTh1UXaRocRzJb9IzxDo\nRNS70wlPUTp9JWdVPVyYKHndU1104SNRca6oPv3OiEyu7qK55JxUJIRH+mSFnEi0\nrF7jVT4p3H/5XMGmKo/P//q9LFG9eP9GxUAfltqfVUgR06EX6R3T+2FHlvfPquHC\nirPuA8K74crPZquUrIQDJhSzYGhxUozWpxbIkSAQWtJFW/MU7VOayPu5IVZmk+1q\n4QIDAQAB",
 				"platform_ios_sku": "com.mobileesports.ringbreaker",
 				"platform_mediation": "MAX",
 				"platform_orientation": "Portrait",
@@ -131,5 +135,5 @@
 	"core_token": "5cbad9d8-fa00-4498-a48e-692b159db4dd",
 	"created_at": "2026-03-02T12:35:18",
 	"updated_at": "2026-03-02T12:35:18",
-	"downloadedAt": "2026-03-12T14:16:51"
+	"downloadedAt": "2026-03-20T18:17:19"
 }

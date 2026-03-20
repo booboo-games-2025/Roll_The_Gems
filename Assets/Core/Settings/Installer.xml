@@ -25,13 +25,13 @@
     <module id="application_metadata_interface" version="1.1.0.2" subscriptionStream="public">
       <installedWith />
     </module>
-    <module id="applovin_max" version="1.1.31.0" subscriptionStream="public">
+    <module id="applovin_max" version="1.1.33.2" subscriptionStream="public">
       <installedWith />
     </module>
     <module id="applovin_max_app_open_ads" version="1.3.6.0" subscriptionStream="public">
       <installedWith />
     </module>
-    <module id="appsflyer_sdk" version="1.3.2.0" subscriptionStream="public">
+    <module id="appsflyer_sdk" version="1.3.3.0" subscriptionStream="public">
       <installedWith />
     </module>
     <module id="attribution_interface" version="1.3.0.0" subscriptionStream="public">
@@ -43,19 +43,24 @@
     <module id="build_defines" version="3.0.5.3" subscriptionStream="public">
       <installedWith />
     </module>
-    <module id="business_logic" version="1.5.0.0" subscriptionStream="public">
+    <module id="business_logic" version="1.5.1.0" subscriptionStream="public">
       <installedWith />
     </module>
     <module id="business_logic_interface" version="1.1.3.0" subscriptionStream="public">
       <installedWith />
     </module>
-    <module id="consent" version="3.1.3.0" subscriptionStream="public">
+    <module id="config_service_remote_config" version="2.0.5.0" subscriptionStream="public">
+      <installedWith>
+        <string>business_logic</string>
+      </installedWith>
+    </module>
+    <module id="consent" version="3.1.4.2" subscriptionStream="public">
       <installedWith />
     </module>
     <module id="consent_interface" version="3.3.0.1" subscriptionStream="public">
       <installedWith />
     </module>
-    <module id="core_android_build_tools" version="1.15.3.0" subscriptionStream="public">
+    <module id="core_android_build_tools" version="1.15.4.0" subscriptionStream="public">
       <installedWith />
     </module>
     <module id="core_assets" version="0.9.7.0" subscriptionStream="public">
@@ -115,6 +120,14 @@
     <module id="firebase_sdk" version="1.1.14.0" subscriptionStream="public">
       <installedWith />
     </module>
+    <module id="GADSME" version="1.12.3.0" subscriptionStream="public">
+      <installedWith />
+    </module>
+    <module id="GADSME_interface" version="1.0.0.3" subscriptionStream="public">
+      <installedWith>
+        <string>gadsme</string>
+      </installedWith>
+    </module>
     <module id="game_services_interface" version="1.0.2.0" subscriptionStream="public">
       <installedWith />
     </module>
@@ -124,7 +137,7 @@
     <module id="idfa_consent_native" version="3.1.14.0" subscriptionStream="public">
       <installedWith />
     </module>
-    <module id="inapp_purchases" version="2.1.8.3" subscriptionStream="public">
+    <module id="inapp_purchases" version="2.1.9.1" subscriptionStream="public">
       <installedWith />
     </module>
     <module id="inapp_purchases_android_gp" version="2.0.12.0" subscriptionStream="public">
@@ -153,6 +166,11 @@
     </module>
     <module id="testergui_interface" version="1.6.0.1" subscriptionStream="public">
       <installedWith />
+    </module>
+    <module id="tiktok_app_events_sdk_interface" version="1.0.0.0" subscriptionStream="public">
+      <installedWith>
+        <string>business_logic</string>
+      </installedWith>
     </module>
     <module id="user_journey_interface" version="1.0.3.0" subscriptionStream="public">
       <installedWith />

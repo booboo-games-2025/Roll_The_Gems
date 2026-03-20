@@ -41,9 +41,21 @@ MonoBehaviour:
     productType: 2
   subscriptionGroups: []
   remoteServerConnection:
-    gameId: 0
+    gameId: 394
     serverUrl: https://boombit.cloud
-    secretKey: 
+    secretKey: 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxR2qOjOqhtwWrsXheNhY
+
+      Hn9J4PqovH5jUPmjcw1Nbp39hCBT6+nhBbO4RnZsOwenaLtNBTmMPmWyPW2NUXZO
+
+      QH9HNetsDnQMhpKfYueQfQybD4PL3VkTkvfvu7ddaAf6cYAc2xmIkUoKMgwv5FbV
+
+      gp2qwv1wSGQ6quaZWpw497n0CNuEGbSMtm7lcbQRc7IbyD0XKXxVFbX61nWyAaZ+
+
+      TAwiozs4LMyT9fmxuhjHV2AGKbYFRvSrnb2JrBJZ+p1edOuxDO8UTFVSr/RvKFAx
+
+      KRbqqZmqyZw2ToDQzZFRoTJgGZcR4PR0howAwJQoyih7qtwnMXS4tqL8KfFLy/CN
+
+      RwIDAQAB'
   enableLocalSubscriptionStorage: 1
   shouldFinalizePurchasesAutomatically: 1
   debugOverrides:
