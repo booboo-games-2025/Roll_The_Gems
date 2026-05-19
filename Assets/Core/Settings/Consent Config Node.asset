@@ -20,6 +20,9 @@ MonoBehaviour:
     sheetsGuids: []
     preferredSheet: 
   consentTypeViewConfigurations:
+  - consentType: 4
+    consentViewTypeName: Coredian.Privacy.UserAgeRange.UserAgeRangeConsentView
+    askForConsentAutomatically: 1
   - consentType: 1
     consentViewTypeName: Coredian.Privacy.Usercentrics.UsercentricsConsentView
     askForConsentAutomatically: 1

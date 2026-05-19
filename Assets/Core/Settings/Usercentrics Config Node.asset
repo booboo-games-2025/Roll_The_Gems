@@ -21,6 +21,8 @@ MonoBehaviour:
     preferredSheet: 
   settingsId: 
   ruleSetId: 1ma4uA2zclFQHr
+  generalRuleSetId: Mnxxd0KSa3Qbah
+  ageRestrictedRuleSetId: 1ma4uA2zclFQHr
   alternativeRuleSetId: 
   popupLayout: 0
   shouldPauseUnity: 1

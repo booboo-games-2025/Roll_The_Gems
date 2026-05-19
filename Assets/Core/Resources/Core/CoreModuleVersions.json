@@ -1,19 +1,19 @@
 [
 	{
 		"id": "advertisements",
-		"version": "2.6.16.0",
+		"version": "2.8.3.0",
 		"displayName": "Advertisements",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "advertisements_interface",
-		"version": "2.9.0.1",
+		"version": "2.10.0.0",
 		"displayName": "Advertisements Interface",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "advertisements_pattern_selector",
-		"version": "1.1.0.1",
+		"version": "2.0.1.0",
 		"displayName": "Advertisements Pattern Selector",
 		"subscriptionStream": "public"
 	},
@@ -31,7 +31,7 @@
 	},
 	{
 		"id": "apple_build_tools",
-		"version": "1.7.4.2",
+		"version": "1.7.8.0",
 		"displayName": "Apple Build Tools",
 		"subscriptionStream": "public"
 	},
@@ -49,7 +49,7 @@
 	},
 	{
 		"id": "applovin_max",
-		"version": "1.1.31.0",
+		"version": "1.1.35.0",
 		"displayName": "Applovin MAX Advertisements Provider",
 		"subscriptionStream": "public"
 	},
@@ -61,19 +61,19 @@
 	},
 	{
 		"id": "appsflyer_sdk",
-		"version": "1.3.2.0",
+		"version": "1.3.9.0",
 		"displayName": "Appsflyer SDK",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "attribution_interface",
-		"version": "1.3.0.0",
+		"version": "1.3.1.0",
 		"displayName": "Attribution Interface",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "boombit_ids_importer",
-		"version": "3.1.2.0",
+		"version": "3.1.3.0",
 		"displayName": "Boombit Ids Importer",
 		"subscriptionStream": "public"
 	},
@@ -85,7 +85,7 @@
 	},
 	{
 		"id": "business_logic",
-		"version": "1.5.0.0",
+		"version": "1.5.5.0",
 		"displayName": "Business Logic",
 		"subscriptionStream": "public"
 	},
@@ -97,25 +97,25 @@
 	},
 	{
 		"id": "consent",
-		"version": "3.1.3.0",
+		"version": "3.1.11.0",
 		"displayName": "Consent",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "consent_interface",
-		"version": "3.3.0.1",
+		"version": "3.6.0.0",
 		"displayName": "Consent Interface",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_android_build_tools",
-		"version": "1.15.3.0",
+		"version": "1.15.7.0",
 		"displayName": "Android Build Tools",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "core_assets",
-		"version": "0.9.7.0",
+		"version": "0.9.8.0",
 		"displayName": "Assets",
 		"subscriptionStream": "public"
 	},
@@ -139,7 +139,7 @@
 	},
 	{
 		"id": "core_modules_facade",
-		"version": "0.87.15.1",
+		"version": "0.89.0.0",
 		"displayName": "Services Facade",
 		"subscriptionStream": "public"
 	},
@@ -157,13 +157,13 @@
 	},
 	{
 		"id": "core_unity",
-		"version": "5.7.1.0",
+		"version": "5.9.1.0",
 		"displayName": "Unity Toolkit",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "cross_promo_waterfall_source",
-		"version": "2.8.10.0",
+		"version": "2.8.14.0",
 		"displayName": "Cross-Promotion Waterfall Source",
 		"subscriptionStream": "public"
 	},
@@ -187,7 +187,7 @@
 	},
 	{
 		"id": "decoreator_cross_promotion",
-		"version": "3.4.18.0",
+		"version": "3.4.20.0",
 		"displayName": "Cross-Promotion",
 		"subscriptionStream": "public"
 	},
@@ -199,7 +199,7 @@
 	},
 	{
 		"id": "facebook_sdk",
-		"version": "18.0.3.0",
+		"version": "18.0.4.0",
 		"displayName": "Facebook SDK",
 		"subscriptionStream": "public"
 	},
@@ -217,26 +217,14 @@
 	},
 	{
 		"id": "firebase_remote_config",
-		"version": "1.6.0.0",
+		"version": "1.6.1.0",
 		"displayName": "Firebase Remote Config",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "firebase_sdk",
-		"version": "1.1.14.0",
+		"version": "1.1.15.0",
 		"displayName": "Firebase SDK",
-		"subscriptionStream": "public"
-	},
-	{
-		"id": "GADSME",
-		"version": "1.12.3.0",
-		"displayName": "GADSME",
-		"subscriptionStream": "public"
-	},
-	{
-		"id": "GADSME_interface",
-		"version": "1.0.0.3",
-		"displayName": "GADSME Interface",
 		"subscriptionStream": "public"
 	},
 	{
@@ -253,25 +241,25 @@
 	},
 	{
 		"id": "idfa_consent_native",
-		"version": "3.1.14.0",
+		"version": "3.2.0.0",
 		"displayName": "Advertising ID Consent",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "inapp_purchases",
-		"version": "2.1.8.3",
+		"version": "2.1.12.0",
 		"displayName": "In-App Purchases",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "inapp_purchases_android_gp",
-		"version": "2.0.12.0",
+		"version": "2.0.13.0",
 		"displayName": "In-App Purchases (Google Play Store)",
 		"subscriptionStream": "public"
 	},
 	{
 		"id": "inapp_purchases_apple_storekit1",
-		"version": "2.0.11.0",
+		"version": "2.0.13.0",
 		"displayName": "In-App Purchases (Apple App Store)",
 		"subscriptionStream": "public"
 	},
@@ -307,7 +295,7 @@
 	},
 	{
 		"id": "stores_variants",
-		"version": "4.5.1.0",
+		"version": "4.6.1.0",
 		"displayName": "Store Variants",
 		"subscriptionStream": "public"
 	},
@@ -318,6 +306,18 @@
 		"subscriptionStream": "public"
 	},
 	{
+		"id": "tiktok_app_events_sdk_interface",
+		"version": "1.0.0.0",
+		"displayName": "Tiktok App Events SDK Interface",
+		"subscriptionStream": "public"
+	},
+	{
+		"id": "user_age_range",
+		"version": "1.0.0.0",
+		"displayName": "User Age Range",
+		"subscriptionStream": "public"
+	},
+	{
 		"id": "user_journey_interface",
 		"version": "1.0.3.0",
 		"displayName": "User Journey Interface",
@@ -325,7 +325,7 @@
 	},
 	{
 		"id": "usercentrics",
-		"version": "2.24.4.1",
+		"version": "2.26.2.4",
 		"displayName": "Usercentrics",
 		"subscriptionStream": "public"
 	}

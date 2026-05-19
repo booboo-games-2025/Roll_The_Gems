@@ -46,13 +46,15 @@ MonoBehaviour:
     autoRetryOnPrepareFailed: 1
   - adUnitName: CrossPromoMoreGames
     adUnitResultType: IMoreGamesAdResult
-    selectorType: Coredian.Advertisements.Selectors.CrossPromoFirstSelector`1
+    selectorType: Coredian.Advertisements.Selectors.PatternSelector`1
     autoPrepare: 1
     autoPrepareOnFinished: 1
     autoRetryOnPrepareFailed: 1
   bannerRefreshTimeMs: 25000
   timeoutPrepareAfterMs: 10000
+  timeoutShowPrepareAfterMs: 1500
   useDummyProvidersOnDevice: 0
+  mediationProviderSource: 
   enableSelectorLocking: 1
   destroyBannersOnFocusLost: 0
   debugProviderStateChanges: 0

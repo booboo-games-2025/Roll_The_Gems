@@ -132,8 +132,12 @@ MonoBehaviour:
       logTypeFilter: 6
       minimumPriority: 0
       readOnlyCategory: 1
-    - category: Coredian.WebConfigurator
-      logTypeFilter: 6
+    - category: Coredian.Tools.ConfigurationValidator
+      logTypeFilter: 7
+      minimumPriority: 0
+      readOnlyCategory: 1
+    - category: Coredian.Tools.ConfigurationValidator.Editor
+      logTypeFilter: 7
       minimumPriority: 0
       readOnlyCategory: 1
     - category: Facebook

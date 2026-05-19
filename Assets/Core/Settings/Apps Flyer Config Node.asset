@@ -29,3 +29,4 @@ MonoBehaviour:
   purchaseConnectorSandbox: 0
   storeVariant: 2
   storeKitVersion: 0
+  additionalDataTimeoutSeconds: 5
