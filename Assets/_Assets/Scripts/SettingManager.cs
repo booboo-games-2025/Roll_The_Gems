@@ -6,21 +6,21 @@ using System;
 public class SettingManager : MonoBehaviour
 {
     public static SettingManager instance;
-    
+
     [SerializeField] private GameObject settingMenu;
     [SerializeField] private Transform settingPanel;
     [SerializeField] private GameObject mainMenuButton;
     [SerializeField] private ButtonToggle soundToggle, musicToggle, hapticToggle;
 
     public static Action<bool> OnSettingPanelOpen;
-    
+
     public static bool sound = true, music = true, haptic = true;
-    
+
     private void Awake()
     {
         instance = this;
     }
-    
+
     private void Start()
     {
         Vibration.Init();

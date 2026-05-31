@@ -1,82 +1,74 @@
 [
 	{
-		"name": "Amazon : amazon-tam",
-		"version": "11.1.2.0"
+		"name": "AmazonAdMarketplace",
+		"version": "5.5.0.0"
 	},
 	{
-		"name": "Amazon : aps-sdk",
-		"version": "11.1.2"
+		"name": "AmazonPublisherServicesSDK",
+		"version": "5.5.0"
 	},
 	{
-		"name": "BigoAds : bigoads",
-		"version": "5.7.1.0"
+		"name": "BigoAds",
+		"version": "5.1.0.0"
 	},
 	{
-		"name": "DT Exchange : fyber",
-		"version": "8.4.3.0"
+		"name": "ByteDance",
+		"version": "7.9.0.8.0"
 	},
 	{
-		"name": "Google Ad Manager : google-ad-manager",
-		"version": "25.0.0.0"
+		"name": "Facebook",
+		"version": "6.21.1.0"
 	},
 	{
-		"name": "Google Bidding and Google AdMob : google",
-		"version": "25.0.0.0"
+		"name": "Fyber",
+		"version": "8.4.5.0"
 	},
 	{
-		"name": "InMobi : inmobi",
+		"name": "Google",
+		"version": "13.1.0.1"
+	},
+	{
+		"name": "GoogleAdManager",
+		"version": "13.1.0.1"
+	},
+	{
+		"name": "InMobi",
 		"version": "11.1.1.0"
 	},
 	{
-		"name": "InMobi : picasso",
-		"version": "2.71828"
-	},
-	{
-		"name": "InMobi : recyclerview",
-		"version": "1.1.0"
-	},
-	{
-		"name": "IronSource : ironsource",
+		"name": "IronSource",
 		"version": "9.3.0.0.0"
 	},
 	{
-		"name": "Liftoff Monetize : vungle",
-		"version": "7.7.1.0"
+		"name": "Mintegral",
+		"version": "8.0.8.0.0"
 	},
 	{
-		"name": "Meta : facebook",
-		"version": "6.21.0.0"
-	},
-	{
-		"name": "Mintegral : mintegral",
-		"version": "17.0.91.0"
-	},
-	{
-		"name": "MobileFuse : mobilefuse",
+		"name": "MobileFuse",
 		"version": "1.10.0.0"
 	},
 	{
-		"name": "Moloco : moloco",
-		"version": "4.6.0.0"
+		"name": "Moloco",
+		"version": "4.4.1.0"
 	},
 	{
-		"name": "Pangle : bytedance",
-		"version": "7.9.1.1.0"
+		"name": "Smaato",
+		"version": "22.9.3.1"
 	},
 	{
-		"name": "Smaato : smaato",
-		"version": "22.7.2.3"
-	},
-	{
-		"name": "Unity Ads : unityads",
+		"name": "UnityAds",
 		"version": "4.17.0.0"
 	},
 	{
-		"name": "Verve : verve",
+		"name": "Verve",
 		"version": "3.7.1.0"
 	},
 	{
-		"name": "YSO : yso-network",
-		"version": "1.3.3.0"
+		"name": "Vungle",
+		"version": "7.7.1.0"
+	},
+	{
+		"name": "YSONetwork",
+		"version": "1.1.31.1"
 	}
 ]

@@ -26,7 +26,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
     public static string INCOME_PACK = MyConstants.INCOME_BUNDLE_PACK;
     public static string SPEED_POWER_BUNDLE_PACK = MyConstants.SPEED_BUNDLE_PACK;
     public static string MEGA_UPGRADE_BUNDLE_PACK = MyConstants.MEGA_UPGRADE_BUNDLE_PACK;
-    
+
     public static string COINS_PACK_1_PRICE = MyConstants.COINS_PACK_1_PRICE;
     public static string COINS_PACK_2_PRICE = MyConstants.COINS_PACK_2_PRICE;
     public static string COINS_PACK_3_PRICE = MyConstants.COINS_PACK_3_PRICE;
@@ -115,7 +115,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
             Debug.Log("IAP" + $"Product {mega_upgrade_pack.Id} costs {mega_upgrade_pack.Price}");
             MEGA_UPGRADE_BUNDLE_PACK_PRICE = mega_upgrade_pack.Price.ToString();
         }
-        
+
         //ApplyPlayerBonuses();
     }
 
@@ -171,7 +171,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
 
         Debug.LogError("IsFromRestore: " + IsFromRestore + " Product ID: " + productId + " Store ID: " + id);
 
-        if(PlayerPrefs.GetInt(MyConstants.StartFtueCompleted, 0) == 0)
+        if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted, 0) == 0)
             return;
         //Add the purchased product to the players inventory
         if (productId == COINS_PACK_1)
@@ -182,7 +182,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         else if (productId == COINS_PACK_2)
         {
             OnCoinPackTwoSucess();
-           // AF_Revenue_Events(currencyCode, price.ToString(), "1", id);
+            // AF_Revenue_Events(currencyCode, price.ToString(), "1", id);
         }
         else if (productId == COINS_PACK_3)
         {
@@ -204,7 +204,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
             OnMegaUpgradePackSuccess();
             //AF_Revenue_Events(currencyCode, price.ToString(), "1", id);
         }
-        
+
         Debug.Log($"Purchase Complete - Product: {productId}");
         //IsFromRestore = false;
     }
@@ -267,31 +267,31 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
             OnRestore(mega_upgrade_pack);
         }
     }
-    
+
     private void OnRestorePurchasesFailed(Coredian.InAppPurchases.EventArgs args)
     {
         Debug.Log("IAP : OnRestorePurchasesFailed");
 
 #if UNITY_IOS
-        GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, $"{Constants.FAILED} \n\n Restore Purchase failed. Please try again later.", Constants.OK);
+        //GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, $"{Constants.FAILED} \n\n Restore Purchase failed. Please try again later.", Constants.OK);
 #endif
         //GenericPopUp.INSTANCE.ShowPopUp(PopUpType.ALERT, "Failed", "Nothing to restore", false, null, null, "OK", "");
     }
 #endif
     #region IAP Purchase Call
-    
+
     public void CoinPack1()
     {
         Debug.Log("Unity Purchase ==> Coin Pack 1 Clicked");
         PurchaseProduct(COINS_PACK_1);
     }
-    
+
     public void CoinPack2()
     {
         Debug.Log("Unity Purchase ==> Coin Pack 2 Clicked");
         PurchaseProduct(COINS_PACK_2);
     }
-    
+
     public void CoinPack3()
     {
         Debug.Log("Unity Purchase ==> Coin Pack 3 Clicked");
@@ -309,7 +309,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         Debug.Log("Unity Purchase ==> Body Speed Power Bundle Clicked");
         PurchaseProduct(SPEED_POWER_BUNDLE_PACK);
     }
-    
+
     public void MegaBundlePack()
     {
         Debug.Log("Unity Purchase ==> Mega Bundle Clicked");
@@ -324,7 +324,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
     {
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful" + $"\n\n Restored", "Ok");
     }
-    
+
     void OnIncomePackSuccess()
     {
         //Return popup if already active
@@ -368,7 +368,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         GameAnalytics.NewDesignEvent(MyConstants.GA_SPEED_POWER_PACK_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nSpeed power purchased successfully", "Ok");
     }
-    
+
     void OnMegaUpgradePackSuccess()
     {
         //Return popup if already active
@@ -390,34 +390,34 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         GameAnalytics.NewDesignEvent(MyConstants.GA_MEGA_PACK_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nMega upgrade pack purchased successfully", "Ok");
     }
-    
+
     void OnCoinPackOneSucess()
     {
         Debug.LogError("On Coin Pack 1 Success");
         ShopManager.instance.BuyCoinPack1();
-        
+
         GameAnalytics.NewDesignEvent(MyConstants.GA_COIN_PACK_1_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 1 purchased successfully", "Ok");
     }
-    
+
     void OnCoinPackTwoSucess()
     {
         Debug.LogError("On Coin Pack 2 Success");
         ShopManager.instance.BuyCoinPack2();
-        
+
         GameAnalytics.NewDesignEvent(MyConstants.GA_COIN_PACK_2_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 2 purchased successfully", "Ok");
     }
-    
+
     void OnCoinPackThreeSucess()
     {
         Debug.LogError("On Coin Pack 3 Success");
         ShopManager.instance.BuyCoinPack3();
-        
+
         GameAnalytics.NewDesignEvent(MyConstants.GA_COIN_PACK_3_SUCCESS);
         GenericPopUp.Instance.ShowPopUp(PopUpType.Alert, "Successful !" + "\n\nCoin Pack 3 purchased successfully", "Ok");
     }
-    
+
     #endregion
 
     #region IAP Restore
@@ -429,7 +429,7 @@ public class InAppManagerUnityIAP_Boombit : InAppsAbstractClass
         bool restored = false;
 
         var productStoreId = purchase.Product.StoreId;
-        
+
         if (PlayerPrefs.GetInt(MyConstants.INCOME_BUNDLE_PURCHASED) == 0 && productStoreId.Equals(INCOME_PACK))
         {
             restored = true;

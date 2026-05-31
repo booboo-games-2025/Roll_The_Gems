@@ -203,11 +203,11 @@ MonoBehaviour:
     isDefault: 1
   showMediationDebugOnStart: 0
   appLovinId: 35NqxHu5zxtuX7BQ3aIWxzroBtgAytA8cPg10ZVkxs0ZLF6igSgHwV1XxKpnZ5lSy7CHwzI6ZSKvoXnaT9IZB9
-  videoId: 13cd31ef8a02eec0
-  interstitialId: 385b7f31c52126f4
-  appOpenAdId: 5581d69ff11109e3
-  bannerId: 04093d52ed039734
-  adMobAppId: ca-app-pub-3927327742714241~7063223753
+  videoId: ad16a4e6530a5759
+  interstitialId: 30a89f1a5bb2a592
+  appOpenAdId: b83192777185de1d
+  bannerId: ff63a26ed49cb982
+  adMobAppId: ca-app-pub-3927327742714241~4945490596
   enableSegmentationByMediaSource: 0
   startMediationOnInitialization: 1
   segments: []

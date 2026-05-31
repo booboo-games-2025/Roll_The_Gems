@@ -1,7 +1,7 @@
 [
 	{
 		"id": "advertisements",
-		"version": "2.8.3.0",
+		"version": "2.8.4.0",
 		"displayName": "Advertisements",
 		"subscriptionStream": "public"
 	},
@@ -223,8 +223,20 @@
 	},
 	{
 		"id": "firebase_sdk",
-		"version": "1.1.15.0",
+		"version": "1.1.16.0",
 		"displayName": "Firebase SDK",
+		"subscriptionStream": "public"
+	},
+	{
+		"id": "GADSME",
+		"version": "1.12.3.0",
+		"displayName": "GADSME",
+		"subscriptionStream": "public"
+	},
+	{
+		"id": "GADSME_interface",
+		"version": "1.0.0.3",
+		"displayName": "GADSME Interface",
 		"subscriptionStream": "public"
 	},
 	{
@@ -295,7 +307,7 @@
 	},
 	{
 		"id": "stores_variants",
-		"version": "4.6.1.0",
+		"version": "4.6.2.0",
 		"displayName": "Store Variants",
 		"subscriptionStream": "public"
 	},

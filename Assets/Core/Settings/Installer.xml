@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <installedModules fileVersion="3">
   <modules>
-    <module id="advertisements" version="2.8.3.0" subscriptionStream="public">
+    <module id="advertisements" version="2.8.4.0" subscriptionStream="public">
       <installedWith />
     </module>
     <module id="advertisements_interface" version="2.10.0.0" subscriptionStream="public">
@@ -112,8 +112,16 @@
     <module id="firebase_remote_config" version="1.6.1.0" subscriptionStream="public">
       <installedWith />
     </module>
-    <module id="firebase_sdk" version="1.1.15.0" subscriptionStream="public">
+    <module id="firebase_sdk" version="1.1.16.0" subscriptionStream="public">
       <installedWith />
+    </module>
+    <module id="GADSME" version="1.12.3.0" subscriptionStream="public">
+      <installedWith />
+    </module>
+    <module id="GADSME_interface" version="1.0.0.3" subscriptionStream="public">
+      <installedWith>
+        <string>gadsme</string>
+      </installedWith>
     </module>
     <module id="game_services_interface" version="1.0.2.0" subscriptionStream="public">
       <installedWith />
@@ -148,7 +156,7 @@
     <module id="skadnetwork_support" version="1.0.3.5" subscriptionStream="public">
       <installedWith />
     </module>
-    <module id="stores_variants" version="4.6.1.0" subscriptionStream="public">
+    <module id="stores_variants" version="4.6.2.0" subscriptionStream="public">
       <installedWith />
     </module>
     <module id="testergui_interface" version="1.6.0.1" subscriptionStream="public">
