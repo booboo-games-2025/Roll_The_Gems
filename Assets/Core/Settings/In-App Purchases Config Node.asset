@@ -20,8 +20,8 @@ MonoBehaviour:
     sheetsGuids: []
     preferredSheet: 
   providerOrder:
-  - Coredian.InAppPurchases.Simulation.ISimulatedInAppProvider
   - Coredian.InAppPurchases.Android.GooglePlayStore.IGoogleInAppPurchasesProvider
   - Coredian.InAppPurchases.Apple.AppStore.IAppleInAppPurchasesProvider
-  useSimulatedProvider: 1
+  useSimulatedProviderInEditor: 1
+  useSimulatedProviderOnDevice: 0
   editorSimulatedProductSource: 2

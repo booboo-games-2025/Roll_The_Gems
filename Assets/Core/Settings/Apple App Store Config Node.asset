@@ -20,7 +20,25 @@ MonoBehaviour:
     sheetsGuids: []
     preferredSheet: 
   plistImportSupportingData: 
-  products: []
+  products:
+  - productId: brb_coin_pack_1
+    storeProductId: brb_coin_pack_1
+    productType: 1
+  - productId: brb_coin_pack_2
+    storeProductId: brb_coin_pack_2
+    productType: 1
+  - productId: brb_coin_pack_3
+    storeProductId: brb_coin_pack_3
+    productType: 1
+  - productId: brb_income_bundle_pack
+    storeProductId: brb_income_bundle_pack
+    productType: 2
+  - productId: brb_speed_power_bundle_pack
+    storeProductId: brb_speed_power_bundle_pack
+    productType: 2
+  - productId: brb_mega_upgrade_bundle_pack
+    storeProductId: brb_mega_upgrade_bundle_pack
+    productType: 2
   subscriptionGroups: []
   remoteServerConnection:
     gameId: 394

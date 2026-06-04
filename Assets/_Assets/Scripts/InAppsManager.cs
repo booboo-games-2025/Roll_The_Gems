@@ -34,9 +34,7 @@ public class InAppsManager : MonoBehaviour
 
     public void InitializeInApps()
     {
-#if UNITY_ANDROID
         baseInAppsManager.InitializeInApps();
-#endif
     }
 
     /*void InAppChecker()
