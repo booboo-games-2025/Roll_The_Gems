@@ -27,6 +27,6 @@ MonoBehaviour:
   oneLinkId: 
   debugMode: 0
   purchaseConnectorSandbox: 0
-  storeVariant: 1
+  storeVariant: 2
   storeKitVersion: 0
   additionalDataTimeoutSeconds: 5

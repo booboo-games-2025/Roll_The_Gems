@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     [Header("Background")]
     [SerializeField] Image background;
     [SerializeField] Sprite[] backgroundSprites;
+
+    [Header("Interstitial Pacing Settings")]
+    [SerializeField] private float _interstitialCooldown = 120f;
     int bgIndex;
  
 
@@ -78,7 +81,7 @@ public class GameManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(120);
+            yield return new WaitForSeconds(_interstitialCooldown);
             HCSDKManager.INSTANCE.ShowInterstitialAd(HCSDKManager.IS_LOAD_NAME,null);
         }
     }

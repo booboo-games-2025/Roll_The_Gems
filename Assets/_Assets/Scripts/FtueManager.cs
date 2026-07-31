@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Collections;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -28,6 +25,11 @@ public class FtueManager : MonoBehaviour
     [SerializeField] private RectTransform pointer;
     [SerializeField] private ScrollRect scrollRect;
     [SerializeField] private Scrollbar scrollbar;
+
+    [Header("New Tutorial")]
+    [SerializeField] private string _btcWalletText;
+    [SerializeField] private Transform _btcWalletHighlightTransform;
+    [SerializeField] private RectTransform _tutorialTextTransform;
 
     private Vector2 _tapToContinueTextOriginalPosition;
 
@@ -123,13 +125,40 @@ public class FtueManager : MonoBehaviour
 
     void TapOnIncomeButton()
     {
+        if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted) == 1)
+        {
+            return;
+        }
         scrollbar.value = 1;
         tapToContinueButton.gameObject.SetActive(false);
         tapToContinueButton.clickEvent.RemoveListener(TapOnIncomeButton);
         EconomyManager.instance.IncreaseEconomy(10);
         ShowHighlight(incomeButtonTransform, new Vector2(250,100));
         ShowTutorialText(incomeButtonTransform,incomeUpgradeText, new Vector2(0,50f));
-        incomeButton.clickEvent.AddListener(EndIncomeTutorial);
+        incomeButton.clickEvent.AddListener(ShowBtcWalletTutorial);
+    }
+
+    // New Tutorial
+    private void ShowBtcWalletTutorial()
+    {
+        incomeButton.clickEvent.RemoveListener(ShowBtcWalletTutorial);
+        EnableDisableUiButtons(false);
+        tutorialCanvasGroup.gameObject.SetActive(true);
+        tutorialCanvasGroup.DOFade(1, 0.5f).OnComplete(() =>
+        {
+            tutorialCanvasGroup.interactable = true;
+            tutorialCanvasGroup.blocksRaycasts = true;
+        });
+
+        TutorialPanelPointerSwitch(false);
+        ShowHighlight(_btcWalletHighlightTransform);
+        ShowTutorialText(_btcWalletHighlightTransform, _btcWalletText, new Vector2(0, -50f));
+
+        tapToContinueButton.transform.position = _tapToContinueTextOriginalPosition;
+
+        tapToContinueButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 1020f);
+        tapToContinueButton.gameObject.SetActive(true);
+        tapToContinueButton.clickEvent.AddListener(EndIncomeTutorial);
     }
 
     void EndIncomeTutorial()
@@ -198,11 +227,15 @@ public class FtueManager : MonoBehaviour
         GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.GA_ACHIEVEMENT_FTUE);
     }
 
-    public void ShowHighlight(Transform _target, Vector2 _size)
+    public void ShowHighlight(Transform _target, Vector2 _size = default(Vector2))
     {
         masked.gameObject.SetActive(true);
         highlight.gameObject.SetActive(true);
-        highlight.sizeDelta = _size;
+
+        if (_size != default(Vector2))
+        {
+            highlight.sizeDelta = _size;
+        }
         highlight.position = _target.position;
     }
 

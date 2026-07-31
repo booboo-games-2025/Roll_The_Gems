@@ -23,4 +23,4 @@ MonoBehaviour:
   changeProductName: 1
   showDebugOptions: 0
   deleteFirebaseConfigsIfNotPresentInImported: 1
-  lastAppliedStorePlatform: 3
+  lastAppliedStorePlatform: 4

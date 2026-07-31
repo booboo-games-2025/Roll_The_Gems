@@ -1,5 +1,5 @@
 #if MES_CRYPTO
-using MES.Crypto.Util;
+//using MES.Crypto.Util;
 using UnityEngine.UI;
 #endif
 
@@ -19,7 +19,7 @@ namespace MES.Crypto.UI
 #if MES_CRYPTO
         void OnEnable()
         {
-            CryptoCanvasManager.Instance?.Poke(this);
+            //CryptoCanvasManager.Instance?.Poke(this);
         }
         void Start()
         {
@@ -36,7 +36,7 @@ namespace MES.Crypto.UI
 
         public void On_Currency_Click()
         {
-            CryptoCanvasManager.Instance?.On_Currency_Click();
+            //CryptoCanvasManager.Instance?.On_Currency_Click();
         }
 #endif
     }
