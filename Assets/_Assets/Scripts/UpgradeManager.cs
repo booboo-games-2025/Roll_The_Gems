@@ -250,9 +250,9 @@ public class UpgradeManager : MonoBehaviour
         Save();
     }
 
-    public void Upgrade(int ballId, UpgradeType type)
+    public void Upgrade(UpgradeType pUpgradeType, bool pIsUsingRv)
     {
-        PowerData power = GetBall(ballId).GetPower(type);
+        PowerData power = GetBall(tabIndex).GetPower(pUpgradeType);
         power.level++;
         double previousCost = power.cost;
         if (power.upgradeType == UpgradeType.Income)
@@ -264,7 +264,7 @@ public class UpgradeManager : MonoBehaviour
              // }
              int twentyFiveMul = power.level / 25;
              double incrementMul = Math.Pow(2, twentyFiveMul);
-             double newIncome = upgradeBaseValues[ballId].baseValues[(int)type] * incrementMul;
+             double newIncome = upgradeBaseValues[tabIndex].baseValues[(int)pUpgradeType] * incrementMul;
              power.value += newIncome;
              if (power.level % 25 == 0)
              {
@@ -297,8 +297,12 @@ public class UpgradeManager : MonoBehaviour
             power.value ++;
         }
         //OnPowerUp?.Invoke(ballId, 1.5f);
-        UpdateUi( type, power.cost, power.value, power.level);
-        EconomyManager.instance.DecreaseEconomy(previousCost);
+        UpdateUi( pUpgradeType, power.cost, power.value, power.level);
+
+        if (!pIsUsingRv)
+        {
+            EconomyManager.instance.DecreaseEconomy(previousCost);
+        }
         Achievements.OnAchievementsUpdated?.Invoke(1,AchievementType.BuyUpgradesXTimes);
     }
 
@@ -338,20 +342,19 @@ public class UpgradeManager : MonoBehaviour
         {
             PowerData power = GetBall(tabIndex).GetPower(type);
             bool IsMax = false;
+
             if (maxUpgrades[(int)type] > 0)
             {
                 IsMax = power.level >= maxUpgrades[(int)type];
             }
+
             if (PlayerPrefs.GetInt(MyConstants.StartFtueCompleted,0) == 1)
             {
-                if ((int)type == firstRvUpgradeButtonChanceIndex || (int)type == secondRvUpgradeButtonChanceUpgrade)
-                {
-                    UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost,true,IsMax);
-                    continue;
-                }
+                bool isAffordable = currentMoney >= power.cost;
+                UpgradeUis[(int)type].SwitchButton(isAffordable, IsMax);
+                continue;
             }
-            UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost,false,IsMax);
-            
+            //UpgradeUis[(int)type].SwitchButton(currentMoney >= power.cost,false,IsMax);
         }
         
         UpdateLockUi(currentMoney);
@@ -385,39 +388,40 @@ public class UpgradeManager : MonoBehaviour
         }
     }
 
-    void CheckForExclaimationMark(double currentMoney)
+    private void CheckForExclaimationMark(double currentMoney)
     {
         for (int i = 0; i < TOTAL_BALLS; i++)
         {
-            tabs[i].exclaimMark.SetActive(false);
-            if (tabIndex == i)
-            {
-                continue;
-            }
+            bool shouldShow = false;
 
-            if (saveData.balls[i].isUnlocked == false)
+            if (tabIndex != i)
             {
-                if (currentMoney >= unlockCosts[i])
+                if (!saveData.balls[i].isUnlocked)
                 {
-                    tabs[i].exclaimMark.SetActive(true);
+                    shouldShow = currentMoney >= unlockCosts[i];
                 }
-            }
-            else
-            {
-                foreach (UpgradeType type in Enum.GetValues(typeof(UpgradeType)))
+                else
                 {
-                    PowerData power = GetBall(i).GetPower(type);
-                    if (currentMoney >= power.cost)
+                    foreach (UpgradeType type in Enum.GetValues(typeof(UpgradeType)))
                     {
-                        tabs[i].exclaimMark.SetActive(true);
-                        break;
+                        PowerData power = GetBall(i).GetPower(type);
+
+                        if (currentMoney >= power.cost)
+                        {
+                            shouldShow = true;
+                            break;
+                        }
                     }
                 }
             }
+
+            if (tabs[i].exclaimMark.activeSelf != shouldShow)
+            {
+                tabs[i].exclaimMark.SetActive(shouldShow);
+            }
         }
     }
-    
-    
+
     public static Action<int> OnFirstTimeUpgrade;
 
     public double GetValue(int ballIndex, UpgradeType type)

@@ -49,6 +49,9 @@ public class MyConstants : MonoBehaviour
     public const string INFINITE_DURABILITY_RV = "rv:infinite_durability";
     public const string RANK_INCREASED_RV = "rv:rank_increased";
     public const string OFFLINE_INCOME_DOUBLE_RV = "rv:offline_income_double";
+
+    public const string INCOME_UPGRADE_RV = "rv:income_upgrade";
+    public const string CRITICAL_CHANCE_UPGRADE_RV = "rv:critical_chance_upgrade";
     public const string CRITICAL_POWER_UPGRADE_RV = "rv:critical_power_upgrade";
     public const string SPEED_UPGRADE_RV = "rv:speed_upgrade";
     public const string CREATION_TIME_UPGRADE_RV = "rv:creation_time_upgrade";

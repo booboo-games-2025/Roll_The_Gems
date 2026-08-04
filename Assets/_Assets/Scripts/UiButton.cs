@@ -67,7 +67,11 @@ public class UiButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
             isHolding = true;
             // First click instantly
             TriggerClick();
-            holdCoroutine = StartCoroutine(HoldClickRoutine());
+
+            if (gameObject.activeSelf)
+            {
+                holdCoroutine = StartCoroutine(HoldClickRoutine());
+            }
         }
     }
 

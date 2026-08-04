@@ -1,7 +1,3 @@
-using System;
-using System.Globalization;
-using DG.Tweening;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -18,33 +14,58 @@ public class UpgradeUi : MonoBehaviour
     [SerializeField] private UiButton upgradeBtn, upgradeRvBtn;
     [SerializeField] private Image Icon;
     [SerializeField] private Image upgradeLevelFillBar;
-    
+    [SerializeField] private Sprite enableSprite, disableSprite;
+
+    private string _upgradeTypeEventName;
+
+    private void Awake()
+    {
+        _upgradeTypeEventName = GetUpgradeTypeEventName();
+    }
+
     public void Start()
     {
         Icon.sprite = GlobalvariableContainer.Instance.ballIcons[UpgradeManager.tabIndex];
-        upgradeBtn.clickEvent.AddListener(() => { UpgradeManager.instance.Upgrade(UpgradeManager.tabIndex, upgradeType); });
-        upgradeRvBtn.clickEvent.AddListener(() => { HCSDKManager.INSTANCE.DisplayRV(HCSDKManager.RV_LOAD_NAME,RvButtonClicked); });
+
+        upgradeBtn.clickEvent.AddListener(() =>
+        {
+            HandleUpgrade(pIsUsingRv: false);
+        });
+
+        upgradeRvBtn.clickEvent.AddListener(() =>
+        {
+            HandleUpgrade(pIsUsingRv: true);
+        });
     }
 
-    public void RvButtonClicked()
+    private void HandleUpgrade(bool pIsUsingRv)
     {
-        UpgradeManager.instance.Upgrade(UpgradeManager.tabIndex, upgradeType);
-        if (upgradeType == UpgradeType.CriticalHitPower)
+        if (pIsUsingRv)
         {
-            GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.CRITICAL_POWER_UPGRADE_RV);
+            HCSDKManager.INSTANCE.DisplayRV(_upgradeTypeEventName, () =>
+            {
+                GameAnalyticsController.Miscellaneous.NewDesignEvent(_upgradeTypeEventName);
+                UpgradeManager.instance.Upgrade(upgradeType, pIsUsingRv);
+            });
         }
-        else if (upgradeType == UpgradeType.Speed)
+        else
         {
-            GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.SPEED_UPGRADE_RV);
+            UpgradeManager.instance.Upgrade(upgradeType, pIsUsingRv);
         }
-        else if (upgradeType == UpgradeType.BallCreationSpeed)
+    }
+
+    private string GetUpgradeTypeEventName()
+    {
+        return upgradeType switch
         {
-            GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.CREATION_TIME_UPGRADE_RV);
-        }
-        else if (upgradeType == UpgradeType.Durability)
-        {
-            GameAnalyticsController.Miscellaneous.NewDesignEvent(MyConstants.DURABILITY_UPGRADE_RV);
-        }
+            UpgradeType.Income => MyConstants.INCOME_UPGRADE_RV,
+            UpgradeType.CriticalHitChance => MyConstants.CRITICAL_CHANCE_UPGRADE_RV,
+            UpgradeType.CriticalHitPower => MyConstants.CRITICAL_POWER_UPGRADE_RV,
+            UpgradeType.Speed => MyConstants.SPEED_UPGRADE_RV,
+            UpgradeType.BallCreationSpeed => MyConstants.CREATION_TIME_UPGRADE_RV,
+            UpgradeType.Durability => MyConstants.DURABILITY_UPGRADE_RV,
+            _ => "",
+        };
     }
 
     public void UpdateUi(double cost, double value, int level)
@@ -146,9 +167,8 @@ public class UpgradeUi : MonoBehaviour
         }
         
     }
-
-    [SerializeField] private Sprite enableSprite, disableSprite;
-    public void SwitchButton(bool hasMoneyAvailable, bool showRvButton = false, bool isMax = false)
+    
+    public void SwitchButton(bool pIsAffordable, bool isMax = false)
     {
         if (isMax)
         {
@@ -159,14 +179,10 @@ public class UpgradeUi : MonoBehaviour
         maxButton.SetActive(false);
         upgradeButtons.SetActive(true);
         
-        upgradeBtn.gameObject.SetActive(true);
-        upgradeRvBtn.gameObject.SetActive(false);
-        upgradeBtn.Interactable = hasMoneyAvailable;
-        upgradeBtn.image.sprite = hasMoneyAvailable ? enableSprite : disableSprite;
-        if (showRvButton)
-        {
-            upgradeBtn.gameObject.SetActive(false);
-            upgradeRvBtn.gameObject.SetActive(true);
-        }
+        upgradeBtn.gameObject.SetActive(pIsAffordable);
+        upgradeRvBtn.gameObject.SetActive(!pIsAffordable);
+
+        upgradeBtn.Interactable = pIsAffordable;
+        upgradeBtn.image.sprite = pIsAffordable ? enableSprite : disableSprite;
     }
 }
