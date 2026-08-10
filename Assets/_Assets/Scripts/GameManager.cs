@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 using Random = UnityEngine.Random;
-using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,11 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text _healthText, ringLeveltext, nextRingUnlockLevel;
     [SerializeField] private GameObject nextRingLevelUi;
     [SerializeField] Image _fillBar;
-    private int _currentRingIndex = 0;
-    private int _totalActiavtedRings;
-    
-    private List<Double> healthList = new List<Double>();
-    private Camera _cam;
+
     [SerializeField] private ParticleSystem ringDestroyEffect;
     [SerializeField] private Material[] ringMaterials;
 
@@ -32,8 +27,18 @@ public class GameManager : MonoBehaviour
 
     [Header("Interstitial Pacing Settings")]
     [SerializeField] private float _interstitialCooldown = 120f;
-    int bgIndex;
- 
+
+    [Header("Level Setup Settings")]
+    [SerializeField] private int _startingRings = 1;
+    [SerializeField] private int _increaseRingEveryXLevels = 1;
+
+    private int bgIndex;
+
+    private int _currentRingIndex = 0;
+    private int _totalActiavtedRings;
+
+    private List<Double> healthList = new List<Double>();
+    private Camera _cam;
 
     private void OnEnable()
     {
@@ -86,7 +91,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Setup()
+    private void Setup()
     {
         _currentRingIndex = 0;
         healthList.Clear();
@@ -110,34 +115,65 @@ public class GameManager : MonoBehaviour
     }
 
     private int ringSet = 0;
-    void CalculateRingData()
+    private void CalculateRingData()
     {
         ringSet = PlayerPrefs.GetInt(MyConstants.RING_LEVEL, 1);
-        ShowLevelProgressionEvent(ringSet,ProgressionType.Start);
-        ringLeveltext.text = "(Lv. " + ringSet + ")";
-        _totalActiavtedRings = 5 + (ringSet/4);
-        int nextUnlockLevel = ((ringSet + 4) / 4) * 4;
-        nextRingUnlockLevel.text = "Lv." + nextUnlockLevel;
-        _totalActiavtedRings = Mathf.Clamp(_totalActiavtedRings, 5, rings.Length);
-        if (_totalActiavtedRings == rings.Length)
+
+        ShowLevelProgressionEvent(ringSet, ProgressionType.Start);
+
+        ringLeveltext.text = $"(Lv. {ringSet})";
+
+        // Ring count calculation
+        _totalActiavtedRings = _startingRings + ((ringSet - 1) / _increaseRingEveryXLevels);
+        _totalActiavtedRings = Mathf.Clamp(_totalActiavtedRings, _startingRings, rings.Length);
+
+        // Next unlock UI
+        if (_totalActiavtedRings >= rings.Length)
         {
             nextRingLevelUi.SetActive(false);
         }
+        else
+        {
+            int nextUnlockLevel = (((ringSet - 1) / _increaseRingEveryXLevels) + 1) * _increaseRingEveryXLevels + 1;
+
+            nextRingUnlockLevel.text = $"Lv.{nextUnlockLevel}";
+            nextRingLevelUi.SetActive(true);
+        }
+
+        // Health scaling
         int x = ringSet - 1;
+
         double incrementVal = 5 * Math.Pow(4f, x);
         double initialVal = 50;
+
         if (ringSet > 1)
         {
-            initialVal = 37 * Math.Pow(x, 4) - 170 * Math.Pow(x, 2) + 295 * x - 104;
+            initialVal = (37 * Math.Pow(x, 4)) - (170 * Math.Pow(x, 2)) + (295 * x) - 104;
+        }
+
+        healthList.Clear();
+
+        for (int i = 0; i < rings.Length; i++)
+        {
+            rings[i].gameObject.SetActive(i < _totalActiavtedRings);
         }
 
         for (int i = 0; i < _totalActiavtedRings; i++)
         {
             healthList.Add(initialVal);
-            rings[i].gameObject.SetActive(true);
-            rings[i].SetParameters(Mathf.Lerp(1f,3f,(float)i/(_totalActiavtedRings-1)),ringColors[i],initialVal);
+
+            float t = _totalActiavtedRings > 1
+                ? (float)i / (_totalActiavtedRings - 1)
+                : 0f;
+
+            rings[i].SetParameters(
+                Mathf.Lerp(1f, 3f, t),
+                ringColors[i],
+                initialVal);
+
             initialVal += incrementVal;
         }
+
         ChangeBg();
     }
 
@@ -154,7 +190,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void UpdateHealthUi()
+    private void UpdateHealthUi()
     {
         double currentHealth = rings[_currentRingIndex].GetHealth();
         if (currentHealth <= 0)
@@ -172,6 +208,10 @@ public class GameManager : MonoBehaviour
                 ringSet++;
                 PlayerPrefs.SetInt(MyConstants.RING_LEVEL, ringSet);
                 healthUi.SetActive(false);
+
+                // EVERY LEVEL IS
+                HCSDKManager.INSTANCE.ShowInterstitialAd(HCSDKManager.IS_LOAD_NAME, null);
+
                 Invoke(nameof(Setup),2f);
                 Invoke(nameof(EnableAllBallSpawner),2f);
             }
