@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Missile
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - Water
   - UI
   - Balls
-  - 
-  - 
+  - Meta
+  - Rings
   - 
   - 
   - 
@@ -38,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1318188571
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

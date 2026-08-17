@@ -265,6 +265,7 @@ public class GameManager : MonoBehaviour
         }
         // ========================================
         Vector3 dir = (pos - rings[0].transform.position).normalized;
+
         EconomyManager.instance.IncreaseEconomy(money);
         Vector3 spawnPos = _cam.WorldToScreenPoint(pos + dir * 0.6f);
         GameObject obj = ObjectPooling.Instance.Get("float_text",spawnPos);

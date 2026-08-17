@@ -7,10 +7,16 @@ using TMPro;
 public class EconomyManager : MonoBehaviour
 {
     public static EconomyManager instance;
+
     [SerializeField] private TMP_Text coinText;
+
     public double coinCount;
     public static Action OnCoinChanged;
     public double permanentCoinCount;
+
+    [Header("Meta Progression")]
+    [SerializeField] private ResourceBuildSystem _resourceBuildSystem;
+    [SerializeField] private double _metaResourceEconomyMultiplier;
     
     private void Awake()
     {
@@ -26,13 +32,19 @@ public class EconomyManager : MonoBehaviour
         StartCoroutine(SaveEconomyRoutine());
     }
 
-    IEnumerator SaveEconomyRoutine()
+    private IEnumerator SaveEconomyRoutine()
     {
         while (true)
         {
             SaveEconomy();
             yield return new WaitForSeconds(5);
         }
+    }
+
+    private void AddMetaResources(double pCoins)
+    {
+        double metaResourceCount = Math.Round(pCoins * _metaResourceEconomyMultiplier, 0);
+        _resourceBuildSystem.AddResource(metaResourceCount);
     }
 
     public void SaveEconomy()
@@ -44,14 +56,16 @@ public class EconomyManager : MonoBehaviour
         }
     }
 
-    public void IncreaseEconomy(double coin)
+    public void IncreaseEconomy(double pCoinAmount)
     {
-        coinCount += coin;
-        permanentCoinCount += coin;
+        coinCount += pCoinAmount;
+        permanentCoinCount += pCoinAmount;
         //PlayerPrefs.SetInt(MyConstants.COIN_COUNT, coinCount);
         OnCoinChanged?.Invoke();
         UpdateCoinUi();
-        Achievements.OnAchievementsUpdated?.Invoke(coin,AchievementType.EarnCoin);
+
+        AddMetaResources(pCoinAmount);
+        Achievements.OnAchievementsUpdated?.Invoke(pCoinAmount,AchievementType.EarnCoin);
     }
 
     public void DecreaseEconomy(double coin)

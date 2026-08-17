@@ -30,7 +30,7 @@ public class BallSpawner : MonoBehaviour
     {
         for (int i = 0; i < _ballsList.Count; i++)
         {
-            _ballsList[i]._OnBallDisable = DecreaseBallCount;
+            _ballsList[i].OnBallDisabled = DecreaseBallCount;
         }
     }
 
@@ -39,7 +39,7 @@ public class BallSpawner : MonoBehaviour
         ballSpawnerIndex = index;
         foreach (Ball ball in _ballsList)
         {
-            ball.BallIndex = index;
+            ball.SetBallIndex(index);
         }
     }
 
@@ -83,7 +83,7 @@ public class BallSpawner : MonoBehaviour
     {
         for (int i = 0; i < _ballsList.Count; i++)
         {
-            if (!_ballsList[i].isActive)
+            if (!_ballsList[i].IsActive())
             {
                 return _ballsList[i];
             }
@@ -100,7 +100,7 @@ public class BallSpawner : MonoBehaviour
         }
         foreach (Ball ball in _ballsList)
         {
-            ball.isActive = false;
+            ball.DisableBall();
         }
         CurrentBallCount = 0;
         _isSpawning = false;

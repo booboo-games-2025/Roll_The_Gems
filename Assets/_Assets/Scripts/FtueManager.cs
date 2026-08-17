@@ -33,12 +33,16 @@ public class FtueManager : MonoBehaviour
 
     private Vector2 _tapToContinueTextOriginalPosition;
 
+    private RectTransform _tapToContinueButtonRect;
+
 
     private void Awake()
     {
         Instance = this;
 
-        _tapToContinueTextOriginalPosition = tapToContinueButton.transform.position;
+        _tapToContinueButtonRect = tapToContinueButton.GetComponent<RectTransform>();
+
+        _tapToContinueTextOriginalPosition = _tapToContinueButtonRect.anchoredPosition;
 
         AchievementUi.OnAchievementComplete += StartAchivementTutorial;
         if(PlayerPrefs.GetInt(MyConstants.StartFtueCompleted,0) == 0)
@@ -61,12 +65,14 @@ public class FtueManager : MonoBehaviour
         });
 
         ShowHighlight(goalHighlightTransform, new Vector2(1100, 1150));
-        ShowTutorialText(goalHighlightTransform, goalText, new Vector2(0, 50f));
+        ShowTutorialText(goalHighlightTransform, goalText, new Vector2(0, 0f));
 
-        tapToContinueButton.transform.position = _tapToContinueTextOriginalPosition;
+        _tapToContinueButtonRect.anchoredPosition = _tapToContinueTextOriginalPosition;
 
-        tapToContinueButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 1020f);
+        _tapToContinueButtonRect.anchoredPosition = new Vector2(0f, 1020f);
+
         tapToContinueButton.gameObject.SetActive(true);
+
         tapToContinueButton.clickEvent.AddListener(StartTutorial);
     }
 
@@ -98,9 +104,9 @@ public class FtueManager : MonoBehaviour
         unlockButton.clickEvent.RemoveListener(ShowUpgradeScrolling);
         DOTween.To(()=>scrollbar.value,x => scrollbar.value = x, 0, 2f).SetDelay(0.5f).OnComplete(() =>
         {
-            tapToContinueButton.transform.position = _tapToContinueTextOriginalPosition;
+            _tapToContinueButtonRect.anchoredPosition = _tapToContinueTextOriginalPosition;
 
-            tapToContinueButton.transform.position += Vector3.up * 550;
+            _tapToContinueButtonRect.anchoredPosition += Vector2.up * 550;
             tapToContinueButton.gameObject.SetActive(true);
             tapToContinueButton.clickEvent.AddListener(UpgradesTutorial);
         });
@@ -154,9 +160,9 @@ public class FtueManager : MonoBehaviour
         ShowHighlight(_btcWalletHighlightTransform);
         ShowTutorialText(_btcWalletHighlightTransform, _btcWalletText, new Vector2(0, -50f));
 
-        tapToContinueButton.transform.position = _tapToContinueTextOriginalPosition;
+        _tapToContinueButtonRect.anchoredPosition = _tapToContinueTextOriginalPosition;
 
-        tapToContinueButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 1020f);
+        _tapToContinueButtonRect.anchoredPosition = new Vector2(0f, 1020f);
         tapToContinueButton.gameObject.SetActive(true);
         tapToContinueButton.clickEvent.AddListener(EndIncomeTutorial);
     }
@@ -241,12 +247,14 @@ public class FtueManager : MonoBehaviour
 
     public void ShowTutorialText(Transform target,string _text, Vector3 offset)
     {
-        pointer.position = target.position + offset;
+        //pointer.position = target.position + offset;
+        pointer.position = target.position;
         tutorialText.text = _text;
     }
 
     void TutorialPanelPointerSwitch(bool down)
     {
+        Debug.Log("Tutorial panel pointer swuitch");
         if (down)
         {
             pointer.rotation = Quaternion.identity;
@@ -258,6 +266,8 @@ public class FtueManager : MonoBehaviour
         }
         else
         {
+            pointer.rotation = Quaternion.identity;
+            speechBox.localRotation = Quaternion.identity;
             pointer.rotation = Quaternion.Euler(0, 0, 180);
             speechBox.localRotation = Quaternion.Euler(0, 0, 180);
             speechBox.pivot = new Vector2(0.5f, 0.5f);

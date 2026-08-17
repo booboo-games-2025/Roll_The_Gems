@@ -63,7 +63,7 @@ public class Ring : MonoBehaviour
         if (other.gameObject.layer == _layerIndex)
         {
             Ball ball = other.collider.GetComponent<Ball>();
-            double damage = ball.Damage();
+            double damage = ball.ProcessHit();
             if (RingHealthHalfRv.IsActive)
             {
                 damage *= 2;
