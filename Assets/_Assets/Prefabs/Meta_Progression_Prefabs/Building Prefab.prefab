@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 235154819501607195}
   - component: {fileID: 1986239066168458930}
   - component: {fileID: 2387667059055456804}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Bricks_Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 6873456139042450905}
   - component: {fileID: 8506454745005214091}
   - component: {fileID: 4143330551012329315}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Requirement_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 6359766497658092309}
   - component: {fileID: 7486594783465013814}
   - component: {fileID: 9142233008890883878}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 2138020979
+  m_SortingLayerID: 0
   m_SortingOrder: 10000
   m_TargetDisplay: 0
 --- !u!114 &7486594783465013814
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 6114114983138399500}
   - component: {fileID: 8073080832765569019}
   - component: {fileID: 709376410242953684}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Requirement_Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 4479136036707639469}
   - component: {fileID: 6740924635857326768}
   - component: {fileID: 4546655498464669968}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Building Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,9 +466,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2138020979
+  m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1000
   m_Sprite: {fileID: 21300000, guid: 2a2999c892abcaf469e6792126baa5d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -538,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1841454290945496613, guid: 27d9724e198ef714db76606a858571a2, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1888321244234013570, guid: 27d9724e198ef714db76606a858571a2, type: 3}
       propertyPath: playOnAwake
@@ -550,7 +550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3435758376369037878, guid: 27d9724e198ef714db76606a858571a2, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7145261173936788079, guid: 27d9724e198ef714db76606a858571a2, type: 3}
       propertyPath: playOnAwake
@@ -558,7 +558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7864795699998978286, guid: 27d9724e198ef714db76606a858571a2, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9054502332598114772, guid: 27d9724e198ef714db76606a858571a2, type: 3}
       propertyPath: m_SortingLayer

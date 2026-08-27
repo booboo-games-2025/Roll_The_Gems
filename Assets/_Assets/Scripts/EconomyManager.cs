@@ -43,7 +43,7 @@ public class EconomyManager : MonoBehaviour
 
     private void AddMetaResources(double pCoins)
     {
-        double metaResourceCount = Math.Round(pCoins * _metaResourceEconomyMultiplier, 0);
+        double metaResourceCount = Math.Ceiling(pCoins * _metaResourceEconomyMultiplier);
         _resourceBuildSystem.AddResource(metaResourceCount);
     }
 

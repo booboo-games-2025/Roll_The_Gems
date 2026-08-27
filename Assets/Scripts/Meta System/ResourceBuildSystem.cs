@@ -128,7 +128,7 @@ public class ResourceBuildSystem : MonoBehaviour
 
     private void HandleOnTouchPressed(GameObject pUiObject)
     {
-        if(!_allowedInputOverObjects.Contains(pUiObject)) return;
+        if (!_allowedInputOverObjects.Contains(pUiObject)) return;
 
         BeginDeposit();
     }
